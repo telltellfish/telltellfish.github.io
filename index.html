@@ -3054,8 +3054,23 @@
       }
     })();
   </script>
-  <script src="data/stock_daily_web.js?v=web-v2"></script>
   <script>
+    window.ensureStockDailyReports = (() => {
+      let loadingPromise = null;
+      return function ensureStockDailyReports() {
+        if (window.STOCK_DAILY_REPORTS) return Promise.resolve(window.STOCK_DAILY_REPORTS);
+        if (loadingPromise) return loadingPromise;
+        loadingPromise = new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = `data/stock_daily_web.js?v=${window.MARKET_SENTIMENT_DATA?.tradeDate || "web-v3"}`;
+          script.onload = () => resolve(window.STOCK_DAILY_REPORTS || {});
+          script.onerror = () => reject(new Error("个股日报加载失败"));
+          document.head.appendChild(script);
+        });
+        return loadingPromise;
+      };
+    })();
+
     window.ensureStockDailyContexts = (() => {
       let loadingPromise = null;
       return function ensureStockDailyContexts() {
@@ -3554,6 +3569,28 @@
       window.renderStockDailyReports = function renderStockDailyReports(preferredDate) {
         const section = document.querySelector(".stock-daily");
         if (!section) return;
+        if (!window.STOCK_DAILY_REPORTS && window.ensureStockDailyReports) {
+          const summaryEl = document.querySelector("[data-stock-daily-summary]");
+          const themesEl = document.querySelector("[data-stock-daily-themes]");
+          if (summaryEl) summaryEl.textContent = "正在加载最新个股日报…";
+          if (themesEl && !themesEl.children.length) {
+            themesEl.appendChild(make("div", "stock-daily-empty", "正在加载最新个股日报…"));
+          }
+          if (section.__stockDailyReportsLoading !== true) {
+            section.__stockDailyReportsLoading = true;
+            window.ensureStockDailyReports()
+              .then(() => {
+                section.__stockDailyReportsLoading = false;
+                if (themesEl) themesEl.textContent = "";
+                window.renderStockDailyReports(preferredDate);
+              })
+              .catch(() => {
+                section.__stockDailyReportsLoading = false;
+                if (summaryEl) summaryEl.textContent = "个股日报暂时加载失败，请稍后刷新重试。";
+              });
+          }
+          return;
+        }
         const reports = window.STOCK_DAILY_REPORTS || {};
         const items = reports.items || {};
         const requestedDate = section.__stockDailyDate || preferredDate;
@@ -3608,6 +3645,22 @@
           script.src = `data/rotation_constituents.js?v=${window.MARKET_SENTIMENT_DATA?.tradeDate || "web-v2"}`;
           script.onload = () => resolve(window.ROTATION_CONSTITUENTS || {});
           script.onerror = () => reject(new Error("板块个股明细加载失败"));
+          document.head.appendChild(script);
+        });
+        return loadingPromise;
+      };
+    })();
+
+    window.ensureRotationDatasets = (() => {
+      let loadingPromise = null;
+      return function ensureRotationDatasets() {
+        if (window.ROTATION_DATASETS) return Promise.resolve(window.ROTATION_DATASETS);
+        if (loadingPromise) return loadingPromise;
+        loadingPromise = new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = `data/rotation_datasets.js?v=${window.MARKET_SENTIMENT_DATA?.tradeDate || "web-v3"}`;
+          script.onload = () => resolve(window.ROTATION_DATASETS || {});
+          script.onerror = () => reject(new Error("板块轮动榜单加载失败"));
           document.head.appendChild(script);
         });
         return loadingPromise;
@@ -4103,7 +4156,27 @@
           section.dataset.rotationBound = "1";
         }
 
-        const dataset = hasDataset ? (rotation.datasets[`${state.dimension}|${state.metric}`] || { days: [], frequency: [] }) : rotation;
+        const datasetKey = `${state.dimension}|${state.metric}`;
+        if (hasDataset && !rotation.datasets[datasetKey] && window.ensureRotationDatasets) {
+          setText("[data-rotation-summary]", "正在加载所选板块轮动榜单…");
+          frequency.textContent = "";
+          board.textContent = "";
+          if (section.__rotationDatasetsLoading !== true) {
+            section.__rotationDatasetsLoading = true;
+            window.ensureRotationDatasets()
+              .then((datasets) => {
+                rotation.datasets = Object.assign({}, rotation.datasets || {}, datasets || {});
+                section.__rotationDatasetsLoading = false;
+                renderRotation(section.__rotationData);
+              })
+              .catch(() => {
+                section.__rotationDatasetsLoading = false;
+                setText("[data-rotation-summary]", "板块轮动榜单加载失败，请稍后重试。");
+              });
+          }
+          return;
+        }
+        const dataset = hasDataset ? (rotation.datasets[datasetKey] || { days: [], frequency: [] }) : rotation;
         const windowSize = Number(state.window) || 10;
         const limitSize = Number(state.limit) || 10;
         const days = (dataset.days || []).slice(0, windowSize);
@@ -5358,7 +5431,27 @@
           section.dataset.rotationBound = "1";
         }
 
-        const dataset = hasDataset ? (rotation.datasets[`${state.dimension}|${state.metric}`] || { days: [], frequency: [] }) : rotation;
+        const datasetKey = `${state.dimension}|${state.metric}`;
+        if (hasDataset && !rotation.datasets[datasetKey] && window.ensureRotationDatasets) {
+          setText("[data-rotation-summary]", "正在加载所选板块轮动榜单…");
+          frequency.textContent = "";
+          board.textContent = "";
+          if (section.__rotationDatasetsLoading !== true) {
+            section.__rotationDatasetsLoading = true;
+            window.ensureRotationDatasets()
+              .then((datasets) => {
+                rotation.datasets = Object.assign({}, rotation.datasets || {}, datasets || {});
+                section.__rotationDatasetsLoading = false;
+                renderRotation(section.__rotationData);
+              })
+              .catch(() => {
+                section.__rotationDatasetsLoading = false;
+                setText("[data-rotation-summary]", "板块轮动榜单加载失败，请稍后重试。");
+              });
+          }
+          return;
+        }
+        const dataset = hasDataset ? (rotation.datasets[datasetKey] || { days: [], frequency: [] }) : rotation;
         const windowSize = Number(state.window) || 10;
         const limitSize = Number(state.limit) || 10;
         const days = (dataset.days || []).slice(0, windowSize);
