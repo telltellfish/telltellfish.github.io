@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="app-loading">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -748,6 +748,62 @@
     .trend-chart text {
       font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
       letter-spacing: 0;
+    }
+
+    .app-loading .page,
+    .app-loading .history-overlay {
+      visibility: hidden;
+    }
+
+    .app-loading-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: #fff;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .18s ease, visibility .18s ease;
+    }
+
+    .app-loading .app-loading-screen {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .app-loading-card {
+      width: min(360px, 88vw);
+      text-align: center;
+    }
+
+    .app-loading-brand {
+      color: var(--ink);
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 950;
+    }
+
+    .app-loading-spinner {
+      width: 34px;
+      height: 34px;
+      margin: 24px auto 18px;
+      border: 3px solid #e7edf7;
+      border-top-color: var(--blue);
+      border-right-color: var(--red);
+      border-radius: 50%;
+      animation: app-loading-spin .8s linear infinite;
+    }
+
+    .app-loading-text {
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    @keyframes app-loading-spin {
+      to { transform: rotate(360deg); }
     }
 
     .trend-summary {
@@ -2531,6 +2587,13 @@
   </style>
 </head>
 <body>
+  <div class="app-loading-screen" role="status" aria-live="polite">
+    <div class="app-loading-card">
+      <div class="app-loading-brand">复盘啦</div>
+      <div class="app-loading-spinner" aria-hidden="true"></div>
+      <div class="app-loading-text" data-loading-text>正在加载最新收盘数据…</div>
+    </div>
+  </div>
   <main class="page">
     <header class="topbar">
       <div>
@@ -2991,9 +3054,24 @@
       }
     })();
   </script>
-  <script src="data/stock_daily.js?v=update-20260709-daily"></script>
-  <script src="data/stock_daily_contexts.js?v=update-20260709-daily"></script>
+  <script src="data/stock_daily_web.js?v=web-v2"></script>
   <script>
+    window.ensureStockDailyContexts = (() => {
+      let loadingPromise = null;
+      return function ensureStockDailyContexts() {
+        if (window.STOCK_DAILY_CONTEXTS) return Promise.resolve(window.STOCK_DAILY_CONTEXTS);
+        if (loadingPromise) return loadingPromise;
+        loadingPromise = new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = `data/stock_daily_contexts_web.js?v=${window.MARKET_SENTIMENT_DATA?.tradeDate || "web-v2"}`;
+          script.onload = () => resolve(window.STOCK_DAILY_CONTEXTS || {});
+          script.onerror = () => reject(new Error("个股日报正文加载失败"));
+          document.head.appendChild(script);
+        });
+        return loadingPromise;
+      };
+    })();
+
     (function setupStockDailyReports() {
       const make = (tag, className, text) => {
         const element = document.createElement(tag);
@@ -3255,9 +3333,24 @@
         overlay.setAttribute("aria-hidden", "true");
       };
 
-      const openStockDailyDetail = (item, report) => {
+      const openStockDailyDetail = async (item, report) => {
         const reports = window.STOCK_DAILY_REPORTS || {};
         const activeDate = report?.tradeDate || document.querySelector(".stock-daily")?.__stockDailyDate || "";
+        const overlay = ensureStockDetailOverlay();
+        const panel = overlay.querySelector(".stock-detail-panel");
+        if (!window.STOCK_DAILY_CONTEXTS && window.ensureStockDailyContexts) {
+          panel.textContent = "";
+          panel.appendChild(make("div", "stock-daily-empty", "正在加载日报正文出处…"));
+          overlay.classList.add("open");
+          overlay.setAttribute("aria-hidden", "false");
+          try {
+            await window.ensureStockDailyContexts();
+          } catch (error) {
+            panel.textContent = "";
+            panel.appendChild(make("div", "stock-daily-empty", "日报正文暂时加载失败，请稍后重试。"));
+            return;
+          }
+        }
         const mentions = findStockMentions(report, item);
         const phrases = mentionPhrases(mentions.length ? mentions : [item]);
         const trail = findPreviousStockTrail(reports, activeDate, item);
@@ -3285,8 +3378,6 @@
         if (newPhrases.length) marginal.push(`新增/强化表述：${newPhrases.slice(0, 3).join("；")}。`);
         if (!newPhrases.length && phrases.length) marginal.push("本次与上次表述接近，边际更多来自当日仍被放在重点方向中跟踪。");
 
-        const overlay = ensureStockDetailOverlay();
-        const panel = overlay.querySelector(".stock-detail-panel");
         panel.textContent = "";
         const head = make("div", "stock-detail-head");
         const titleWrap = make("div", "");
@@ -3505,8 +3596,24 @@
     })();
   </script>
   <script src="data/trend.js?v=update-20260707"></script>
-  <script src="data/latest.js?v=update-20260708-fearalign"></script>
+  <script src="data/latest_web.js?v=web-v2" onerror="document.querySelector('[data-loading-text]').textContent='最新数据加载失败，请刷新后重试。'"></script>
   <script>
+    window.ensureRotationConstituents = (() => {
+      let loadingPromise = null;
+      return function ensureRotationConstituents() {
+        if (window.ROTATION_CONSTITUENTS) return Promise.resolve(window.ROTATION_CONSTITUENTS);
+        if (loadingPromise) return loadingPromise;
+        loadingPromise = new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = `data/rotation_constituents.js?v=${window.MARKET_SENTIMENT_DATA?.tradeDate || "web-v2"}`;
+          script.onload = () => resolve(window.ROTATION_CONSTITUENTS || {});
+          script.onerror = () => reject(new Error("板块个股明细加载失败"));
+          document.head.appendChild(script);
+        });
+        return loadingPromise;
+      };
+    })();
+
     window.renderSentimentV2Panel = function renderSentimentV2Panel(model) {
       const panel = document.querySelector("[data-sentiment-v2]");
       if (!panel) return;
@@ -3919,6 +4026,9 @@
           limit: document.querySelector("[data-rotation-limit]"),
         };
         if (!section || !frequency || !board) return;
+        if (rotation && !rotation.constituents && window.ROTATION_CONSTITUENTS) {
+          rotation.constituents = window.ROTATION_CONSTITUENTS;
+        }
         section.__rotationData = rotation;
 
         const hasDataset = rotation && rotation.datasets && rotation.options;
@@ -4024,6 +4134,23 @@
           section.__rotationSelectedName = matchesName(item) ? "" : item.name;
           section.__rotationSelectedDay = day?.tradeDate || rotation.constituents?.latestTradeDate || "";
           section.__rotationDetailMode = mode || "selected";
+          if (section.__rotationSelectedName && !rotation.constituents && window.ensureRotationConstituents) {
+            section.__rotationDetailsLoading = true;
+            renderRotation(section.__rotationData);
+            window.ensureRotationConstituents()
+              .then((constituents) => {
+                rotation.constituents = constituents;
+                section.__rotationDetailsLoading = false;
+                section.__rotationDetailsError = "";
+                renderRotation(section.__rotationData);
+              })
+              .catch(() => {
+                section.__rotationDetailsLoading = false;
+                section.__rotationDetailsError = "板块个股明细加载失败，请稍后重试。";
+                renderRotation(section.__rotationData);
+              });
+            return;
+          }
           renderRotation(section.__rotationData);
         };
         const collectMatches = (name) => {
@@ -4105,6 +4232,16 @@
 
         const renderRotationDetail = () => {
           if (!detail || !detailTitle || !detailMeta || !detailTabs || !detailBody || !detailEmpty) return;
+          if (section.__rotationDetailsLoading || section.__rotationDetailsError) {
+            detail.hidden = false;
+            detailTitle.textContent = selectedName || "板块个股明细";
+            detailMeta.textContent = "";
+            detailTabs.textContent = "";
+            detailBody.textContent = "";
+            detailEmpty.hidden = false;
+            detailEmpty.textContent = section.__rotationDetailsError || "正在加载板块个股明细…";
+            return;
+          }
           const constituentData = rotation.constituents || {};
           const constituentItems = constituentData.items || {};
           const latestDate = constituentData.latestTradeDate || days[0]?.tradeDate || "";
@@ -4283,6 +4420,10 @@
       if (window.renderStockDailyReports) window.renderStockDailyReports(data.stockDailyDate || data.tradeDate);
       setText(".observe-box", data.observation);
       setText(".note", data.note);
+      document.documentElement.classList.remove("app-loading");
+      document.documentElement.classList.add("app-ready");
+      const loadingScreen = document.querySelector(".app-loading-screen");
+      if (loadingScreen) loadingScreen.hidden = true;
     })();
   </script>
   <script src="data/history.js?v=update-20260708-fearalign"></script>
@@ -5140,6 +5281,9 @@
           limit: document.querySelector("[data-rotation-limit]"),
         };
         if (!section || !frequency || !board) return;
+        if (rotation && !rotation.constituents && window.ROTATION_CONSTITUENTS) {
+          rotation.constituents = window.ROTATION_CONSTITUENTS;
+        }
         section.__rotationData = rotation;
 
         const hasDataset = rotation && rotation.datasets && rotation.options;
@@ -5245,6 +5389,23 @@
           section.__rotationSelectedName = matchesName(item) ? "" : item.name;
           section.__rotationSelectedDay = day?.tradeDate || rotation.constituents?.latestTradeDate || "";
           section.__rotationDetailMode = mode || "selected";
+          if (section.__rotationSelectedName && !rotation.constituents && window.ensureRotationConstituents) {
+            section.__rotationDetailsLoading = true;
+            renderRotation(section.__rotationData);
+            window.ensureRotationConstituents()
+              .then((constituents) => {
+                rotation.constituents = constituents;
+                section.__rotationDetailsLoading = false;
+                section.__rotationDetailsError = "";
+                renderRotation(section.__rotationData);
+              })
+              .catch(() => {
+                section.__rotationDetailsLoading = false;
+                section.__rotationDetailsError = "板块个股明细加载失败，请稍后重试。";
+                renderRotation(section.__rotationData);
+              });
+            return;
+          }
           renderRotation(section.__rotationData);
         };
         const collectMatches = (name) => {
@@ -5326,6 +5487,16 @@
 
         const renderRotationDetail = () => {
           if (!detail || !detailTitle || !detailMeta || !detailTabs || !detailBody || !detailEmpty) return;
+          if (section.__rotationDetailsLoading || section.__rotationDetailsError) {
+            detail.hidden = false;
+            detailTitle.textContent = selectedName || "板块个股明细";
+            detailMeta.textContent = "";
+            detailTabs.textContent = "";
+            detailBody.textContent = "";
+            detailEmpty.hidden = false;
+            detailEmpty.textContent = section.__rotationDetailsError || "正在加载板块个股明细…";
+            return;
+          }
           const constituentData = rotation.constituents || {};
           const constituentItems = constituentData.items || {};
           const latestDate = constituentData.latestTradeDate || days[0]?.tradeDate || "";
