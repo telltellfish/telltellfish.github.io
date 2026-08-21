@@ -3062,7 +3062,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/stock_daily_web.js?v=20260821172625`;
+          script.src = `data/stock_daily_web.js?v=20260821183509`;
           script.onload = () => resolve(window.STOCK_DAILY_REPORTS || {});
           script.onerror = () => reject(new Error("个股日报加载失败"));
           document.head.appendChild(script);
@@ -3078,7 +3078,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/stock_daily_contexts_web.js?v=20260821172625`;
+          script.src = `data/stock_daily_contexts_web.js?v=20260821183509`;
           script.onload = () => resolve(window.STOCK_DAILY_CONTEXTS || {});
           script.onerror = () => reject(new Error("个股日报正文加载失败"));
           document.head.appendChild(script);
@@ -3648,7 +3648,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/rotation_constituents.js?v=20260821172625`;
+          script.src = `data/rotation_constituents.js?v=20260821183509`;
           script.onload = () => resolve(window.ROTATION_CONSTITUENTS || {});
           script.onerror = () => reject(new Error("板块个股明细加载失败"));
           document.head.appendChild(script);
@@ -3664,7 +3664,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/rotation_datasets.js?v=20260821172625`;
+          script.src = `data/rotation_datasets.js?v=20260821183509`;
           script.onload = () => resolve(window.ROTATION_DATASETS || {});
           script.onerror = () => reject(new Error("板块轮动榜单加载失败"));
           document.head.appendChild(script);
