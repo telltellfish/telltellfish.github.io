@@ -1,5 +1,5 @@
 window.BOND_EQUITY_VALUE_DATA = {
-  "generatedAt": "2026-08-20T18:29:58+08:00",
+  "generatedAt": "2026-08-21T16:38:33+08:00",
   "source": "local-ifind-validated",
   "status": "ready",
   "basis": {
@@ -9,16 +9,16 @@ window.BOND_EQUITY_VALUE_DATA = {
     "score": "过去十年风险溢价分位，分位越高越偏牛"
   },
   "current": {
-    "tradeDate": "2026-08-20",
-    "allAPe": 23.8506,
-    "earningsYield": "4.19%",
-    "bondYield": "1.69%",
-    "fedPremium": "2.50%",
+    "tradeDate": "2026-08-21",
+    "allAPe": 23.896,
+    "earningsYield": "4.18%",
+    "bondYield": "1.70%",
+    "fedPremium": "2.49%",
     "fedAverage": "2.69%",
-    "percentile": 37.87,
-    "rangeText": "2018-05-17~2026-08-20",
+    "percentile": 37.05,
+    "rangeText": "2018-05-17~2026-08-21",
     "desc": "同花顺全A风险溢价 = 1 / 同花顺全A市盈率 - 中国十年期国债收益率",
-    "tip": "同花顺全A PE 为 23.85，十年期国债收益率为 1.69%，风险溢价 2.50%，处于过去十年 37.87% 分位。分位越高，越偏牛。"
+    "tip": "同花顺全A PE 为 23.90，十年期国债收益率为 1.70%，风险溢价 2.49%，处于过去十年 37.05% 分位。分位越高，越偏牛。"
   },
   "rows": [
     {
@@ -14051,17 +14051,17 @@ window.BOND_EQUITY_VALUE_DATA = {
     },
     {
       "tradeDate": "2026-08-18",
-      "pe": 24.4807,
-      "earningsYield": 4.0848505148954075,
+      "pe": 24.4808,
+      "earningsYield": 4.084833828959838,
       "bondYield": 1.681,
-      "fedPremium": 2.4038505148954075
+      "fedPremium": 2.403833828959838
     },
     {
       "tradeDate": "2026-08-19",
-      "pe": 23.767171,
-      "earningsYield": 4.207484348894532,
+      "pe": 23.7674,
+      "earningsYield": 4.207443809587923,
       "bondYield": 1.6838,
-      "fedPremium": 2.523684348894532
+      "fedPremium": 2.5236438095879237
     },
     {
       "tradeDate": "2026-08-20",
@@ -14069,6 +14069,13 @@ window.BOND_EQUITY_VALUE_DATA = {
       "earningsYield": 4.192766814787335,
       "bondYield": 1.6946,
       "fedPremium": 2.498166814787335
+    },
+    {
+      "tradeDate": "2026-08-21",
+      "pe": 23.896,
+      "earningsYield": 4.184800803481754,
+      "bondYield": 1.6963,
+      "fedPremium": 2.488500803481754
     }
   ],
   "validationFailures": []
