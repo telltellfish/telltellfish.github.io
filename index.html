@@ -3448,7 +3448,13 @@
           rawWrap.appendChild(itemEl);
         });
         if (!rawWrap.children.length) {
-          rawWrap.appendChild(make("div", "stock-daily-empty", "这只个股暂未缓存原始 PDF 正文，下次更新会自动补齐。"));
+          const extraction = window.STOCK_DAILY_CONTEXTS?.items?.[activeDate]?.extraction || {};
+          const fallbackText = extraction.status === "ocr_ready"
+            ? "扫描版 PDF 已完成 OCR，但没有检索到这只个股的精确原文提及；请查看下方总结文档出处。"
+            : extraction.status === "image_only_ocr_unavailable"
+              ? "原始 PDF 是扫描图片，尚未完成 OCR；当前先展示下方总结文档出处。"
+              : "原始 PDF 中没有检索到这只个股的精确原文提及；请查看下方总结文档出处。";
+          rawWrap.appendChild(make("div", "stock-daily-empty", fallbackText));
         }
         rawBlock.appendChild(rawWrap);
         body.appendChild(rawBlock);
