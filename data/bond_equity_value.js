@@ -1,5 +1,5 @@
 window.BOND_EQUITY_VALUE_DATA = {
-  "generatedAt": "2026-08-26T17:22:27+08:00",
+  "generatedAt": "2026-08-27T16:52:27+08:00",
   "source": "local-ifind-validated",
   "status": "ready",
   "basis": {
@@ -9,16 +9,16 @@ window.BOND_EQUITY_VALUE_DATA = {
     "score": "过去十年风险溢价分位，分位越高越偏牛"
   },
   "current": {
-    "tradeDate": "2026-08-26",
-    "allAPe": 23.8501,
-    "earningsYield": "4.19%",
+    "tradeDate": "2026-08-27",
+    "allAPe": 24.1912,
+    "earningsYield": "4.13%",
     "bondYield": "1.70%",
-    "fedPremium": "2.50%",
+    "fedPremium": "2.43%",
     "fedAverage": "2.69%",
-    "percentile": 37.74,
-    "rangeText": "2018-05-17~2026-08-26",
+    "percentile": 32.8,
+    "rangeText": "2018-05-17~2026-08-27",
     "desc": "同花顺全A风险溢价 = 1 / 同花顺全A市盈率 - 中国十年期国债收益率",
-    "tip": "同花顺全A PE 为 23.85，十年期国债收益率为 1.70%，风险溢价 2.50%，处于过去十年 37.74% 分位。分位越高，越偏牛。"
+    "tip": "同花顺全A PE 为 24.19，十年期国债收益率为 1.70%，风险溢价 2.43%，处于过去十年 32.80% 分位。分位越高，越偏牛。"
   },
   "rows": [
     {
@@ -14079,17 +14079,17 @@ window.BOND_EQUITY_VALUE_DATA = {
     },
     {
       "tradeDate": "2026-08-24",
-      "pe": 23.6674,
-      "earningsYield": 4.2252211903293135,
+      "pe": 23.6675,
+      "earningsYield": 4.225203337910637,
       "bondYield": 1.6939,
-      "fedPremium": 2.5313211903293134
+      "fedPremium": 2.5313033379106367
     },
     {
       "tradeDate": "2026-08-25",
-      "pe": 23.723432,
-      "earningsYield": 4.21524170701777,
+      "pe": 23.7347,
+      "earningsYield": 4.2132405296885995,
       "bondYield": 1.692,
-      "fedPremium": 2.52324170701777
+      "fedPremium": 2.5212405296885994
     },
     {
       "tradeDate": "2026-08-26",
@@ -14097,6 +14097,13 @@ window.BOND_EQUITY_VALUE_DATA = {
       "earningsYield": 4.192845923100942,
       "bondYield": 1.6967,
       "fedPremium": 2.4961459231009417
+    },
+    {
+      "tradeDate": "2026-08-27",
+      "pe": 24.191152,
+      "earningsYield": 4.133742783311849,
+      "bondYield": 1.7023,
+      "fedPremium": 2.431442783311849
     }
   ],
   "validationFailures": []
