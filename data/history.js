@@ -2,6 +2,263 @@ window.MARKET_SENTIMENT_HISTORY = [
   {
     "title": "复盘啦",
     "sentimentTitle": "A股收盘温度指数",
+    "tradeDate": "2026.09.07",
+    "closeTime": "15:00",
+    "badge": "9月7日收盘版 / 同花顺数据",
+    "subtitle": "基于 2026.09.07 15:00 收盘数据整理｜用于当日复盘与次日观察",
+    "score": 62,
+    "mood": "中性偏热",
+    "moodTone": "red",
+    "summary": "收盘温度偏热，盘中下探后修复，收盘靠近日内高位，上涨3167家，强势95家，成交1.95万亿，主线集中在PCB / CPO / 光模块",
+    "miniGauges": [
+      {
+        "score": 59,
+        "title": "市场宽度",
+        "desc": "3167涨 / 2196跌"
+      },
+      {
+        "score": 46,
+        "title": "成交热度",
+        "desc": "两市 1.95万亿"
+      },
+      {
+        "score": 75,
+        "title": "主线承接",
+        "desc": "PCB / CPO / 光模块"
+      },
+      {
+        "score": 82,
+        "title": "赚钱效应",
+        "desc": "95涨停 / 2跌停"
+      }
+    ],
+    "marketData": [
+      {
+        "label": "上证指数",
+        "value": "3932.70",
+        "change": "+0.07%",
+        "tone": "red"
+      },
+      {
+        "label": "深证成指",
+        "value": "13774.91",
+        "change": "+1.91%",
+        "tone": "red"
+      },
+      {
+        "label": "创业板指",
+        "value": "3398.68",
+        "change": "+3.41%",
+        "tone": "red"
+      },
+      {
+        "label": "科创50",
+        "value": "1615.53",
+        "change": "+2.42%",
+        "tone": "red"
+      },
+      {
+        "label": "两市成交额",
+        "value": "1.95万亿",
+        "change": "缩量846亿",
+        "tone": "blue"
+      },
+      {
+        "label": "涨跌幅中位数",
+        "value": "+0.34%",
+        "change": "5549只样本",
+        "tone": "red"
+      },
+      {
+        "label": "个股宽度",
+        "value": "3167 / 2196",
+        "change": "占比 59.1%",
+        "tone": "red"
+      },
+      {
+        "label": "涨停 / 跌停",
+        "value": "95 / 2",
+        "change": "强势股承接",
+        "tone": "red"
+      }
+    ],
+    "sentimentV2": {
+      "version": "v5-structural-repair-20260810",
+      "displayAsPrimary": true,
+      "score": 69,
+      "rawScore": 58.54,
+      "temperatureScore": 66.72,
+      "resonanceAdjustment": 2.0,
+      "structuralAdjustment": 0,
+      "structuralFloor": 58,
+      "resonanceNotes": [
+        "多数因子偏强"
+      ],
+      "mood": "偏热",
+      "moodTone": "red",
+      "originalScore": 62,
+      "delta": 7,
+      "funddb": {
+        "score": 37,
+        "status": "恐惧",
+        "tradeDate": "2026.09.07",
+        "source": "self-calculated; FundDB method used as reference only",
+        "referenceScore": null,
+        "referenceTradeDate": null,
+        "method": "local-reverse-engineered",
+        "proxyDetail": {
+          "method": "local-reverse-engineered",
+          "rawScore": 81.36,
+          "mappedScore": 47.84,
+          "calibration": 6.0,
+          "appliedCalibration": 2.1,
+          "calibrationNotes": [
+            "limit-up-spread",
+            "index-confirmed-strength"
+          ],
+          "priceStrength": 66,
+          "participation": 51,
+          "limitScore": 98,
+          "median": 0.34,
+          "penalties": [],
+          "boosts": [
+            "涨停扩散",
+            "指数与宽度共振偏强"
+          ],
+          "ifindFactorScore": 37.3,
+          "ifindFactorBlendWeight": 1.0,
+          "ifindFactorCoverage": 1,
+          "riskBeforeIfindFactors": 50,
+          "ifindFactorDetail": {
+            "status": "ready",
+            "tradeDate": "2026.09.07",
+            "coverageWeight": 1.0,
+            "usedFactors": [
+              {
+                "key": "volatility",
+                "score": 48.51,
+                "weight": 0.18,
+                "status": "ready",
+                "value": 20.8323,
+                "detail": "Weighted 30-day implied volatility basket across SZ50, HS300, CSI1000, STAR50 and ChiNext option proxies; weights use 3-month index momentum (60%) and realized volatility (40%)."
+              },
+              {
+                "key": "priceStrength",
+                "score": 10.98,
+                "weight": 0.2,
+                "status": "ready",
+                "value": 0.5345,
+                "detail": "29/5426 stocks at one-year high"
+              },
+              {
+                "key": "futuresBasis",
+                "score": 71.31,
+                "weight": 0.16,
+                "status": "ready_external_fallback",
+                "value": -0.4246,
+                "detail": "iFinD CFFEX quotes were denied; fallback uses Sina IF main continuous futures close while HS300 index close still comes from iFinD. Basis is calculated locally."
+              },
+              {
+                "key": "safeHaven",
+                "score": 18.85,
+                "weight": 0.26,
+                "status": "ready",
+                "value": -2.85,
+                "detail": "HS300 20d return minus treasury net-price index 20d return"
+              },
+              {
+                "key": "leverage",
+                "score": 50.3,
+                "weight": 0.2,
+                "status": "ready_previous_available",
+                "value": 8.5182,
+                "detail": "Current-day iFinD margin buy amount is empty; using the latest verified leverage observation because margin data can lag after the close."
+              }
+            ],
+            "source": "local-ifind-and-cache"
+          }
+        }
+      },
+      "components": [
+        {
+          "name": "盘面宽度",
+          "score": 67,
+          "weight": "20%",
+          "desc": "3167 / 2196，95 / 2"
+        },
+        {
+          "name": "指数路径",
+          "score": 80,
+          "weight": "20%",
+          "desc": "四大指数平均 +1.95%"
+        },
+        {
+          "name": "流动性",
+          "score": 38,
+          "weight": "10%",
+          "desc": "1.95万亿 缩量846亿"
+        },
+        {
+          "name": "恐贪风险",
+          "score": 37,
+          "weight": "32%",
+          "desc": "自算恐贪 37 / 恐惧 / 涨停扩散、指数与宽度共振偏强"
+        },
+        {
+          "name": "主线结构",
+          "score": 75,
+          "weight": "18%",
+          "desc": "PCB / CPO / 光模块"
+        }
+      ],
+      "summary": "新版保留原权重得到原始分 58.5，再用情绪温度映射与共振修正上修至 69。当前多数因子偏强，恐贪代理口径为恐惧，PCB / CPO / 光模块。"
+    },
+    "bullFactors": [
+      "上涨家数 3167，占比 59.1%，市场宽度偏强",
+      "PCB、CPO、光模块等科技线共振，核心股维持强势",
+      "成交额前200中PCB / CPO / 光模块占比较高，主线资金未完全扩散",
+      "三大指数集体收红：上证 +0.07%，深证成指 +1.91%，创业板指 +3.41%"
+    ],
+    "bearFactors": [
+      "指数修复但成交额缩量846亿，增量资金仍需确认，前一交易日 2026.09.04",
+      "指数修复后仍需观察能否继续向个股扩散",
+      "盘中振幅偏大，修复并非单边走强",
+      "热点快速轮动，若后续不能放量，持续性仍需观察"
+    ],
+    "blocks": [
+      {
+        "tag": "主线",
+        "name": "PCB / CPO / 光模块",
+        "note": "午后强化，核心股再创历史新高",
+        "tone": "up"
+      },
+      {
+        "tag": "成长",
+        "name": "芯片 / 半导体 / 算力硬件",
+        "note": "科技主线修复，分支扩散提升",
+        "tone": "up"
+      },
+      {
+        "tag": "防御",
+        "name": "电力 / 公用事业",
+        "note": "抱团延续，指数修复中提供稳定承接",
+        "tone": "up"
+      },
+      {
+        "tag": "弹性",
+        "name": "共封装光学(CPO)",
+        "note": "热点映射升温，弹性最强",
+        "tone": "up"
+      }
+    ],
+    "stockDailyDate": "2026.09.07",
+    "observation": "观察重点：PCB / CPO / 光模块能否继续放量，盘中修复能否延续，成交额能否维持在1.95万亿附近，指数与市场宽度能否同步修复。",
+    "note": "注：该指数为基于同花顺 iFinD 数据整理的示意型多空情绪值，不代表官方发布口径。",
+    "generatedAt": "2026-09-07T18:35:55+08:00"
+  },
+  {
+    "title": "复盘啦",
+    "sentimentTitle": "A股收盘温度指数",
     "tradeDate": "2026.09.04",
     "closeTime": "15:00",
     "badge": "9月4日收盘版 / 同花顺数据",
