@@ -1,6 +1,6 @@
 window.MARKET_TREND_DATA = {
-  "tradeDate": "2026.09.28",
-  "generatedAt": "2026-09-28T16:47:11+08:00",
+  "tradeDate": "2026.09.29",
+  "generatedAt": "2026-09-29T17:44:38+08:00",
   "historyChart": {
     "referenceCode": "883957.TI",
     "rangeOptions": [
@@ -26,12 +26,6 @@ window.MARKET_TREND_DATA = {
         "code": "000001.SH",
         "label": "上证指数",
         "points": [
-          {
-            "date": "2025.09.23",
-            "value": 3821.833,
-            "change": -0.1761,
-            "amount": 1071697826138.0
-          },
           {
             "date": "2025.09.24",
             "value": 3853.642,
@@ -1494,7 +1488,13 @@ window.MARKET_TREND_DATA = {
             "date": "2026.09.28",
             "value": 3823.621,
             "change": -1.6653,
-            "amount": 804543704707.9
+            "amount": 804543704708.0
+          },
+          {
+            "date": "2026.09.29",
+            "value": 3830.451,
+            "change": 0.1786,
+            "amount": 661704292800.7
           }
         ]
       },
@@ -1502,12 +1502,6 @@ window.MARKET_TREND_DATA = {
         "code": "399001.SZ",
         "label": "深证成指",
         "points": [
-          {
-            "date": "2025.09.23",
-            "value": 13119.817,
-            "change": -0.29,
-            "amount": 1422691445409.5
-          },
           {
             "date": "2025.09.24",
             "value": 13356.143,
@@ -2971,6 +2965,12 @@ window.MARKET_TREND_DATA = {
             "value": 12858.753,
             "change": -3.4408,
             "amount": 898255357218.28
+          },
+          {
+            "date": "2026.09.29",
+            "value": 12901.947,
+            "change": 0.3359,
+            "amount": 747493244834.23
           }
         ]
       },
@@ -2978,12 +2978,6 @@ window.MARKET_TREND_DATA = {
         "code": "399006.SZ",
         "label": "创业板指",
         "points": [
-          {
-            "date": "2025.09.23",
-            "value": 3114.553,
-            "change": 0.2145,
-            "amount": 670317860096.42
-          },
           {
             "date": "2025.09.24",
             "value": 3185.571,
@@ -4447,6 +4441,12 @@ window.MARKET_TREND_DATA = {
             "value": 3139.825,
             "change": -4.5341,
             "amount": 433230203099.95
+          },
+          {
+            "date": "2026.09.29",
+            "value": 3142.563,
+            "change": 0.0872,
+            "amount": 359056474180.71
           }
         ]
       },
@@ -4454,12 +4454,6 @@ window.MARKET_TREND_DATA = {
         "code": "000688.SH",
         "label": "科创50",
         "points": [
-          {
-            "date": "2025.09.23",
-            "value": 1407.302,
-            "change": -0.0953,
-            "amount": 115457332152.0
-          },
           {
             "date": "2025.09.24",
             "value": 1456.469,
@@ -5922,7 +5916,13 @@ window.MARKET_TREND_DATA = {
             "date": "2026.09.28",
             "value": 1555.98,
             "change": -4.0627,
-            "amount": 80586293998.9
+            "amount": 80586293999.0
+          },
+          {
+            "date": "2026.09.29",
+            "value": 1569.338,
+            "change": 0.8585,
+            "amount": 64529947381.6
           }
         ]
       },
@@ -5930,12 +5930,6 @@ window.MARKET_TREND_DATA = {
         "code": "883957.TI",
         "label": "同花顺全A",
         "points": [
-          {
-            "date": "2025.09.23",
-            "value": 1823.37,
-            "change": -1.3044,
-            "amount": 2518466200000.0
-          },
           {
             "date": "2025.09.24",
             "value": 1851.983,
@@ -7399,6 +7393,12 @@ window.MARKET_TREND_DATA = {
             "value": 1846.387,
             "change": -2.2401,
             "amount": 1716711900000.0
+          },
+          {
+            "date": "2026.09.29",
+            "value": 1859.02,
+            "change": 0.6842,
+            "amount": 1421596500000.0
           }
         ]
       }
@@ -7407,11 +7407,6 @@ window.MARKET_TREND_DATA = {
       "turnover": {
         "label": "两市成交额",
         "points": [
-          {
-            "date": "2025.09.23",
-            "value": 2494389271547.5,
-            "display": "2.49万亿"
-          },
           {
             "date": "2025.09.24",
             "value": 2326790967929.4,
@@ -8629,8 +8624,13 @@ window.MARKET_TREND_DATA = {
           },
           {
             "date": "2026.09.28",
-            "value": 1702799061926.18,
+            "value": 1702799061926.28,
             "display": "1.70万亿"
+          },
+          {
+            "date": "2026.09.29",
+            "value": 1409197537634.93,
+            "display": "1.41万亿"
           }
         ]
       },
@@ -10566,15 +10566,17 @@ window.MARKET_TREND_DATA = {
             "count": 5582,
             "dailyValue": -1.8548,
             "dailyDisplay": "-1.85%"
+          },
+          {
+            "date": "2026.09.29",
+            "value": -10.938,
+            "display": "-10.94%",
+            "count": 5584,
+            "dailyValue": 0.4785,
+            "dailyDisplay": "+0.48%"
           }
         ],
         "dailyPoints": [
-          {
-            "date": "2025.09.23",
-            "value": -1.6096,
-            "display": "-1.61%",
-            "count": 5413
-          },
           {
             "date": "2025.09.24",
             "value": 1.2545,
@@ -12038,6 +12040,12 @@ window.MARKET_TREND_DATA = {
             "value": -1.8548,
             "display": "-1.85%",
             "count": 5557
+          },
+          {
+            "date": "2026.09.29",
+            "value": 0.4785,
+            "display": "+0.48%",
+            "count": 5559
           }
         ],
         "ranges": {
@@ -13969,6 +13977,14 @@ window.MARKET_TREND_DATA = {
               "count": 5582,
               "dailyValue": -1.8548,
               "dailyDisplay": "-1.85%"
+            },
+            {
+              "date": "2026.09.29",
+              "value": -10.938,
+              "display": "-10.94%",
+              "count": 5584,
+              "dailyValue": 0.4785,
+              "dailyDisplay": "+0.48%"
             }
           ],
           "ytd": [
@@ -15403,218 +15419,226 @@ window.MARKET_TREND_DATA = {
               "count": 5582,
               "dailyValue": -1.8548,
               "dailyDisplay": "-1.85%"
+            },
+            {
+              "date": "2026.09.29",
+              "value": -12.9429,
+              "display": "-12.94%",
+              "count": 5584,
+              "dailyValue": 0.4785,
+              "dailyDisplay": "+0.48%"
             }
           ],
           "1m": [
             {
-              "date": "2026.08.28",
-              "value": 0.2241,
-              "display": "+0.22%",
-              "count": 5547,
-              "dailyValue": 0.2241,
-              "dailyDisplay": "+0.22%"
-            },
-            {
               "date": "2026.08.31",
-              "value": 0.7375,
-              "display": "+0.74%",
-              "count": 5549,
+              "value": 0.451,
+              "display": "+0.45%",
+              "count": 5545,
               "dailyValue": 0.451,
               "dailyDisplay": "+0.45%"
             },
             {
               "date": "2026.09.01",
-              "value": 1.3461,
-              "display": "+1.35%",
-              "count": 5552,
+              "value": 0.9954,
+              "display": "+1.00%",
+              "count": 5548,
               "dailyValue": 0.5747,
               "dailyDisplay": "+0.57%"
             },
             {
               "date": "2026.09.02",
-              "value": 0.6207,
-              "display": "+0.62%",
-              "count": 5554,
+              "value": 0.2186,
+              "display": "+0.22%",
+              "count": 5550,
               "dailyValue": -0.9474,
               "dailyDisplay": "-0.95%"
             },
             {
               "date": "2026.09.03",
-              "value": -0.0,
-              "display": "-0.00%",
-              "count": 5555,
+              "value": -0.4219,
+              "display": "-0.42%",
+              "count": 5551,
               "dailyValue": -0.6803,
               "dailyDisplay": "-0.68%"
             },
             {
               "date": "2026.09.04",
-              "value": -0.0,
-              "display": "-0.00%",
-              "count": 5556,
+              "value": -0.4373,
+              "display": "-0.44%",
+              "count": 5552,
               "dailyValue": -0.1714,
               "dailyDisplay": "-0.17%"
             },
             {
               "date": "2026.09.07",
-              "value": 0.3746,
-              "display": "+0.37%",
-              "count": 5558,
+              "value": 0.0615,
+              "display": "+0.06%",
+              "count": 5555,
               "dailyValue": 0.3374,
               "dailyDisplay": "+0.34%"
             },
             {
               "date": "2026.09.08",
-              "value": 1.139,
-              "display": "+1.14%",
-              "count": 5558,
+              "value": 0.7772,
+              "display": "+0.78%",
+              "count": 5555,
               "dailyValue": 0.5376,
               "dailyDisplay": "+0.54%"
             },
             {
               "date": "2026.09.09",
-              "value": 0.6767,
-              "display": "+0.68%",
-              "count": 5560,
+              "value": 0.207,
+              "display": "+0.21%",
+              "count": 5557,
               "dailyValue": -0.678,
               "dailyDisplay": "-0.68%"
             },
             {
               "date": "2026.09.10",
-              "value": -0.5859,
-              "display": "-0.59%",
-              "count": 5561,
+              "value": -1.0364,
+              "display": "-1.04%",
+              "count": 5558,
               "dailyValue": -1.4908,
               "dailyDisplay": "-1.49%"
             },
             {
               "date": "2026.09.11",
-              "value": -2.6716,
-              "display": "-2.67%",
-              "count": 5562,
+              "value": -3.1346,
+              "display": "-3.13%",
+              "count": 5559,
               "dailyValue": -2.2099,
               "dailyDisplay": "-2.21%"
             },
             {
               "date": "2026.09.14",
-              "value": -2.2294,
-              "display": "-2.23%",
-              "count": 5562,
+              "value": -2.7491,
+              "display": "-2.75%",
+              "count": 5561,
               "dailyValue": 0.2829,
               "dailyDisplay": "+0.28%"
             },
             {
               "date": "2026.09.15",
-              "value": -3.89,
-              "display": "-3.89%",
-              "count": 5562,
+              "value": -4.3386,
+              "display": "-4.34%",
+              "count": 5561,
               "dailyValue": -1.4993,
               "dailyDisplay": "-1.50%"
             },
             {
               "date": "2026.09.16",
-              "value": -2.7206,
-              "display": "-2.72%",
-              "count": 5564,
+              "value": -3.2152,
+              "display": "-3.22%",
+              "count": 5563,
               "dailyValue": 0.9813,
               "dailyDisplay": "+0.98%"
             },
             {
               "date": "2026.09.17",
-              "value": -2.751,
-              "display": "-2.75%",
-              "count": 5565,
+              "value": -3.146,
+              "display": "-3.15%",
+              "count": 5564,
               "dailyValue": -0.0782,
               "dailyDisplay": "-0.08%"
             },
             {
               "date": "2026.09.18",
-              "value": -1.7085,
-              "display": "-1.71%",
-              "count": 5565,
+              "value": -2.03,
+              "display": "-2.03%",
+              "count": 5564,
               "dailyValue": 1.0733,
               "dailyDisplay": "+1.07%"
             },
             {
               "date": "2026.09.21",
-              "value": 0.0927,
-              "display": "+0.09%",
-              "count": 5565,
+              "value": -0.2229,
+              "display": "-0.22%",
+              "count": 5564,
               "dailyValue": 1.5406,
               "dailyDisplay": "+1.54%"
             },
             {
               "date": "2026.09.22",
-              "value": 0.1592,
-              "display": "+0.16%",
-              "count": 5567,
+              "value": -0.1323,
+              "display": "-0.13%",
+              "count": 5566,
               "dailyValue": -0.2078,
               "dailyDisplay": "-0.21%"
             },
             {
               "date": "2026.09.23",
-              "value": -0.3099,
-              "display": "-0.31%",
-              "count": 5568,
+              "value": -0.6448,
+              "display": "-0.64%",
+              "count": 5567,
               "dailyValue": -0.6122,
               "dailyDisplay": "-0.61%"
             },
             {
               "date": "2026.09.24",
-              "value": -1.3228,
-              "display": "-1.32%",
-              "count": 5569,
+              "value": -1.5845,
+              "display": "-1.58%",
+              "count": 5568,
               "dailyValue": -1.3021,
               "dailyDisplay": "-1.30%"
             },
             {
               "date": "2026.09.28",
-              "value": -3.0568,
-              "display": "-3.06%",
-              "count": 5569,
+              "value": -3.4247,
+              "display": "-3.42%",
+              "count": 5568,
               "dailyValue": -1.8548,
               "dailyDisplay": "-1.85%"
+            },
+            {
+              "date": "2026.09.29",
+              "value": -2.6727,
+              "display": "-2.67%",
+              "count": 5570,
+              "dailyValue": 0.4785,
+              "dailyDisplay": "+0.48%"
             }
           ],
           "1w": [
             {
-              "date": "2026.09.21",
-              "value": 1.5406,
-              "display": "+1.54%",
-              "count": 5553,
-              "dailyValue": 1.5406,
-              "dailyDisplay": "+1.54%"
-            },
-            {
               "date": "2026.09.22",
-              "value": 1.4241,
-              "display": "+1.42%",
-              "count": 5555,
+              "value": -0.2078,
+              "display": "-0.21%",
+              "count": 5554,
               "dailyValue": -0.2078,
               "dailyDisplay": "-0.21%"
             },
             {
               "date": "2026.09.23",
-              "value": 0.9023,
-              "display": "+0.90%",
-              "count": 5557,
+              "value": -0.6727,
+              "display": "-0.67%",
+              "count": 5556,
               "dailyValue": -0.6122,
               "dailyDisplay": "-0.61%"
             },
             {
               "date": "2026.09.24",
-              "value": -0.3205,
-              "display": "-0.32%",
-              "count": 5559,
+              "value": -1.8967,
+              "display": "-1.90%",
+              "count": 5558,
               "dailyValue": -1.3021,
               "dailyDisplay": "-1.30%"
             },
             {
               "date": "2026.09.28",
-              "value": -2.021,
-              "display": "-2.02%",
-              "count": 5559,
+              "value": -3.6958,
+              "display": "-3.70%",
+              "count": 5558,
               "dailyValue": -1.8548,
               "dailyDisplay": "-1.85%"
+            },
+            {
+              "date": "2026.09.29",
+              "value": -2.9879,
+              "display": "-2.99%",
+              "count": 5562,
+              "dailyValue": 0.4785,
+              "dailyDisplay": "+0.48%"
             }
           ]
         }
@@ -15622,14 +15646,6 @@ window.MARKET_TREND_DATA = {
       "breadth": {
         "label": "个股宽度",
         "points": [
-          {
-            "date": "2025.09.23",
-            "value": 20.6041,
-            "display": "1105 / 4258",
-            "up": 1105,
-            "down": 4258,
-            "flat": 50
-          },
           {
             "date": "2025.09.24",
             "value": 83.9872,
@@ -17581,19 +17597,20 @@ window.MARKET_TREND_DATA = {
             "up": 898,
             "down": 4554,
             "flat": 105
+          },
+          {
+            "date": "2026.09.29",
+            "value": 64.2302,
+            "display": "3471 / 1933",
+            "up": 3471,
+            "down": 1933,
+            "flat": 155
           }
         ]
       },
       "limitUp": {
         "label": "涨停 / 跌停",
         "points": [
-          {
-            "date": "2025.09.23",
-            "value": 53,
-            "display": "53 / 24",
-            "limitUp": 53,
-            "limitDown": 24
-          },
           {
             "date": "2025.09.24",
             "value": 88,
@@ -19301,6 +19318,13 @@ window.MARKET_TREND_DATA = {
             "display": "35 / 57",
             "limitUp": 35,
             "limitDown": 57
+          },
+          {
+            "date": "2026.09.29",
+            "value": 57,
+            "display": "57 / 11",
+            "limitUp": 57,
+            "limitDown": 11
           }
         ]
       }
