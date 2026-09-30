@@ -3062,7 +3062,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/stock_daily_web.js?v=20260929175152`;
+          script.src = `data/stock_daily_web.js?v=20260930173505`;
           script.onload = () => resolve(window.STOCK_DAILY_REPORTS || {});
           script.onerror = () => reject(new Error("个股日报加载失败"));
           document.head.appendChild(script);
@@ -3072,18 +3072,47 @@
     })();
 
     window.ensureStockDailyContexts = (() => {
-      let loadingPromise = null;
-      return function ensureStockDailyContexts() {
-        if (window.STOCK_DAILY_CONTEXTS) return Promise.resolve(window.STOCK_DAILY_CONTEXTS);
-        if (loadingPromise) return loadingPromise;
-        loadingPromise = new Promise((resolve, reject) => {
-          const script = document.createElement("script");
-          script.src = `data/stock_daily_contexts_web.js?v=20260929175152`;
-          script.onload = () => resolve(window.STOCK_DAILY_CONTEXTS || {});
-          script.onerror = () => reject(new Error("个股日报正文加载失败"));
-          document.head.appendChild(script);
-        });
-        return loadingPromise;
+      let manifestPromise = null;
+      const datePromises = new Map();
+      const loadScript = (url) => new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = url;
+        script.onload = resolve;
+        script.onerror = () => {
+          script.remove();
+          reject(new Error("个股日报正文加载失败"));
+        };
+        document.head.appendChild(script);
+      });
+      return async function ensureStockDailyContexts(activeDate) {
+        if (!window.STOCK_DAILY_CONTEXTS) {
+          if (!manifestPromise) manifestPromise = new Promise((resolve, reject) => {
+            const script = document.createElement("script");
+            script.src = `data/stock_daily_contexts_web.js?v=20260930173505`;
+            script.onload = () => resolve(window.STOCK_DAILY_CONTEXTS || {});
+            script.onerror = () => {
+              script.remove();
+              reject(new Error("个股日报正文加载失败"));
+            };
+            document.head.appendChild(script);
+          }).catch((error) => {
+            manifestPromise = null;
+            throw error;
+          });
+          await manifestPromise;
+        }
+        const contexts = window.STOCK_DAILY_CONTEXTS || {};
+        const date = activeDate || contexts.latestTradeDate;
+        if (!date || contexts.items?.[date] || !contexts.files?.[date]) return contexts;
+        if (!datePromises.has(date)) {
+          datePromises.set(date, loadScript(`${contexts.files[date]}?v=${contexts.generatedAt || contexts.latestTradeDate}`)
+            .then(() => contexts)
+            .catch((error) => {
+              datePromises.delete(date);
+              throw error;
+            }));
+        }
+        return datePromises.get(date);
       };
     })();
 
@@ -3353,13 +3382,13 @@
         const activeDate = report?.tradeDate || document.querySelector(".stock-daily")?.__stockDailyDate || "";
         const overlay = ensureStockDetailOverlay();
         const panel = overlay.querySelector(".stock-detail-panel");
-        if (!window.STOCK_DAILY_CONTEXTS && window.ensureStockDailyContexts) {
+        if (!window.STOCK_DAILY_CONTEXTS?.items?.[activeDate] && window.ensureStockDailyContexts) {
           panel.textContent = "";
           panel.appendChild(make("div", "stock-daily-empty", "正在加载日报正文出处…"));
           overlay.classList.add("open");
           overlay.setAttribute("aria-hidden", "false");
           try {
-            await window.ensureStockDailyContexts();
+            await window.ensureStockDailyContexts(activeDate);
           } catch (error) {
             panel.textContent = "";
             panel.appendChild(make("div", "stock-daily-empty", "日报正文暂时加载失败，请稍后重试。"));
@@ -3638,8 +3667,8 @@
       };
     })();
   </script>
-  <script src="data/trend.js?v=20260929"></script>
-  <script src="data/latest_web.js?v=20260929" onerror="document.querySelector('[data-loading-text]').textContent='最新数据加载失败，请刷新后重试。'"></script>
+  <script src="data/trend.js?v=20260930"></script>
+  <script src="data/latest_web.js?v=20260930" onerror="document.querySelector('[data-loading-text]').textContent='最新数据加载失败，请刷新后重试。'"></script>
   <script>
     window.ensureRotationConstituents = (() => {
       let loadingPromise = null;
@@ -3648,7 +3677,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/rotation_constituents.js?v=20260929175152`;
+          script.src = `data/rotation_constituents.js?v=20260930173505`;
           script.onload = () => resolve(window.ROTATION_CONSTITUENTS || {});
           script.onerror = () => reject(new Error("板块个股明细加载失败"));
           document.head.appendChild(script);
@@ -3664,7 +3693,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/rotation_datasets.js?v=20260929175152`;
+          script.src = `data/rotation_datasets.js?v=20260930173505`;
           script.onload = () => resolve(window.ROTATION_DATASETS || {});
           script.onerror = () => reject(new Error("板块轮动榜单加载失败"));
           document.head.appendChild(script);
@@ -4505,8 +4534,8 @@
       if (loadingScreen) loadingScreen.hidden = true;
     })();
   </script>
-  <script src="data/history.js?v=20260929"></script>
-  <script src="data/bond_equity_value.js?v=20260929"></script>
+  <script src="data/history.js?v=20260930"></script>
+  <script src="data/bond_equity_value.js?v=20260930"></script>
   <script>
     (function setupHistoryTrendPanel() {
       const latestData = window.MARKET_SENTIMENT_DATA || {};
