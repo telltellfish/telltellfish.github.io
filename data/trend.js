@@ -1,6 +1,6 @@
 window.MARKET_TREND_DATA = {
-  "tradeDate": "2026.10.12",
-  "generatedAt": "2026-10-12T18:26:51+08:00",
+  "tradeDate": "2026.10.13",
+  "generatedAt": "2026-10-13T17:02:48+08:00",
   "historyChart": {
     "referenceCode": "883957.TI",
     "rangeOptions": [
@@ -1489,6 +1489,12 @@ window.MARKET_TREND_DATA = {
             "value": 3797.242,
             "change": -0.4339,
             "amount": 714909910722.0
+          },
+          {
+            "date": "2026.10.13",
+            "value": 3800.864,
+            "change": 0.0954,
+            "amount": 779302288022.5
           }
         ]
       },
@@ -2959,6 +2965,12 @@ window.MARKET_TREND_DATA = {
             "value": 12384.869,
             "change": -2.0328,
             "amount": 822921459018.44
+          },
+          {
+            "date": "2026.10.13",
+            "value": 12353.699,
+            "change": -0.2517,
+            "amount": 896615516004.82
           }
         ]
       },
@@ -4429,6 +4441,12 @@ window.MARKET_TREND_DATA = {
             "value": 2963.824,
             "change": -2.6126,
             "amount": 394480230843.77
+          },
+          {
+            "date": "2026.10.13",
+            "value": 2958.345,
+            "change": -0.1849,
+            "amount": 452004282521.84
           }
         ]
       },
@@ -5899,6 +5917,12 @@ window.MARKET_TREND_DATA = {
             "value": 1426.722,
             "change": -2.096,
             "amount": 64617424589.0
+          },
+          {
+            "date": "2026.10.13",
+            "value": 1427.178,
+            "change": 0.032,
+            "amount": 76980320632.8
           }
         ]
       },
@@ -7369,6 +7393,12 @@ window.MARKET_TREND_DATA = {
             "value": 1818.762,
             "change": -1.6032,
             "amount": 1550743500000.0
+          },
+          {
+            "date": "2026.10.13",
+            "value": 1825.464,
+            "change": 0.3685,
+            "amount": 1688900400000.0
           }
         ]
       }
@@ -8596,6 +8626,11 @@ window.MARKET_TREND_DATA = {
             "date": "2026.10.12",
             "value": 1537831369740.44,
             "display": "1.54万亿"
+          },
+          {
+            "date": "2026.10.13",
+            "value": 1675917804027.32,
+            "display": "1.68万亿"
           }
         ]
       },
@@ -10539,6 +10574,14 @@ window.MARKET_TREND_DATA = {
             "count": 5586,
             "dailyValue": -1.6835,
             "dailyDisplay": "-1.68%"
+          },
+          {
+            "date": "2026.10.13",
+            "value": -13.0233,
+            "display": "-13.02%",
+            "count": 5587,
+            "dailyValue": 0.1567,
+            "dailyDisplay": "+0.16%"
           }
         ],
         "dailyPoints": [
@@ -12004,6 +12047,12 @@ window.MARKET_TREND_DATA = {
             "date": "2026.10.12",
             "value": -1.6835,
             "display": "-1.68%",
+            "count": 5561
+          },
+          {
+            "date": "2026.10.13",
+            "value": 0.1567,
+            "display": "+0.16%",
             "count": 5561
           }
         ],
@@ -13944,6 +13993,14 @@ window.MARKET_TREND_DATA = {
               "count": 5586,
               "dailyValue": -1.6835,
               "dailyDisplay": "-1.68%"
+            },
+            {
+              "date": "2026.10.13",
+              "value": -13.0233,
+              "display": "-13.02%",
+              "count": 5587,
+              "dailyValue": 0.1567,
+              "dailyDisplay": "+0.16%"
             }
           ],
           "ytd": [
@@ -15418,6 +15475,14 @@ window.MARKET_TREND_DATA = {
               "count": 5586,
               "dailyValue": -1.6835,
               "dailyDisplay": "-1.68%"
+            },
+            {
+              "date": "2026.10.13",
+              "value": -13.6033,
+              "display": "-13.60%",
+              "count": 5587,
+              "dailyValue": 0.1567,
+              "dailyDisplay": "+0.16%"
             }
           ],
           "1m": [
@@ -15540,6 +15605,14 @@ window.MARKET_TREND_DATA = {
               "count": 5570,
               "dailyValue": -1.6835,
               "dailyDisplay": "-1.68%"
+            },
+            {
+              "date": "2026.10.13",
+              "value": -1.1967,
+              "display": "-1.20%",
+              "count": 5571,
+              "dailyValue": 0.1567,
+              "dailyDisplay": "+0.16%"
             }
           ],
           "1w": [
@@ -15566,6 +15639,14 @@ window.MARKET_TREND_DATA = {
               "count": 5561,
               "dailyValue": -1.6835,
               "dailyDisplay": "-1.68%"
+            },
+            {
+              "date": "2026.10.13",
+              "value": -1.3175,
+              "display": "-1.32%",
+              "count": 5564,
+              "dailyValue": 0.1567,
+              "dailyDisplay": "+0.16%"
             }
           ]
         }
@@ -17524,6 +17605,14 @@ window.MARKET_TREND_DATA = {
             "up": 1167,
             "down": 4325,
             "flat": 69
+          },
+          {
+            "date": "2026.10.13",
+            "value": 53.9203,
+            "display": "2909 / 2486",
+            "up": 2909,
+            "down": 2486,
+            "flat": 166
           }
         ]
       },
@@ -19237,6 +19326,13 @@ window.MARKET_TREND_DATA = {
             "display": "48 / 22",
             "limitUp": 48,
             "limitDown": 22
+          },
+          {
+            "date": "2026.10.13",
+            "value": 70,
+            "display": "70 / 10",
+            "limitUp": 70,
+            "limitDown": 10
           }
         ]
       }
