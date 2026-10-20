@@ -2,6 +2,274 @@ window.MARKET_SENTIMENT_HISTORY = [
   {
     "title": "复盘啦",
     "sentimentTitle": "A股收盘温度指数",
+    "tradeDate": "2026.10.20",
+    "closeTime": "15:00",
+    "badge": "10月20日收盘版 / 同花顺数据",
+    "subtitle": "基于 2026.10.20 15:00 收盘数据整理｜用于当日复盘与次日观察",
+    "score": 60,
+    "mood": "中性偏热",
+    "moodTone": "red",
+    "summary": "收盘温度中性偏热，盘中下探后修复，收盘靠近日内高位，上涨3778家，强势56家，成交1.46万亿，主线集中在PCB / CPO / 光模块",
+    "miniGauges": [
+      {
+        "score": 69,
+        "title": "市场宽度",
+        "desc": "3778涨 / 1668跌"
+      },
+      {
+        "score": 40,
+        "title": "成交热度",
+        "desc": "两市 1.46万亿"
+      },
+      {
+        "score": 61,
+        "title": "主线承接",
+        "desc": "PCB / CPO / 光模块"
+      },
+      {
+        "score": 77,
+        "title": "赚钱效应",
+        "desc": "56涨停 / 7跌停"
+      }
+    ],
+    "marketData": [
+      {
+        "label": "上证指数",
+        "value": "3735.37",
+        "change": "+0.12%",
+        "tone": "red"
+      },
+      {
+        "label": "深证成指",
+        "value": "11801.29",
+        "change": "-0.14%",
+        "tone": "green"
+      },
+      {
+        "label": "创业板指",
+        "value": "2739.20",
+        "change": "-0.26%",
+        "tone": "green"
+      },
+      {
+        "label": "科创50",
+        "value": "1342.42",
+        "change": "+1.00%",
+        "tone": "red"
+      },
+      {
+        "label": "两市成交额",
+        "value": "1.46万亿",
+        "change": "放量186亿",
+        "tone": "red"
+      },
+      {
+        "label": "涨跌幅中位数",
+        "value": "+0.97%",
+        "change": "5568只样本",
+        "tone": "red"
+      },
+      {
+        "label": "个股宽度",
+        "value": "3778 / 1668",
+        "change": "占比 69.4%",
+        "tone": "red"
+      },
+      {
+        "label": "涨停 / 跌停",
+        "value": "56 / 7",
+        "change": "强势股承接",
+        "tone": "red"
+      }
+    ],
+    "sentimentV2": {
+      "version": "v5-structural-repair-20260810",
+      "displayAsPrimary": true,
+      "score": 56,
+      "rawScore": 45.74,
+      "temperatureScore": 39.14,
+      "resonanceAdjustment": 0.0,
+      "structuralAdjustment": 17,
+      "structuralFloor": 56,
+      "resonanceNotes": [
+        "结构修复抑制慢因子过度降温"
+      ],
+      "mood": "中性偏热",
+      "moodTone": "red",
+      "originalScore": 60,
+      "delta": -4,
+      "funddb": {
+        "score": 18,
+        "status": "极度恐惧",
+        "tradeDate": "2026.10.20",
+        "source": "self-calculated; FundDB method used as reference only",
+        "referenceScore": null,
+        "referenceTradeDate": null,
+        "method": "local-reverse-engineered",
+        "proxyDetail": {
+          "method": "local-reverse-engineered",
+          "rawScore": 67.89,
+          "mappedScore": 41.88,
+          "calibration": 4.0,
+          "appliedCalibration": 1.4,
+          "calibrationNotes": [
+            "limit-up-spread",
+            "high-up-ratio"
+          ],
+          "priceStrength": 70,
+          "participation": 50,
+          "limitScore": 89,
+          "median": 0.97,
+          "penalties": [],
+          "boosts": [
+            "涨停扩散"
+          ],
+          "ifindFactorScore": 17.52,
+          "ifindFactorBlendWeight": 1.0,
+          "ifindFactorCoverage": 1,
+          "riskBeforeIfindFactors": 43,
+          "ifindFactorDetail": {
+            "status": "ready",
+            "tradeDate": "2026.10.20",
+            "coverageWeight": 1.0,
+            "usedFactors": [
+              {
+                "key": "volatility",
+                "score": 20.64,
+                "weight": 0.18,
+                "status": "ready",
+                "value": 29.021,
+                "detail": "Weighted 30-day implied volatility basket across SZ50, HS300, CSI1000, STAR50 and ChiNext option proxies; weights use 3-month index momentum (60%) and realized volatility (40%)."
+              },
+              {
+                "key": "priceStrength",
+                "score": 6.5,
+                "weight": 0.2,
+                "status": "ready",
+                "value": 0.3307,
+                "detail": "18/5443 stocks at one-year high"
+              },
+              {
+                "key": "futuresBasis",
+                "score": 18.03,
+                "weight": 0.16,
+                "status": "ready_external_fallback",
+                "value": -1.6692,
+                "detail": "iFinD CFFEX quotes were denied; fallback uses Sina IF main continuous futures close while HS300 index close still comes from iFinD. Basis is calculated locally."
+              },
+              {
+                "key": "safeHaven",
+                "score": 2.87,
+                "weight": 0.26,
+                "status": "ready",
+                "value": -7.7903,
+                "detail": "HS300 20d return minus treasury net-price index 20d return"
+              },
+              {
+                "key": "leverage",
+                "score": 44.35,
+                "weight": 0.2,
+                "status": "ready_previous_available",
+                "value": 8.1612,
+                "detail": "Latest disclosed iFinD margin buy amount and same-date all-A turnover."
+              }
+            ],
+            "source": "local-ifind-and-cache"
+          }
+        }
+      },
+      "components": [
+        {
+          "name": "盘面宽度",
+          "score": 72,
+          "weight": "20%",
+          "desc": "3778 / 1668，56 / 7"
+        },
+        {
+          "name": "指数路径",
+          "score": 51,
+          "weight": "20%",
+          "desc": "四大指数平均 +0.18%"
+        },
+        {
+          "name": "流动性",
+          "score": 44,
+          "weight": "10%",
+          "desc": "1.46万亿 放量186亿"
+        },
+        {
+          "name": "恐贪风险",
+          "score": 18,
+          "weight": "32%",
+          "desc": "自算恐贪 18 / 极度恐惧 / 涨停扩散"
+        },
+        {
+          "name": "主线结构",
+          "score": 61,
+          "weight": "18%",
+          "desc": "PCB / CPO / 光模块"
+        }
+      ],
+      "summary": "新版保留原权重得到原始分 45.7，再用情绪温度映射、共振修正与结构修复保护上修至 56。当前结构修复抑制慢因子过度降温，恐贪代理口径为极度恐惧，PCB / CPO / 光模块。"
+    },
+    "bullFactors": [
+      "上涨家数 3778，占比 69.4%，市场宽度偏强",
+      "PCB、CPO、光模块等科技线共振，九阳股份、工商银行、中国银行等核心股创阶段新高",
+      "MLOps概念等AI应用方向轮动活跃，需继续观察能否接上成交主线",
+      "成交额前200中PCB / CPO / 光模块占比较高，主线资金未完全扩散"
+    ],
+    "bearFactors": [
+      "多数指数收跌：上证 +0.12%，深证成指 -0.14%，创业板指 -0.26%",
+      "指数下跌但成交额放量186亿，放量分歧明显升温",
+      "盘中振幅偏大，修复并非单边走强",
+      "强势股 56 家，短线强度偏弱"
+    ],
+    "blocks": [
+      {
+        "tag": "主线",
+        "name": "CPO / 光模块 / 铜缆",
+        "note": "中际旭创、天孚通信、新易盛等成交额前排集中，成交占比约49.0%",
+        "tone": "up"
+      },
+      {
+        "tag": "扩散",
+        "name": "芯片 / 半导体 / 算力硬件",
+        "note": "中芯国际、兆易创新、海光信息等成交额前排集中，成交占比约18.0%",
+        "tone": "up"
+      },
+      {
+        "tag": "成长",
+        "name": "AI PC",
+        "note": "AI PC涨幅+3.65%，成长方向短线承接增强",
+        "tone": "up"
+      },
+      {
+        "tag": "对冲",
+        "name": "有色 / 小金属 / 稀土",
+        "note": "洛阳钼业、紫金矿业、中国神华等成交额前排集中，成交占比约3.8%",
+        "tone": "up"
+      },
+      {
+        "tag": "防御",
+        "name": "其他医疗服务",
+        "note": "其他医疗服务涨幅+6.53%，弱势或分化环境下有资金切换",
+        "tone": "up"
+      },
+      {
+        "tag": "承压",
+        "name": "航海装备",
+        "note": "航海装备跌幅-2.90%，退潮压力需要跟踪",
+        "tone": "down"
+      }
+    ],
+    "stockDailyDate": "2026.10.20",
+    "observation": "观察重点：PCB / CPO / 光模块能否继续放量，盘中修复能否延续，成交额能否维持在1.46万亿附近，指数与市场宽度能否同步修复。",
+    "note": "注：该指数为基于同花顺 iFinD 数据整理的示意型多空情绪值，不代表官方发布口径。",
+    "generatedAt": "2026-10-20T17:09:42+08:00"
+  },
+  {
+    "title": "复盘啦",
+    "sentimentTitle": "A股收盘温度指数",
     "tradeDate": "2026.10.19",
     "closeTime": "15:00",
     "badge": "10月19日收盘版 / 同花顺数据",
@@ -86,8 +354,8 @@ window.MARKET_SENTIMENT_HISTORY = [
       "version": "v5-structural-repair-20260810",
       "displayAsPrimary": true,
       "score": 26,
-      "rawScore": 34.98,
-      "temperatureScore": 26.28,
+      "rawScore": 34.66,
+      "temperatureScore": 25.97,
       "resonanceAdjustment": 0.0,
       "structuralAdjustment": 0,
       "structuralFloor": null,
@@ -97,7 +365,7 @@ window.MARKET_SENTIMENT_HISTORY = [
       "originalScore": 44,
       "delta": -18,
       "funddb": {
-        "score": 19,
+        "score": 18,
         "status": "极度恐惧",
         "tradeDate": "2026.10.19",
         "source": "self-calculated; FundDB method used as reference only",
@@ -117,7 +385,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "median": -0.38,
           "penalties": [],
           "boosts": [],
-          "ifindFactorScore": 18.98,
+          "ifindFactorScore": 17.83,
           "ifindFactorBlendWeight": 1.0,
           "ifindFactorCoverage": 1,
           "riskBeforeIfindFactors": 32,
@@ -160,11 +428,11 @@ window.MARKET_SENTIMENT_HISTORY = [
               },
               {
                 "key": "leverage",
-                "score": 50.1,
+                "score": 44.35,
                 "weight": 0.2,
-                "status": "ready_previous_available",
-                "value": 8.5062,
-                "detail": "Current-day iFinD margin buy amount is empty; using the latest verified leverage observation because margin data can lag after the close."
+                "status": "ready",
+                "value": 8.1612,
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -192,9 +460,9 @@ window.MARKET_SENTIMENT_HISTORY = [
         },
         {
           "name": "恐贪风险",
-          "score": 19,
+          "score": 18,
           "weight": "32%",
-          "desc": "自算恐贪 19 / 极度恐惧"
+          "desc": "自算恐贪 18 / 极度恐惧"
         },
         {
           "name": "主线结构",
@@ -203,7 +471,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "desc": "PCB / CPO / 光模块"
         }
       ],
-      "summary": "新版保留原权重得到原始分 35.0，再用情绪温度映射与共振修正下修至 26。当前未出现明显单边共振，恐贪代理口径为极度恐惧，PCB / CPO / 光模块。"
+      "summary": "新版保留原权重得到原始分 34.7，再用情绪温度映射与共振修正下修至 26。当前未出现明显单边共振，恐贪代理口径为极度恐惧，PCB / CPO / 光模块。"
     },
     "bullFactors": [
       "MLOps概念等AI应用方向轮动活跃，需继续观察能否接上成交主线",
@@ -345,9 +613,9 @@ window.MARKET_SENTIMENT_HISTORY = [
     "sentimentV2": {
       "version": "v5-structural-repair-20260810",
       "displayAsPrimary": true,
-      "score": 29,
-      "rawScore": 37.7,
-      "temperatureScore": 29.04,
+      "score": 28,
+      "rawScore": 37.06,
+      "temperatureScore": 28.37,
       "resonanceAdjustment": 0.0,
       "structuralAdjustment": 0,
       "structuralFloor": null,
@@ -355,9 +623,9 @@ window.MARKET_SENTIMENT_HISTORY = [
       "mood": "偏冷",
       "moodTone": "blue",
       "originalScore": 52,
-      "delta": -23,
+      "delta": -24,
       "funddb": {
-        "score": 15,
+        "score": 13,
         "status": "极度恐惧",
         "tradeDate": "2026.10.16",
         "source": "self-calculated; FundDB method used as reference only",
@@ -381,7 +649,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "boosts": [
             "涨停扩散"
           ],
-          "ifindFactorScore": 15.47,
+          "ifindFactorScore": 13.01,
           "ifindFactorBlendWeight": 1.0,
           "ifindFactorCoverage": 1,
           "riskBeforeIfindFactors": 39,
@@ -424,11 +692,11 @@ window.MARKET_SENTIMENT_HISTORY = [
               },
               {
                 "key": "leverage",
-                "score": 50.1,
+                "score": 37.77,
                 "weight": 0.2,
-                "status": "ready_previous_available",
-                "value": 8.5062,
-                "detail": "Current-day iFinD margin buy amount is empty; using the latest verified leverage observation because margin data can lag after the close."
+                "status": "ready",
+                "value": 7.7663,
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -456,9 +724,9 @@ window.MARKET_SENTIMENT_HISTORY = [
         },
         {
           "name": "恐贪风险",
-          "score": 15,
+          "score": 13,
           "weight": "32%",
-          "desc": "自算恐贪 15 / 极度恐惧 / 涨停扩散"
+          "desc": "自算恐贪 13 / 极度恐惧 / 涨停扩散"
         },
         {
           "name": "主线结构",
@@ -467,7 +735,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "desc": "PCB / CPO / 光模块"
         }
       ],
-      "summary": "新版保留原权重得到原始分 37.7，再用情绪温度映射与共振修正下修至 29。当前未出现明显单边共振，恐贪代理口径为极度恐惧，PCB / CPO / 光模块。"
+      "summary": "新版保留原权重得到原始分 37.1，再用情绪温度映射与共振修正下修至 28。当前未出现明显单边共振，恐贪代理口径为极度恐惧，PCB / CPO / 光模块。"
     },
     "bullFactors": [
       "上涨家数 3301，占比 60.8%，市场宽度偏强",
@@ -610,9 +878,9 @@ window.MARKET_SENTIMENT_HISTORY = [
     "sentimentV2": {
       "version": "v5-structural-repair-20260810",
       "displayAsPrimary": true,
-      "score": 10,
-      "rawScore": 25.18,
-      "temperatureScore": 17.61,
+      "score": 9,
+      "rawScore": 24.22,
+      "temperatureScore": 16.84,
       "resonanceAdjustment": -7.5,
       "structuralAdjustment": 0,
       "structuralFloor": null,
@@ -624,9 +892,9 @@ window.MARKET_SENTIMENT_HISTORY = [
       "mood": "冰点",
       "moodTone": "blue",
       "originalScore": 32,
-      "delta": -22,
+      "delta": -23,
       "funddb": {
-        "score": 16,
+        "score": 13,
         "status": "极度恐惧",
         "tradeDate": "2026.10.15",
         "source": "self-calculated; FundDB method used as reference only",
@@ -652,7 +920,7 @@ window.MARKET_SENTIMENT_HISTORY = [
             "指数与宽度共振偏弱"
           ],
           "boosts": [],
-          "ifindFactorScore": 16.29,
+          "ifindFactorScore": 13.11,
           "ifindFactorBlendWeight": 1.0,
           "ifindFactorCoverage": 1,
           "riskBeforeIfindFactors": 12,
@@ -695,11 +963,11 @@ window.MARKET_SENTIMENT_HISTORY = [
               },
               {
                 "key": "leverage",
-                "score": 50.1,
+                "score": 34.2,
                 "weight": 0.2,
-                "status": "ready_previous_available",
-                "value": 8.5062,
-                "detail": "Current-day iFinD margin buy amount is empty; using the latest verified leverage observation because margin data can lag after the close."
+                "status": "ready",
+                "value": 7.5519,
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -727,9 +995,9 @@ window.MARKET_SENTIMENT_HISTORY = [
         },
         {
           "name": "恐贪风险",
-          "score": 16,
+          "score": 13,
           "weight": "32%",
-          "desc": "自算恐贪 16 / 极度恐惧 / 中位数深跌、指数与宽度共振偏弱"
+          "desc": "自算恐贪 13 / 极度恐惧 / 中位数深跌、指数与宽度共振偏弱"
         },
         {
           "name": "主线结构",
@@ -738,7 +1006,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "desc": "通信设备 / 光模块 / 光纤"
         }
       ],
-      "summary": "新版保留原权重得到原始分 25.2，再用情绪温度映射与共振修正下修至 10。当前多数因子偏弱;核心弱因子极端偏低;原口径确认弱度，恐贪代理口径为极度恐惧，通信设备 / 光模块 / 光纤。"
+      "summary": "新版保留原权重得到原始分 24.2，再用情绪温度映射与共振修正下修至 9。当前多数因子偏弱;核心弱因子极端偏低;原口径确认弱度，恐贪代理口径为极度恐惧，通信设备 / 光模块 / 光纤。"
     },
     "bullFactors": [
       "CPO / 光模块 / 铜缆仍是成交额前排核心，但高位硬科技分歧需要同步跟踪",
@@ -868,8 +1136,8 @@ window.MARKET_SENTIMENT_HISTORY = [
       "version": "v5-structural-repair-20260810",
       "displayAsPrimary": true,
       "score": 5,
-      "rawScore": 26.06,
-      "temperatureScore": 18.33,
+      "rawScore": 25.42,
+      "temperatureScore": 17.81,
       "resonanceAdjustment": -13.0,
       "structuralAdjustment": 0,
       "structuralFloor": null,
@@ -883,7 +1151,7 @@ window.MARKET_SENTIMENT_HISTORY = [
       "originalScore": 34,
       "delta": -29,
       "funddb": {
-        "score": 21,
+        "score": 19,
         "status": "极度恐惧",
         "tradeDate": "2026.10.14",
         "source": "self-calculated; FundDB method used as reference only",
@@ -907,7 +1175,7 @@ window.MARKET_SENTIMENT_HISTORY = [
             "缩量弱宽度"
           ],
           "boosts": [],
-          "ifindFactorScore": 21.25,
+          "ifindFactorScore": 19.24,
           "ifindFactorBlendWeight": 1.0,
           "ifindFactorCoverage": 1,
           "riskBeforeIfindFactors": 22,
@@ -950,11 +1218,11 @@ window.MARKET_SENTIMENT_HISTORY = [
               },
               {
                 "key": "leverage",
-                "score": 50.1,
+                "score": 40.06,
                 "weight": 0.2,
-                "status": "ready_previous_available",
-                "value": 8.5062,
-                "detail": "Current-day iFinD margin buy amount is empty; using the latest verified leverage observation because margin data can lag after the close."
+                "status": "ready",
+                "value": 7.9036,
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -982,9 +1250,9 @@ window.MARKET_SENTIMENT_HISTORY = [
         },
         {
           "name": "恐贪风险",
-          "score": 21,
+          "score": 19,
           "weight": "32%",
-          "desc": "自算恐贪 21 / 极度恐惧 / 缩量弱宽度"
+          "desc": "自算恐贪 19 / 极度恐惧 / 缩量弱宽度"
         },
         {
           "name": "主线结构",
@@ -993,7 +1261,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "desc": "通信设备 / 光模块 / 光纤"
         }
       ],
-      "summary": "新版保留原权重得到原始分 26.1，再用情绪温度映射与共振修正下修至 5。当前多因子偏弱共振;核心弱因子极端偏低;原口径确认弱度，恐贪代理口径为极度恐惧，通信设备 / 光模块 / 光纤。"
+      "summary": "新版保留原权重得到原始分 25.4，再用情绪温度映射与共振修正下修至 5。当前多因子偏弱共振;核心弱因子极端偏低;原口径确认弱度，恐贪代理口径为极度恐惧，通信设备 / 光模块 / 光纤。"
     },
     "bullFactors": [
       "焦炭加工涨幅靠前，但成交主线仍以通信设备 / 光模块 / 光纤为核心",
@@ -1124,10 +1392,10 @@ window.MARKET_SENTIMENT_HISTORY = [
       "version": "v5-structural-repair-20260810",
       "displayAsPrimary": true,
       "score": 51,
-      "rawScore": 44.14,
-      "temperatureScore": 36.77,
+      "rawScore": 43.82,
+      "temperatureScore": 36.32,
       "resonanceAdjustment": 0.0,
-      "structuralAdjustment": 14,
+      "structuralAdjustment": 15,
       "structuralFloor": 51,
       "resonanceNotes": [
         "结构修复抑制慢因子过度降温"
@@ -1137,7 +1405,7 @@ window.MARKET_SENTIMENT_HISTORY = [
       "originalScore": 55,
       "delta": -4,
       "funddb": {
-        "score": 22,
+        "score": 21,
         "status": "极度恐惧",
         "tradeDate": "2026.10.13",
         "source": "self-calculated; FundDB method used as reference only",
@@ -1161,7 +1429,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "boosts": [
             "涨停扩散"
           ],
-          "ifindFactorScore": 22.23,
+          "ifindFactorScore": 20.69,
           "ifindFactorBlendWeight": 1.0,
           "ifindFactorCoverage": 1,
           "riskBeforeIfindFactors": 40,
@@ -1204,11 +1472,11 @@ window.MARKET_SENTIMENT_HISTORY = [
               },
               {
                 "key": "leverage",
-                "score": 50.1,
+                "score": 42.41,
                 "weight": 0.2,
-                "status": "ready_previous_available",
-                "value": 8.5062,
-                "detail": "Current-day iFinD margin buy amount is empty; using the latest verified leverage observation because margin data can lag after the close."
+                "status": "ready",
+                "value": 8.0447,
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -1236,9 +1504,9 @@ window.MARKET_SENTIMENT_HISTORY = [
         },
         {
           "name": "恐贪风险",
-          "score": 22,
+          "score": 21,
           "weight": "32%",
-          "desc": "自算恐贪 22 / 极度恐惧 / 涨停扩散"
+          "desc": "自算恐贪 21 / 极度恐惧 / 涨停扩散"
         },
         {
           "name": "主线结构",
@@ -1247,7 +1515,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "desc": "PCB / CPO / 光模块"
         }
       ],
-      "summary": "新版保留原权重得到原始分 44.1，再用情绪温度映射、共振修正与结构修复保护上修至 51。当前结构修复抑制慢因子过度降温，恐贪代理口径为极度恐惧，PCB / CPO / 光模块。"
+      "summary": "新版保留原权重得到原始分 43.8，再用情绪温度映射、共振修正与结构修复保护上修至 51。当前结构修复抑制慢因子过度降温，恐贪代理口径为极度恐惧，PCB / CPO / 光模块。"
     },
     "bullFactors": [
       "上涨家数 2909，市场宽度接近均衡，局部赚钱效应仍在",
@@ -1390,9 +1658,9 @@ window.MARKET_SENTIMENT_HISTORY = [
     "sentimentV2": {
       "version": "v5-structural-repair-20260810",
       "displayAsPrimary": true,
-      "score": 7,
-      "rawScore": 27.86,
-      "temperatureScore": 19.83,
+      "score": 6,
+      "rawScore": 26.9,
+      "temperatureScore": 19.02,
       "resonanceAdjustment": -13.0,
       "structuralAdjustment": 0,
       "structuralFloor": null,
@@ -1404,9 +1672,9 @@ window.MARKET_SENTIMENT_HISTORY = [
       "mood": "冰点",
       "moodTone": "blue",
       "originalScore": 34,
-      "delta": -27,
+      "delta": -28,
       "funddb": {
-        "score": 24,
+        "score": 21,
         "status": "极度恐惧",
         "tradeDate": "2026.10.12",
         "source": "self-calculated; FundDB method used as reference only",
@@ -1430,7 +1698,7 @@ window.MARKET_SENTIMENT_HISTORY = [
             "缩量弱宽度"
           ],
           "boosts": [],
-          "ifindFactorScore": 23.68,
+          "ifindFactorScore": 21.49,
           "ifindFactorBlendWeight": 1.0,
           "ifindFactorCoverage": 1,
           "riskBeforeIfindFactors": 22,
@@ -1473,11 +1741,11 @@ window.MARKET_SENTIMENT_HISTORY = [
               },
               {
                 "key": "leverage",
-                "score": 50.1,
+                "score": 39.16,
                 "weight": 0.2,
-                "status": "ready_previous_available",
-                "value": 8.5062,
-                "detail": "Current-day iFinD margin buy amount is empty; using the latest verified leverage observation because margin data can lag after the close."
+                "status": "ready",
+                "value": 7.8494,
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -1505,9 +1773,9 @@ window.MARKET_SENTIMENT_HISTORY = [
         },
         {
           "name": "恐贪风险",
-          "score": 24,
+          "score": 21,
           "weight": "32%",
-          "desc": "自算恐贪 24 / 极度恐惧 / 缩量弱宽度"
+          "desc": "自算恐贪 21 / 极度恐惧 / 缩量弱宽度"
         },
         {
           "name": "主线结构",
@@ -1516,7 +1784,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "desc": "通信设备 / 光模块 / 光纤"
         }
       ],
-      "summary": "新版保留原权重得到原始分 27.9，再用情绪温度映射与共振修正下修至 7。当前多因子偏弱共振;核心弱因子极端偏低;原口径确认弱度，恐贪代理口径为极度恐惧，通信设备 / 光模块 / 光纤。"
+      "summary": "新版保留原权重得到原始分 26.9，再用情绪温度映射与共振修正下修至 6。当前多因子偏弱共振;核心弱因子极端偏低;原口径确认弱度，恐贪代理口径为极度恐惧，通信设备 / 光模块 / 光纤。"
     },
     "bullFactors": [
       "快手概念等AI应用方向轮动活跃，需继续观察能否接上成交主线",
@@ -1645,9 +1913,9 @@ window.MARKET_SENTIMENT_HISTORY = [
     "sentimentV2": {
       "version": "v5-structural-repair-20260810",
       "displayAsPrimary": true,
-      "score": 42,
-      "rawScore": 47.14,
-      "temperatureScore": 41.52,
+      "score": 40,
+      "rawScore": 46.5,
+      "temperatureScore": 40.39,
       "resonanceAdjustment": 0.0,
       "structuralAdjustment": 0,
       "structuralFloor": null,
@@ -1655,9 +1923,9 @@ window.MARKET_SENTIMENT_HISTORY = [
       "mood": "偏冷",
       "moodTone": "blue",
       "originalScore": 56,
-      "delta": -14,
+      "delta": -16,
       "funddb": {
-        "score": 22,
+        "score": 20,
         "status": "极度恐惧",
         "tradeDate": "2026.10.09",
         "source": "self-calculated; FundDB method used as reference only",
@@ -1681,7 +1949,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "boosts": [
             "涨停扩散"
           ],
-          "ifindFactorScore": 22.33,
+          "ifindFactorScore": 20.13,
           "ifindFactorBlendWeight": 1.0,
           "ifindFactorCoverage": 1,
           "riskBeforeIfindFactors": 43,
@@ -1724,11 +1992,11 @@ window.MARKET_SENTIMENT_HISTORY = [
               },
               {
                 "key": "leverage",
-                "score": 50.1,
+                "score": 39.13,
                 "weight": 0.2,
-                "status": "ready_previous_available",
-                "value": 8.5062,
-                "detail": "Current-day iFinD margin buy amount is empty; using the latest verified leverage observation because margin data can lag after the close."
+                "status": "ready",
+                "value": 7.8477,
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -1756,9 +2024,9 @@ window.MARKET_SENTIMENT_HISTORY = [
         },
         {
           "name": "恐贪风险",
-          "score": 22,
+          "score": 20,
           "weight": "32%",
-          "desc": "自算恐贪 22 / 极度恐惧 / 涨停扩散"
+          "desc": "自算恐贪 20 / 极度恐惧 / 涨停扩散"
         },
         {
           "name": "主线结构",
@@ -1767,7 +2035,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "desc": "PCB / CPO / 光模块"
         }
       ],
-      "summary": "新版保留原权重得到原始分 47.1，再用情绪温度映射与共振修正下修至 42。当前未出现明显单边共振，恐贪代理口径为极度恐惧，PCB / CPO / 光模块。"
+      "summary": "新版保留原权重得到原始分 46.5，再用情绪温度映射与共振修正下修至 40。当前未出现明显单边共振，恐贪代理口径为极度恐惧，PCB / CPO / 光模块。"
     },
     "bullFactors": [
       "上涨家数 3297，占比 60.6%，市场宽度偏强",
@@ -1899,8 +2167,8 @@ window.MARKET_SENTIMENT_HISTORY = [
       "version": "v5-structural-repair-20260810",
       "displayAsPrimary": true,
       "score": 20,
-      "rawScore": 30.88,
-      "temperatureScore": 22.45,
+      "rawScore": 30.56,
+      "temperatureScore": 22.16,
       "resonanceAdjustment": -2.5,
       "structuralAdjustment": 0,
       "structuralFloor": null,
@@ -1912,7 +2180,7 @@ window.MARKET_SENTIMENT_HISTORY = [
       "originalScore": 43,
       "delta": -23,
       "funddb": {
-        "score": 23,
+        "score": 22,
         "status": "极度恐惧",
         "tradeDate": "2026.10.08",
         "source": "self-calculated; FundDB method used as reference only",
@@ -1932,7 +2200,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "median": -1.01,
           "penalties": [],
           "boosts": [],
-          "ifindFactorScore": 23.02,
+          "ifindFactorScore": 22.04,
           "ifindFactorBlendWeight": 1.0,
           "ifindFactorCoverage": 1,
           "riskBeforeIfindFactors": 29,
@@ -1975,11 +2243,11 @@ window.MARKET_SENTIMENT_HISTORY = [
               },
               {
                 "key": "leverage",
-                "score": 50.1,
+                "score": 45.19,
                 "weight": 0.2,
-                "status": "ready_previous_available",
-                "value": 8.5062,
-                "detail": "Current-day iFinD margin buy amount is empty; using the latest verified leverage observation because margin data can lag after the close."
+                "status": "ready",
+                "value": 8.2115,
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -2007,9 +2275,9 @@ window.MARKET_SENTIMENT_HISTORY = [
         },
         {
           "name": "恐贪风险",
-          "score": 23,
+          "score": 22,
           "weight": "32%",
-          "desc": "自算恐贪 23 / 极度恐惧"
+          "desc": "自算恐贪 22 / 极度恐惧"
         },
         {
           "name": "主线结构",
@@ -2018,7 +2286,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "desc": "通信设备 / 光模块 / 光纤"
         }
       ],
-      "summary": "新版保留原权重得到原始分 30.9，再用情绪温度映射与共振修正下修至 20。当前多数因子偏弱，恐贪代理口径为极度恐惧，通信设备 / 光模块 / 光纤。"
+      "summary": "新版保留原权重得到原始分 30.6，再用情绪温度映射与共振修正下修至 20。当前多数因子偏弱，恐贪代理口径为极度恐惧，通信设备 / 光模块 / 光纤。"
     },
     "bullFactors": [
       "煤炭概念涨幅靠前，但成交主线仍以通信设备 / 光模块 / 光纤为核心",
@@ -2148,9 +2416,9 @@ window.MARKET_SENTIMENT_HISTORY = [
     "sentimentV2": {
       "version": "v5-structural-repair-20260810",
       "displayAsPrimary": true,
-      "score": 31,
-      "rawScore": 39.5,
-      "temperatureScore": 31.0,
+      "score": 30,
+      "rawScore": 38.54,
+      "temperatureScore": 29.94,
       "resonanceAdjustment": 0.0,
       "structuralAdjustment": 0,
       "structuralFloor": null,
@@ -2158,10 +2426,10 @@ window.MARKET_SENTIMENT_HISTORY = [
       "mood": "偏冷",
       "moodTone": "blue",
       "originalScore": 49,
-      "delta": -18,
+      "delta": -19,
       "funddb": {
-        "score": 25,
-        "status": "恐惧",
+        "score": 22,
+        "status": "极度恐惧",
         "tradeDate": "2026.09.30",
         "source": "self-calculated; FundDB method used as reference only",
         "referenceScore": null,
@@ -2184,7 +2452,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "boosts": [
             "涨停扩散"
           ],
-          "ifindFactorScore": 24.54,
+          "ifindFactorScore": 22.39,
           "ifindFactorBlendWeight": 1.0,
           "ifindFactorCoverage": 1,
           "riskBeforeIfindFactors": 37,
@@ -2227,11 +2495,11 @@ window.MARKET_SENTIMENT_HISTORY = [
               },
               {
                 "key": "leverage",
-                "score": 50.1,
+                "score": 39.34,
                 "weight": 0.2,
-                "status": "ready_previous_available",
-                "value": 8.5062,
-                "detail": "Current-day iFinD margin buy amount is empty; using the latest verified leverage observation because margin data can lag after the close."
+                "status": "ready",
+                "value": 7.8605,
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -2259,9 +2527,9 @@ window.MARKET_SENTIMENT_HISTORY = [
         },
         {
           "name": "恐贪风险",
-          "score": 25,
+          "score": 22,
           "weight": "32%",
-          "desc": "自算恐贪 25 / 恐惧 / 涨停扩散"
+          "desc": "自算恐贪 22 / 极度恐惧 / 涨停扩散"
         },
         {
           "name": "主线结构",
@@ -2270,7 +2538,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "desc": "PCB / CPO / 光模块"
         }
       ],
-      "summary": "新版保留原权重得到原始分 39.5，再用情绪温度映射与共振修正下修至 31。当前未出现明显单边共振，恐贪代理口径为恐惧，PCB / CPO / 光模块。"
+      "summary": "新版保留原权重得到原始分 38.5，再用情绪温度映射与共振修正下修至 30。当前未出现明显单边共振，恐贪代理口径为极度恐惧，PCB / CPO / 光模块。"
     },
     "bullFactors": [
       "上涨家数 2567，市场宽度接近均衡，局部赚钱效应仍在",
@@ -2413,9 +2681,9 @@ window.MARKET_SENTIMENT_HISTORY = [
     "sentimentV2": {
       "version": "v5-structural-repair-20260810",
       "displayAsPrimary": true,
-      "score": 36,
-      "rawScore": 43.7,
-      "temperatureScore": 36.16,
+      "score": 37,
+      "rawScore": 44.02,
+      "temperatureScore": 36.6,
       "resonanceAdjustment": 0.0,
       "structuralAdjustment": 0,
       "structuralFloor": null,
@@ -2423,9 +2691,9 @@ window.MARKET_SENTIMENT_HISTORY = [
       "mood": "偏冷",
       "moodTone": "blue",
       "originalScore": 52,
-      "delta": -16,
+      "delta": -15,
       "funddb": {
-        "score": 20,
+        "score": 21,
         "status": "极度恐惧",
         "tradeDate": "2026.09.29",
         "source": "self-calculated; FundDB method used as reference only",
@@ -2449,7 +2717,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "boosts": [
             "涨停扩散"
           ],
-          "ifindFactorScore": 20.3,
+          "ifindFactorScore": 20.99,
           "ifindFactorBlendWeight": 1.0,
           "ifindFactorCoverage": 1,
           "riskBeforeIfindFactors": 41,
@@ -2492,11 +2760,11 @@ window.MARKET_SENTIMENT_HISTORY = [
               },
               {
                 "key": "leverage",
-                "score": 50.1,
+                "score": 53.54,
                 "weight": 0.2,
-                "status": "ready_previous_available",
-                "value": 8.5062,
-                "detail": "Current-day iFinD margin buy amount is empty; using the latest verified leverage observation because margin data can lag after the close."
+                "status": "ready",
+                "value": 8.7125,
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -2524,9 +2792,9 @@ window.MARKET_SENTIMENT_HISTORY = [
         },
         {
           "name": "恐贪风险",
-          "score": 20,
+          "score": 21,
           "weight": "32%",
-          "desc": "自算恐贪 20 / 极度恐惧 / 涨停扩散"
+          "desc": "自算恐贪 21 / 极度恐惧 / 涨停扩散"
         },
         {
           "name": "主线结构",
@@ -2535,7 +2803,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "desc": "PCB / CPO / 光模块"
         }
       ],
-      "summary": "新版保留原权重得到原始分 43.7，再用情绪温度映射与共振修正下修至 36。当前未出现明显单边共振，恐贪代理口径为极度恐惧，PCB / CPO / 光模块。"
+      "summary": "新版保留原权重得到原始分 44.0，再用情绪温度映射与共振修正下修至 37。当前未出现明显单边共振，恐贪代理口径为极度恐惧，PCB / CPO / 光模块。"
     },
     "bullFactors": [
       "上涨家数 3471，占比 64.2%，市场宽度偏强",
@@ -2667,8 +2935,8 @@ window.MARKET_SENTIMENT_HISTORY = [
       "version": "v5-structural-repair-20260810",
       "displayAsPrimary": true,
       "score": 10,
-      "rawScore": 25.2,
-      "temperatureScore": 17.63,
+      "rawScore": 24.56,
+      "temperatureScore": 17.11,
       "resonanceAdjustment": -7.5,
       "structuralAdjustment": 0,
       "structuralFloor": null,
@@ -2682,7 +2950,7 @@ window.MARKET_SENTIMENT_HISTORY = [
       "originalScore": 32,
       "delta": -22,
       "funddb": {
-        "score": 20,
+        "score": 18,
         "status": "极度恐惧",
         "tradeDate": "2026.09.28",
         "source": "self-calculated; FundDB method used as reference only",
@@ -2708,7 +2976,7 @@ window.MARKET_SENTIMENT_HISTORY = [
             "指数与宽度共振偏弱"
           ],
           "boosts": [],
-          "ifindFactorScore": 19.78,
+          "ifindFactorScore": 18.09,
           "ifindFactorBlendWeight": 1.0,
           "ifindFactorCoverage": 1,
           "riskBeforeIfindFactors": 13,
@@ -2751,11 +3019,11 @@ window.MARKET_SENTIMENT_HISTORY = [
               },
               {
                 "key": "leverage",
-                "score": 50.1,
+                "score": 41.62,
                 "weight": 0.2,
-                "status": "ready_previous_available",
-                "value": 8.5062,
-                "detail": "Current-day iFinD margin buy amount is empty; using the latest verified leverage observation because margin data can lag after the close."
+                "status": "ready",
+                "value": 7.997,
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -2783,9 +3051,9 @@ window.MARKET_SENTIMENT_HISTORY = [
         },
         {
           "name": "恐贪风险",
-          "score": 20,
+          "score": 18,
           "weight": "32%",
-          "desc": "自算恐贪 20 / 极度恐惧 / 跌停多于涨停、指数与宽度共振偏弱"
+          "desc": "自算恐贪 18 / 极度恐惧 / 跌停多于涨停、指数与宽度共振偏弱"
         },
         {
           "name": "主线结构",
@@ -2794,7 +3062,7 @@ window.MARKET_SENTIMENT_HISTORY = [
           "desc": "通信设备 / 光模块 / 光纤"
         }
       ],
-      "summary": "新版保留原权重得到原始分 25.2，再用情绪温度映射与共振修正下修至 10。当前多数因子偏弱;核心弱因子极端偏低;原口径确认弱度，恐贪代理口径为极度恐惧，通信设备 / 光模块 / 光纤。"
+      "summary": "新版保留原权重得到原始分 24.6，再用情绪温度映射与共振修正下修至 10。当前多数因子偏弱;核心弱因子极端偏低;原口径确认弱度，恐贪代理口径为极度恐惧，通信设备 / 光模块 / 光纤。"
     },
     "bullFactors": [
       "CPO / 光模块 / 铜缆仍是成交额前排核心，但高位硬科技分歧需要同步跟踪",
@@ -3010,7 +3278,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 8.5062,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -9717,7 +9985,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 8.5182,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -16454,7 +16722,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 8.8725,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -17488,7 +17756,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 8.8179,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -17745,7 +18013,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 8.812,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -17992,7 +18260,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 9.0501,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -18257,7 +18525,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 9.2628,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -18513,7 +18781,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 9.3378,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -18783,7 +19051,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 10.6672,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -19053,7 +19321,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 10.1867,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -19304,7 +19572,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 9.5163,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -19572,7 +19840,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 9.9302,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -19821,7 +20089,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 10.7467,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -20074,7 +20342,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 10.2162,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -20332,7 +20600,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 10.6216,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -20585,7 +20853,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 10.6451,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -20841,7 +21109,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 10.3612,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -21113,7 +21381,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 9.822,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -21369,7 +21637,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 9.0048,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -21618,7 +21886,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 9.2019,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -21869,7 +22137,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 9.08,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -22126,7 +22394,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 9.5221,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -22384,7 +22652,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 8.8473,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -22627,7 +22895,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 9.6113,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -22877,7 +23145,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 9.998,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -23124,7 +23392,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 10.1042,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -23371,7 +23639,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 9.3735,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -23621,7 +23889,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 9.0827,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -23870,7 +24138,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 9.3329,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -24119,7 +24387,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 9.9644,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -24366,7 +24634,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 10.0641,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
@@ -24611,7 +24879,7 @@ window.MARKET_SENTIMENT_HISTORY = [
                 "weight": 0.2,
                 "status": "ready",
                 "value": 10.1699,
-                "detail": "margin buy amount divided by iFinD returned turnover column"
+                "detail": "Same-date all-A margin buy amount divided by all-A turnover from iFinD."
               }
             ],
             "source": "local-ifind-and-cache"
