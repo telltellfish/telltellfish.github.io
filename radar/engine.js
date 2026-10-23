@@ -97,19 +97,22 @@ export function adjustedCost(position,exact,today){
 export function evaluate(q={},position=null,exact={},now=new Date(),shortVersion='classic'){
  shortVersion=normalizeShortVersion(shortVersion);
  if(q.monitorMode==='price-only'||position?.monitorMode==='price-only'||exact.monitorMode==='price-only')return {shortVersion,long:[],short:[],longHit:false,hits:[],cost:adjustedCost(position,exact,cnDate(now)),eligible:null,isFresh:fresh(q,now)&&tradingWindow(now),profitable:null,missing:false,positionPending:!position||!!position.pendingCost,priceOnly:true};
- const longOnly=[q,position,exact].some(x=>x?.monitorMode==='long-only'),etf=[q,position,exact].some(x=>x?.assetType==='etf'),assetType=etf?'etf':'stock',halfTick=etf?0.0005:0.005;
+ const declaredType=q.assetType||position?.assetType||exact.assetType,assetType=['etf','index'].includes(declaredType)?declaredType:'stock',etf=assetType==='etf',index=assetType==='index',longOnly=index||[q,position,exact].some(x=>x?.monitorMode==='long-only'),halfTick=etf?0.0005:0.005;
  const P=q.price,O=q.open,H=q.high,C=q.prevClose,A=q.amount,today=cnDate(now),isFresh=fresh(q,now)&&tradingWindow(now),minute=(q.time||'').slice(11,16);
  const cost=adjustedCost(position,exact,today),eligible=!position||position.pendingCost||!validDate(position.date)?null:position.date>=today?false:true,profitable=test([P,cost],()=>gt(P,cost*1.05));
- const historyOK=exact.basis==='ths-qfq-dividend-reinvest'&&exact.basisDate===today&&Array.isArray(exact.closes)&&exact.closes.length===exact.dates?.length&&exact.closes.every(valid)&&aligned(exact,exact.dates,20),closes=historyOK?exact.closes:null;
+ // Price-index levels are unadjusted. Never accept that basis for a stock/ETF,
+ // or infer index rules from a conflicting history record.
+ const historyBasisOK=index?exact.assetType==='index'&&exact.basis==='ths-index-price':exact.assetType!=='index'&&exact.basis==='ths-qfq-dividend-reinvest';
+ const historyOK=historyBasisOK&&exact.basisDate===today&&Array.isArray(exact.closes)&&exact.closes.length===exact.dates?.length&&exact.closes.every(valid)&&aligned(exact,exact.dates,20),closes=historyOK?exact.closes:null;
  const last=n=>closes.slice(-n),ma20=closes?avg(last(20)):null,dma20=closes?(last(19).reduce((a,b)=>a+b,0)+P)/20:null,ma5=closes?avg(last(5)):null,dma5=closes?(last(4).reduce((a,b)=>a+b,0)+P)/5:null;
  const touched=test([H,q.limitUp],()=>H>=q.limitUp-halfTick),intraday=exact.date===today&&exact.minute===minute;
  const long=[
- rule('L0','当日未触及涨停','截至当前的最高价低于涨停价',touched===null?null:!touched),
- rule('L1','昨日收盘低于 MA20','使用前复权分红再投日线',test([closes?.at(-1),ma20],()=>lt(closes.at(-1),ma20))),
+ ...(!index?[rule('L0','当日未触及涨停','截至当前的最高价低于涨停价',touched===null?null:!touched)]:[]),
+ rule('L1','昨日收盘低于 MA20',index?'使用 iFinD 指数点位日线（不复权）':'使用前复权分红再投日线',test([closes?.at(-1),ma20],()=>lt(closes.at(-1),ma20))),
  rule('L2','现价突破动态 MA20','（前 19 日收盘合计＋现价）÷ 20',test([P,dma20],()=>gt(P,dma20))),
  rule('L3','成交额超过昨日同期','比较同一已完成分钟的累计成交额',intraday?test([exact.currentSameMinuteAmount,exact.yesterdaySameMinuteAmount],()=>gt(exact.currentSameMinuteAmount,exact.yesterdaySameMinuteAmount)):null),
  rule('L4','回落幅度小于实体一半','（最高价−现价）×2 < 现价−开盘价',test([H,P,O],()=>lt((H-P)*2,P-O))),
- ...(!etf?[rule('L5','属于昨日强势行业 Top 10','同花顺二级行业：5 日排名×0.385＋15 日排名×0.615',exact.rankAsOf===exact.previousTradeDate&&exact.previousTradeDate&&Number.isInteger(exact.industryRank)?exact.industryRank>=1&&exact.industryRank<=10:null)]:[])
+ ...(!etf&&!index?[rule('L5','属于昨日强势行业 Top 10','同花顺二级行业：5 日排名×0.385＋15 日排名×0.615',exact.rankAsOf===exact.previousTradeDate&&exact.previousTradeDate&&Number.isInteger(exact.industryRank)?exact.industryRank>=1&&exact.industryRank<=10:null)]:[])
  ];
  if(longOnly)return {shortVersion,long,short:[],longHit:isFresh&&long.every(x=>x.value===true),hits:[],cost:null,eligible:null,isFresh,profitable:null,missing:long.some(x=>x.value===null),positionPending:false,longOnly:true,assetType};
  const shortRule=(id,title,desc,cond,profit=true)=>rule(id,title,shortVersion==='no-profit'?desc.replace(/^盈利 >5%；/,''):desc,all(eligible,profit&&shortVersion==='classic'?profitable:true,cond));
