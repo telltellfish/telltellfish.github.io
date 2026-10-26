@@ -1,4 +1,4 @@
-// GitHub Pages serves code and encrypted snapshots only. No write credential or
+// GitHub Pages serves public or encrypted snapshots. No write credential or
 // iFinD credential is ever sent to this module or stored in the public config.
 import {eventDay} from './journal.js';
 
@@ -33,6 +33,22 @@ export async function decryptEnvelope(envelope,keyBytes,cryptoImpl=globalThis.cr
  const raw=await new Response(stream).text();
  if(raw.length>64000000)throw Error('解密数据超过容量。');
  return JSON.parse(raw);
+}
+
+export async function fetchPagesSnapshot({nativeFetch,config,path,keyBytes}){
+ if(path!=='latest.enc'&&!/^journals\/\d{4}-\d{2}-\d{2}\.enc$/.test(path))throw Error('同步数据路径不正确。');
+ const publicAccess=config.mode==='public',relative=publicAccess?'public/'+path.replace(/\.enc$/,'.json.gz'):path;
+ const url=new URL(relative,config.dataBase);url.searchParams.set('_',String(Date.now()));
+ const result=await nativeFetch(url,{cache:'no-store',credentials:'omit',referrerPolicy:'no-referrer'});
+ if(!result.ok)throw Error('最新数据暂时无法读取，请检查网络后重试。');
+ if(!publicAccess)return decryptEnvelope(await result.json(),keyBytes);
+ const stream=result.body.pipeThrough(new DecompressionStream('gzip')),reader=stream.getReader(),decoder=new TextDecoder();
+ let bytes=0,raw='';
+ try{
+  while(true){const {value,done}=await reader.read();if(done)break;bytes+=value.byteLength;if(bytes>64000000)throw Error('同步数据超过容量。');raw+=decoder.decode(value,{stream:true});}
+  raw+=decoder.decode();return JSON.parse(raw);
+ }catch(error){await reader.cancel().catch(()=>{});throw error;}
+ finally{reader.releaseLock();}
 }
 
 export function validateBundle(bundle){
@@ -219,23 +235,38 @@ function unlockPanel(document){
  return {overlay,input,button,error,form};
 }
 
+function connectionPanel(document){
+ const overlay=document.createElement('section');overlay.setAttribute('role','status');overlay.setAttribute('aria-label','连接多空雷达');
+ overlay.style.cssText='position:fixed;inset:0;z-index:10000;display:grid;place-items:center;padding:24px;background:#102c30;color:#173b3c;font:16px system-ui';
+ const box=document.createElement('div');box.style.cssText='width:min(440px,100%);padding:30px;background:white;border-radius:16px;box-sizing:border-box';
+ const title=document.createElement('h1');title.textContent='持仓多空雷达';
+ const message=document.createElement('p');message.textContent='正在读取最新监控数据…';message.style.lineHeight='1.7';
+ const retry=document.createElement('button');retry.type='button';retry.textContent='重新连接';retry.hidden=true;
+ box.append(title,message,retry);overlay.append(box);document.body.append(overlay);
+ return {overlay,message,retry};
+}
+
 export async function installPagesAdapter({win=window,document=win.document,nativeFetch=win.fetch.bind(win)}={}){
  await waitForBody(document);
  const keyStorage='position-radar-pages-access-v1',configUrl=new URL('./pages-config.json',import.meta.url);
  let config;
  try{const result=await nativeFetch(configUrl,{cache:'no-store'});if(!result.ok)throw Error();config=await result.json();const base=new URL(config.dataBase);if(base.protocol!=='https:'&&!(base.protocol==='http:'&&['localhost','127.0.0.1'].includes(base.hostname))||base.username||base.password||base.hash||base.search)throw Error();config.dataBase=base.href.replace(/\/?$/,'/');}
  catch{const panel=unlockPanel(document);panel.input.hidden=true;panel.button.hidden=true;panel.error.textContent='同步配置暂时无法读取，请刷新网页重试。';return await new Promise(()=>{});}
- let bundle,keyBytes;const panel=unlockPanel(document);
- const fetchEncrypted=async(path,key)=>{
-  const url=new URL(path,config.dataBase);url.searchParams.set('_',String(Date.now()));
-  const result=await nativeFetch(url,{cache:'no-store',credentials:'omit',referrerPolicy:'no-referrer'});
-  if(!result.ok)throw Error('最新数据暂时无法读取，请检查网络后重试。');
-  return decryptEnvelope(await result.json(),key);
- };
+ let bundle,keyBytes;const publicAccess=config.mode==='public';
+ const fetchSnapshot=(path,key)=>fetchPagesSnapshot({nativeFetch,config,path,keyBytes:key});
+ let fingerprint;
+ if(publicAccess){
+  const loading=connectionPanel(document);
+  try{bundle=validateBundle(await fetchSnapshot('latest.enc'));loading.overlay.remove();}
+  catch{loading.message.textContent='监控数据暂时无法读取，请检查网络后重新连接。';loading.retry.hidden=false;loading.retry.addEventListener('click',()=>win.location.reload());return await new Promise(()=>{});}
+  fingerprint='public-v1';
+  try{win.localStorage.removeItem(keyStorage);if(win.location.hash.startsWith('#key='))win.history.replaceState(null,'',win.location.pathname+win.location.search);}catch{}
+ }else{
+ const panel=unlockPanel(document);
  const unlock=async value=>{
   panel.button.disabled=true;panel.error.textContent='正在读取已加密的监控数据…';
   try{
-   const key=readAccessKey(value),candidate=validateBundle(await fetchEncrypted('latest.enc',key.bytes));
+   const key=readAccessKey(value),candidate=validateBundle(await fetchSnapshot('latest.enc',key.bytes));
    keyBytes=key.bytes;bundle=candidate;
    try{win.localStorage.setItem(keyStorage,key.text);}catch{}
    panel.overlay.remove();return true;
@@ -244,20 +275,21 @@ export async function installPagesAdapter({win=window,document=win.document,nati
  };
  let initial='';try{initial=win.location.hash||win.localStorage.getItem(keyStorage)||'';}catch{initial=win.location.hash||'';}
  if(!initial||!await unlock(initial))await new Promise(resolve=>panel.form.addEventListener('submit',async event=>{event.preventDefault();if(await unlock(panel.input.value))resolve();}));
- const fingerprint=Array.from(new Uint8Array(await win.crypto.subtle.digest('SHA-256',keyBytes))).slice(0,8).map(x=>x.toString(16).padStart(2,'0')).join('');
+ fingerprint=Array.from(new Uint8Array(await win.crypto.subtle.digest('SHA-256',keyBytes))).slice(0,8).map(x=>x.toString(16).padStart(2,'0')).join('');
+ }
  let store;
  try{store=await createIndexedStore(win.indexedDB,'position-radar-pages-'+fingerprint);}catch{const problem=unlockPanel(document);problem.input.hidden=true;problem.button.hidden=true;problem.error.textContent='本浏览器未允许保存监控记录。请允许网站存储后刷新；为避免重复提醒，暂不启动监控。';return await new Promise(()=>{});}
  const corner=document.createElement('aside');corner.style.cssText='position:fixed;bottom:10px;right:10px;z-index:1000;max-width:min(450px,85vw);padding:9px 12px;background:#edf7f3;color:#1a514a;border:1px solid #bed5cf;border-radius:8px;font:12px/1.6 system-ui;box-shadow:0 2px 8px #143b3b15';
- const status=document.createElement('span'),line=document.createElement('div');line.textContent='GitHub 阅读页 · 本机联网时同步 · 网页打开时提醒';
+ const status=document.createElement('span'),line=document.createElement('div');line.textContent=(publicAccess?'公开监控页 · 无需访问码':'GitHub 阅读页')+' · 本机联网时同步 · 网页打开时提醒';
  const exportButton=document.createElement('button');exportButton.type='button';exportButton.textContent='导出本设备记录';exportButton.style.cssText='margin-left:10px;border:0;background:none;color:#086e62;text-decoration:underline;cursor:pointer;font:inherit';
  const changeButton=document.createElement('button');changeButton.type='button';changeButton.textContent='更换访问码';changeButton.style.cssText=exportButton.style.cssText;
- corner.append(status,line,exportButton,changeButton);document.body.append(corner);
+ corner.append(status,line,exportButton);if(!publicAccess)corner.append(changeButton);document.body.append(corner);
  const showStatus=()=>{status.textContent='行情截至 '+String(bundle.feed.receivedAt).replace('T',' ').replace(/\+08:00$/,'')+' · 记录保存在本设备';};showStatus();
  const refreshBundle=async()=>{
-  try{const next=validateBundle(await fetchEncrypted('latest.enc',keyBytes));if(Date.parse(next.publishedAt)<Date.parse(bundle.publishedAt))throw Error('收到较旧的同步快照，已保留当前数据。');const oldCodes=bundle.pool.holdings.map(h=>h.code).join(),newCodes=next.pool.holdings.map(h=>h.code).join();bundle=next;showStatus();if(oldCodes!==newCodes)status.textContent+='；标的池已更新，请刷新网页';}
+  try{const next=validateBundle(await fetchSnapshot('latest.enc',keyBytes));if(Date.parse(next.publishedAt)<Date.parse(bundle.publishedAt))throw Error('收到较旧的同步快照，已保留当前数据。');const oldCodes=bundle.pool.holdings.map(h=>h.code).join(),newCodes=next.pool.holdings.map(h=>h.code).join();bundle=next;showStatus();if(oldCodes!==newCodes)status.textContent+='；标的池已更新，请刷新网页';}
   catch(error){status.textContent='同步失败 · 保留截至 '+bundle.feed.receivedAt+' 的行情，暂停新判断';throw Error(error.message||'同步失败，当前保留上次行情并暂停判断。');}
  };
- const api=createPagesApi({getBundle:()=>bundle,refreshBundle,fetchJournal:day=>fetchEncrypted('journals/'+day+'.enc',keyBytes),store});
+ const api=createPagesApi({getBundle:()=>bundle,refreshBundle,fetchJournal:day=>fetchSnapshot('journals/'+day+'.enc',keyBytes),store});
  const paths=new Set(['/api/pool','/api/quotes','/api/state','/api/journal','/api/history']);
  win.fetch=async(input,options={})=>{
   const url=new URL(typeof input==='string'||input instanceof URL?input:input.url,win.location.href);
