@@ -38,7 +38,7 @@ export async function decryptEnvelope(envelope,keyBytes,cryptoImpl=globalThis.cr
 export async function fetchPagesSnapshot({nativeFetch,config,path,keyBytes}){
  if(path!=='latest.enc'&&!/^journals\/\d{4}-\d{2}-\d{2}\.enc$/.test(path))throw Error('同步数据路径不正确。');
  const publicAccess=config.mode==='public',relative=publicAccess?'public/'+path.replace(/\.enc$/,'.json.gz'):path;
- const url=new URL(relative,config.dataBase);url.searchParams.set('_',String(Date.now()));
+ const url=new URL(relative,config.dataBase);url.searchParams.set('radarRefresh',Date.now()+'-'+Math.random().toString(36).slice(2));
  const result=await nativeFetch(url,{cache:'no-store',credentials:'omit',referrerPolicy:'no-referrer'});
  if(!result.ok)throw Error('最新数据暂时无法读取，请检查网络后重试。');
  if(!publicAccess)return decryptEnvelope(await result.json(),keyBytes);
