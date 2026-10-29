@@ -1,6 +1,6 @@
 window.MARKET_TREND_DATA = {
-  "tradeDate": "2026.10.27",
-  "generatedAt": "2026-10-27T17:30:04+08:00",
+  "tradeDate": "2026.10.29",
+  "generatedAt": "2026-10-29T16:41:15+08:00",
   "historyChart": {
     "referenceCode": "883957.TI",
     "rangeOptions": [
@@ -26,18 +26,6 @@ window.MARKET_TREND_DATA = {
         "code": "000001.SH",
         "label": "上证指数",
         "points": [
-          {
-            "date": "2025.10.22",
-            "value": 3913.758,
-            "change": -0.0657,
-            "amount": 741524798447.0
-          },
-          {
-            "date": "2025.10.23",
-            "value": 3922.41,
-            "change": 0.2211,
-            "amount": 718931051972.0
-          },
           {
             "date": "2025.10.24",
             "value": 3950.311,
@@ -1500,7 +1488,19 @@ window.MARKET_TREND_DATA = {
             "date": "2026.10.27",
             "value": 3648.301,
             "change": -1.3311,
-            "amount": 672414398244.3
+            "amount": 672414398244.0
+          },
+          {
+            "date": "2026.10.28",
+            "value": 3681.469,
+            "change": 0.9091,
+            "amount": 751019235602.0
+          },
+          {
+            "date": "2026.10.29",
+            "value": 3651.434,
+            "change": -0.8159,
+            "amount": 715620694906.3
           }
         ]
       },
@@ -1508,18 +1508,6 @@ window.MARKET_TREND_DATA = {
         "code": "399001.SZ",
         "label": "深证成指",
         "points": [
-          {
-            "date": "2025.10.22",
-            "value": 12996.608,
-            "change": -0.6172,
-            "amount": 926331521732.09
-          },
-          {
-            "date": "2025.10.23",
-            "value": 13025.446,
-            "change": 0.2219,
-            "amount": 924978489984.4
-          },
           {
             "date": "2025.10.24",
             "value": 13289.184,
@@ -2983,6 +2971,18 @@ window.MARKET_TREND_DATA = {
             "value": 11245.732,
             "change": -2.5025,
             "amount": 788543922869.44
+          },
+          {
+            "date": "2026.10.28",
+            "value": 11473.18,
+            "change": 2.0225,
+            "amount": 877468325783.71
+          },
+          {
+            "date": "2026.10.29",
+            "value": 11138.198,
+            "change": -2.9197,
+            "amount": 840903489814.18
           }
         ]
       },
@@ -2990,18 +2990,6 @@ window.MARKET_TREND_DATA = {
         "code": "399006.SZ",
         "label": "创业板指",
         "points": [
-          {
-            "date": "2025.10.22",
-            "value": 3059.319,
-            "change": -0.7911,
-            "amount": 416493599511.86
-          },
-          {
-            "date": "2025.10.23",
-            "value": 3062.163,
-            "change": 0.0929,
-            "amount": 407949149462.48
-          },
           {
             "date": "2025.10.24",
             "value": 3171.569,
@@ -4465,6 +4453,18 @@ window.MARKET_TREND_DATA = {
             "value": 2548.149,
             "change": -3.4145,
             "amount": 383305633209.93
+          },
+          {
+            "date": "2026.10.28",
+            "value": 2634.76,
+            "change": 3.399,
+            "amount": 453965489884.53
+          },
+          {
+            "date": "2026.10.29",
+            "value": 2517.588,
+            "change": -4.4472,
+            "amount": 421433924059.92
           }
         ]
       },
@@ -4472,18 +4472,6 @@ window.MARKET_TREND_DATA = {
         "code": "000688.SH",
         "label": "科创50",
         "points": [
-          {
-            "date": "2025.10.22",
-            "value": 1405.407,
-            "change": -0.0648,
-            "amount": 70472598304.0
-          },
-          {
-            "date": "2025.10.23",
-            "value": 1401.256,
-            "change": -0.2954,
-            "amount": 55402363288.0
-          },
           {
             "date": "2025.10.24",
             "value": 1462.222,
@@ -5946,7 +5934,19 @@ window.MARKET_TREND_DATA = {
             "date": "2026.10.27",
             "value": 1252.278,
             "change": -4.8058,
-            "amount": 64031970687.8
+            "amount": 64031970688.0
+          },
+          {
+            "date": "2026.10.28",
+            "value": 1282.931,
+            "change": 2.4478,
+            "amount": 75675743812.0
+          },
+          {
+            "date": "2026.10.29",
+            "value": 1228.091,
+            "change": -4.2746,
+            "amount": 71099759232.5
           }
         ]
       },
@@ -5954,18 +5954,6 @@ window.MARKET_TREND_DATA = {
         "code": "883957.TI",
         "label": "同花顺全A",
         "points": [
-          {
-            "date": "2025.10.22",
-            "value": 1848.934,
-            "change": -0.1178,
-            "amount": 1690258800000.0
-          },
-          {
-            "date": "2025.10.23",
-            "value": 1851.907,
-            "change": 0.1608,
-            "amount": 1660709200000.0
-          },
           {
             "date": "2025.10.24",
             "value": 1864.094,
@@ -7429,6 +7417,18 @@ window.MARKET_TREND_DATA = {
             "value": 1687.776,
             "change": -2.7956,
             "amount": 1472881100000.0
+          },
+          {
+            "date": "2026.10.28",
+            "value": 1719.335,
+            "change": 1.8699,
+            "amount": 1642093000000.0
+          },
+          {
+            "date": "2026.10.29",
+            "value": 1673.432,
+            "change": -2.6698,
+            "amount": 1570704300000.0
           }
         ]
       }
@@ -7437,16 +7437,6 @@ window.MARKET_TREND_DATA = {
       "turnover": {
         "label": "两市成交额",
         "points": [
-          {
-            "date": "2025.10.22",
-            "value": 1667856320179.09,
-            "display": "1.67万亿"
-          },
-          {
-            "date": "2025.10.23",
-            "value": 1643909541956.4,
-            "display": "1.64万亿"
-          },
           {
             "date": "2025.10.24",
             "value": 1974209096043.4,
@@ -8664,8 +8654,18 @@ window.MARKET_TREND_DATA = {
           },
           {
             "date": "2026.10.27",
-            "value": 1460958321113.74,
+            "value": 1460958321113.44,
             "display": "1.46万亿"
+          },
+          {
+            "date": "2026.10.28",
+            "value": 1628487561385.71,
+            "display": "1.63万亿"
+          },
+          {
+            "date": "2026.10.29",
+            "value": 1556524184720.48,
+            "display": "1.56万亿"
           }
         ]
       },
@@ -8675,1963 +8675,1951 @@ window.MARKET_TREND_DATA = {
         "mode": "stockCumulativeMedian",
         "points": [
           {
-            "date": "2025.10.27",
-            "value": 0.4071,
-            "display": "+0.41%",
-            "count": 5422,
-            "dailyValue": 0.4071,
-            "dailyDisplay": "+0.41%"
-          },
-          {
-            "date": "2025.10.28",
-            "value": 0.3272,
-            "display": "+0.33%",
-            "count": 5427,
-            "dailyValue": -0.18,
-            "dailyDisplay": "-0.18%"
-          },
-          {
             "date": "2025.10.29",
-            "value": 0.5528,
-            "display": "+0.55%",
-            "count": 5428,
+            "value": 0.0,
+            "display": "+0.00%",
+            "count": 5423,
             "dailyValue": 0.0,
             "dailyDisplay": "+0.00%"
           },
           {
             "date": "2025.10.30",
-            "value": -0.5547,
-            "display": "-0.55%",
-            "count": 5428,
+            "value": -1.1149,
+            "display": "-1.11%",
+            "count": 5424,
             "dailyValue": -1.2574,
             "dailyDisplay": "-1.26%"
           },
           {
             "date": "2025.10.31",
-            "value": 0.2807,
-            "display": "+0.28%",
-            "count": 5428,
+            "value": -0.2152,
+            "display": "-0.22%",
+            "count": 5424,
             "dailyValue": 0.8483,
             "dailyDisplay": "+0.85%"
           },
           {
             "date": "2025.11.03",
-            "value": 0.9524,
-            "display": "+0.95%",
-            "count": 5433,
+            "value": 0.5076,
+            "display": "+0.51%",
+            "count": 5429,
             "dailyValue": 0.609,
             "dailyDisplay": "+0.61%"
           },
           {
             "date": "2025.11.04",
-            "value": 0.4219,
-            "display": "+0.42%",
-            "count": 5433,
+            "value": 0.0,
+            "display": "+0.00%",
+            "count": 5430,
             "dailyValue": -0.8339,
             "dailyDisplay": "-0.83%"
           },
           {
             "date": "2025.11.05",
-            "value": 0.9969,
-            "display": "+1.00%",
-            "count": 5434,
+            "value": 0.5711,
+            "display": "+0.57%",
+            "count": 5431,
             "dailyValue": 0.4153,
             "dailyDisplay": "+0.42%"
           },
           {
             "date": "2025.11.06",
-            "value": 1.1246,
-            "display": "+1.12%",
-            "count": 5435,
+            "value": 0.6667,
+            "display": "+0.67%",
+            "count": 5432,
             "dailyValue": 0.13,
             "dailyDisplay": "+0.13%"
           },
           {
             "date": "2025.11.07",
-            "value": 0.9346,
-            "display": "+0.93%",
-            "count": 5437,
+            "value": 0.4157,
+            "display": "+0.42%",
+            "count": 5434,
             "dailyValue": -0.3628,
             "dailyDisplay": "-0.36%"
           },
           {
             "date": "2025.11.10",
-            "value": 1.6393,
-            "display": "+1.64%",
-            "count": 5438,
+            "value": 1.227,
+            "display": "+1.23%",
+            "count": 5435,
             "dailyValue": 0.4838,
             "dailyDisplay": "+0.48%"
           },
           {
             "date": "2025.11.11",
-            "value": 1.8951,
-            "display": "+1.90%",
-            "count": 5438,
+            "value": 1.5326,
+            "display": "+1.53%",
+            "count": 5437,
             "dailyValue": 0.0852,
             "dailyDisplay": "+0.09%"
           },
           {
             "date": "2025.11.12",
-            "value": 1.4269,
-            "display": "+1.43%",
+            "value": 1.1747,
+            "display": "+1.17%",
             "count": 5438,
             "dailyValue": -0.6583,
             "dailyDisplay": "-0.66%"
           },
           {
             "date": "2025.11.13",
-            "value": 2.212,
-            "display": "+2.21%",
+            "value": 1.9639,
+            "display": "+1.96%",
             "count": 5438,
             "dailyValue": 0.612,
             "dailyDisplay": "+0.61%"
           },
           {
             "date": "2025.11.14",
-            "value": 2.0441,
-            "display": "+2.04%",
+            "value": 1.6478,
+            "display": "+1.65%",
             "count": 5438,
             "dailyValue": -0.4875,
             "dailyDisplay": "-0.49%"
           },
           {
             "date": "2025.11.17",
-            "value": 1.9378,
-            "display": "+1.94%",
+            "value": 1.629,
+            "display": "+1.63%",
             "count": 5438,
             "dailyValue": -0.0405,
             "dailyDisplay": "-0.04%"
           },
           {
             "date": "2025.11.18",
-            "value": 0.791,
-            "display": "+0.79%",
+            "value": 0.4739,
+            "display": "+0.47%",
             "count": 5441,
             "dailyValue": -1.1728,
             "dailyDisplay": "-1.17%"
           },
           {
             "date": "2025.11.19",
-            "value": -0.5277,
-            "display": "-0.53%",
+            "value": -1.0137,
+            "display": "-1.01%",
             "count": 5441,
             "dailyValue": -1.5023,
             "dailyDisplay": "-1.50%"
           },
           {
             "date": "2025.11.20",
-            "value": -1.1525,
-            "display": "-1.15%",
+            "value": -1.6205,
+            "display": "-1.62%",
             "count": 5441,
             "dailyValue": -0.8032,
             "dailyDisplay": "-0.80%"
           },
           {
             "date": "2025.11.21",
-            "value": -4.9315,
-            "display": "-4.93%",
+            "value": -5.4457,
+            "display": "-5.45%",
             "count": 5442,
             "dailyValue": -3.9184,
             "dailyDisplay": "-3.92%"
           },
           {
             "date": "2025.11.24",
-            "value": -3.7934,
-            "display": "-3.79%",
+            "value": -4.2713,
+            "display": "-4.27%",
             "count": 5442,
             "dailyValue": 1.3117,
             "dailyDisplay": "+1.31%"
           },
           {
             "date": "2025.11.25",
-            "value": -2.8,
-            "display": "-2.80%",
+            "value": -3.1893,
+            "display": "-3.19%",
             "count": 5443,
             "dailyValue": 0.9563,
             "dailyDisplay": "+0.96%"
           },
           {
             "date": "2025.11.26",
-            "value": -3.2941,
-            "display": "-3.29%",
+            "value": -3.7275,
+            "display": "-3.73%",
             "count": 5443,
             "dailyValue": -0.635,
             "dailyDisplay": "-0.64%"
           },
           {
             "date": "2025.11.27",
-            "value": -3.1666,
-            "display": "-3.17%",
+            "value": -3.6278,
+            "display": "-3.63%",
             "count": 5444,
             "dailyValue": 0.0783,
             "dailyDisplay": "+0.08%"
           },
           {
             "date": "2025.11.28",
-            "value": -2.2284,
-            "display": "-2.23%",
+            "value": -2.5659,
+            "display": "-2.57%",
             "count": 5444,
             "dailyValue": 0.885,
             "dailyDisplay": "+0.89%"
           },
           {
             "date": "2025.12.01",
-            "value": -1.5955,
-            "display": "-1.60%",
+            "value": -1.9527,
+            "display": "-1.95%",
             "count": 5444,
             "dailyValue": 0.4619,
             "dailyDisplay": "+0.46%"
           },
           {
             "date": "2025.12.02",
-            "value": -2.2408,
-            "display": "-2.24%",
+            "value": -2.5692,
+            "display": "-2.57%",
             "count": 5445,
             "dailyValue": -0.7855,
             "dailyDisplay": "-0.79%"
           },
           {
             "date": "2025.12.03",
-            "value": -2.7541,
-            "display": "-2.75%",
+            "value": -3.3254,
+            "display": "-3.33%",
             "count": 5446,
             "dailyValue": -0.9159,
             "dailyDisplay": "-0.92%"
           },
           {
             "date": "2025.12.04",
-            "value": -3.6845,
-            "display": "-3.68%",
+            "value": -4.1081,
+            "display": "-4.11%",
             "count": 5446,
             "dailyValue": -0.9272,
             "dailyDisplay": "-0.93%"
           },
           {
             "date": "2025.12.05",
-            "value": -2.49,
-            "display": "-2.49%",
+            "value": -2.9667,
+            "display": "-2.97%",
             "count": 5447,
             "dailyValue": 1.1693,
             "dailyDisplay": "+1.17%"
           },
           {
             "date": "2025.12.08",
-            "value": -2.037,
-            "display": "-2.04%",
+            "value": -2.5168,
+            "display": "-2.52%",
             "count": 5447,
             "dailyValue": 0.459,
             "dailyDisplay": "+0.46%"
           },
           {
             "date": "2025.12.09",
-            "value": -2.7843,
-            "display": "-2.78%",
+            "value": -3.2333,
+            "display": "-3.23%",
             "count": 5447,
             "dailyValue": -0.9952,
             "dailyDisplay": "-1.00%"
           },
           {
             "date": "2025.12.10",
-            "value": -2.8551,
-            "display": "-2.86%",
+            "value": -3.3511,
+            "display": "-3.35%",
             "count": 5448,
             "dailyValue": -0.1351,
             "dailyDisplay": "-0.14%"
           },
           {
             "date": "2025.12.11",
-            "value": -4.2927,
-            "display": "-4.29%",
+            "value": -4.7214,
+            "display": "-4.72%",
             "count": 5448,
             "dailyValue": -1.6557,
             "dailyDisplay": "-1.66%"
           },
           {
             "date": "2025.12.12",
-            "value": -4.2393,
-            "display": "-4.24%",
+            "value": -4.7958,
+            "display": "-4.80%",
             "count": 5448,
             "dailyValue": 0.0,
             "dailyDisplay": "+0.00%"
           },
           {
             "date": "2025.12.15",
-            "value": -4.3665,
-            "display": "-4.37%",
+            "value": -4.8454,
+            "display": "-4.85%",
             "count": 5448,
             "dailyValue": -0.2667,
             "dailyDisplay": "-0.27%"
           },
           {
             "date": "2025.12.16",
-            "value": -5.6445,
-            "display": "-5.64%",
+            "value": -6.1058,
+            "display": "-6.11%",
             "count": 5449,
             "dailyValue": -1.6698,
             "dailyDisplay": "-1.67%"
           },
           {
             "date": "2025.12.17",
-            "value": -5.0356,
-            "display": "-5.04%",
+            "value": -5.558,
+            "display": "-5.56%",
             "count": 5450,
             "dailyValue": 0.5854,
             "dailyDisplay": "+0.59%"
           },
           {
             "date": "2025.12.18",
-            "value": -4.7264,
-            "display": "-4.73%",
+            "value": -5.2917,
+            "display": "-5.29%",
             "count": 5451,
             "dailyValue": 0.1316,
             "dailyDisplay": "+0.13%"
           },
           {
             "date": "2025.12.19",
-            "value": -3.4921,
-            "display": "-3.49%",
+            "value": -4.0788,
+            "display": "-4.08%",
             "count": 5452,
             "dailyValue": 1.2187,
             "dailyDisplay": "+1.22%"
           },
           {
             "date": "2025.12.22",
-            "value": -3.1849,
-            "display": "-3.18%",
+            "value": -3.7313,
+            "display": "-3.73%",
             "count": 5452,
             "dailyValue": 0.1821,
             "dailyDisplay": "+0.18%"
           },
           {
             "date": "2025.12.23",
-            "value": -3.818,
-            "display": "-3.82%",
+            "value": -4.3636,
+            "display": "-4.36%",
             "count": 5455,
             "dailyValue": -0.8155,
             "dailyDisplay": "-0.82%"
           },
           {
             "date": "2025.12.24",
-            "value": -2.8225,
-            "display": "-2.82%",
+            "value": -3.328,
+            "display": "-3.33%",
             "count": 5456,
             "dailyValue": 0.7921,
             "dailyDisplay": "+0.79%"
           },
           {
             "date": "2025.12.25",
-            "value": -2.1127,
-            "display": "-2.11%",
+            "value": -2.7083,
+            "display": "-2.71%",
             "count": 5457,
             "dailyValue": 0.5345,
             "dailyDisplay": "+0.53%"
           },
           {
             "date": "2025.12.26",
-            "value": -2.4828,
-            "display": "-2.48%",
+            "value": -3.0142,
+            "display": "-3.01%",
             "count": 5457,
             "dailyValue": -0.4831,
             "dailyDisplay": "-0.48%"
           },
           {
             "date": "2025.12.29",
-            "value": -2.6731,
-            "display": "-2.67%",
+            "value": -3.1023,
+            "display": "-3.10%",
             "count": 5457,
             "dailyValue": -0.4858,
             "dailyDisplay": "-0.49%"
           },
           {
             "date": "2025.12.30",
-            "value": -2.7582,
-            "display": "-2.76%",
+            "value": -3.3797,
+            "display": "-3.38%",
             "count": 5460,
             "dailyValue": -0.5066,
             "dailyDisplay": "-0.51%"
           },
           {
             "date": "2025.12.31",
-            "value": -2.7848,
-            "display": "-2.78%",
+            "value": -3.3012,
+            "display": "-3.30%",
             "count": 5462,
             "dailyValue": -0.0721,
             "dailyDisplay": "-0.07%"
           },
           {
             "date": "2026.01.05",
-            "value": -1.2747,
-            "display": "-1.27%",
+            "value": -1.9419,
+            "display": "-1.94%",
             "count": 5462,
             "dailyValue": 1.1632,
             "dailyDisplay": "+1.16%"
           },
           {
             "date": "2026.01.06",
-            "value": -0.2091,
-            "display": "-0.21%",
+            "value": -0.9291,
+            "display": "-0.93%",
             "count": 5463,
             "dailyValue": 0.8447,
             "dailyDisplay": "+0.84%"
           },
           {
             "date": "2026.01.07",
-            "value": -0.46,
-            "display": "-0.46%",
+            "value": -1.0118,
+            "display": "-1.01%",
             "count": 5463,
             "dailyValue": -0.392,
             "dailyDisplay": "-0.39%"
           },
           {
             "date": "2026.01.08",
-            "value": 0.3916,
-            "display": "+0.39%",
+            "value": -0.2305,
+            "display": "-0.23%",
             "count": 5463,
             "dailyValue": 0.6873,
             "dailyDisplay": "+0.69%"
           },
           {
             "date": "2026.01.09",
-            "value": 1.5673,
-            "display": "+1.57%",
+            "value": 0.9857,
+            "display": "+0.99%",
             "count": 5463,
             "dailyValue": 0.6829,
             "dailyDisplay": "+0.68%"
           },
           {
             "date": "2026.01.12",
-            "value": 3.4208,
-            "display": "+3.42%",
+            "value": 2.7382,
+            "display": "+2.74%",
             "count": 5463,
             "dailyValue": 1.283,
             "dailyDisplay": "+1.28%"
           },
           {
             "date": "2026.01.13",
-            "value": 2.2383,
-            "display": "+2.24%",
+            "value": 1.6866,
+            "display": "+1.69%",
             "count": 5463,
             "dailyValue": -1.0395,
             "dailyDisplay": "-1.04%"
           },
           {
             "date": "2026.01.14",
-            "value": 3.0457,
-            "display": "+3.05%",
+            "value": 2.1818,
+            "display": "+2.18%",
             "count": 5463,
             "dailyValue": 0.0538,
             "dailyDisplay": "+0.05%"
           },
           {
             "date": "2026.01.15",
-            "value": 2.9108,
-            "display": "+2.91%",
+            "value": 2.0856,
+            "display": "+2.09%",
             "count": 5464,
             "dailyValue": -0.3741,
             "dailyDisplay": "-0.37%"
           },
           {
             "date": "2026.01.16",
-            "value": 2.8857,
-            "display": "+2.89%",
+            "value": 2.1628,
+            "display": "+2.16%",
             "count": 5465,
             "dailyValue": -0.3012,
             "dailyDisplay": "-0.30%"
           },
           {
             "date": "2026.01.19",
-            "value": 3.7377,
-            "display": "+3.74%",
+            "value": 3.0042,
+            "display": "+3.00%",
             "count": 5465,
             "dailyValue": 0.7718,
             "dailyDisplay": "+0.77%"
           },
           {
             "date": "2026.01.20",
-            "value": 3.5408,
-            "display": "+3.54%",
+            "value": 2.7287,
+            "display": "+2.73%",
             "count": 5465,
             "dailyValue": -0.4088,
             "dailyDisplay": "-0.41%"
           },
           {
             "date": "2026.01.21",
-            "value": 4.2573,
-            "display": "+4.26%",
+            "value": 3.3435,
+            "display": "+3.34%",
             "count": 5466,
             "dailyValue": 0.321,
             "dailyDisplay": "+0.32%"
           },
           {
             "date": "2026.01.22",
-            "value": 4.9914,
-            "display": "+4.99%",
+            "value": 4.2065,
+            "display": "+4.21%",
             "count": 5467,
             "dailyValue": 0.6237,
             "dailyDisplay": "+0.62%"
           },
           {
             "date": "2026.01.23",
-            "value": 6.2053,
-            "display": "+6.21%",
+            "value": 5.3937,
+            "display": "+5.39%",
             "count": 5467,
             "dailyValue": 0.9047,
             "dailyDisplay": "+0.90%"
           },
           {
             "date": "2026.01.26",
-            "value": 5.0027,
-            "display": "+5.00%",
+            "value": 4.3079,
+            "display": "+4.31%",
             "count": 5467,
             "dailyValue": -1.3523,
             "dailyDisplay": "-1.35%"
           },
           {
             "date": "2026.01.27",
-            "value": 4.6715,
-            "display": "+4.67%",
+            "value": 4.0636,
+            "display": "+4.06%",
             "count": 5467,
             "dailyValue": -0.654,
             "dailyDisplay": "-0.65%"
           },
           {
             "date": "2026.01.28",
-            "value": 4.0087,
-            "display": "+4.01%",
+            "value": 3.4203,
+            "display": "+3.42%",
             "count": 5469,
             "dailyValue": -1.0462,
             "dailyDisplay": "-1.05%"
           },
           {
             "date": "2026.01.29",
-            "value": 3.1949,
-            "display": "+3.19%",
+            "value": 2.5535,
+            "display": "+2.55%",
             "count": 5470,
             "dailyValue": -0.944,
             "dailyDisplay": "-0.94%"
           },
           {
             "date": "2026.01.30",
-            "value": 3.0493,
-            "display": "+3.05%",
+            "value": 2.462,
+            "display": "+2.46%",
             "count": 5471,
             "dailyValue": -0.2182,
             "dailyDisplay": "-0.22%"
           },
           {
             "date": "2026.02.02",
-            "value": 0.6858,
-            "display": "+0.69%",
+            "value": 0.0403,
+            "display": "+0.04%",
             "count": 5471,
             "dailyValue": -2.1091,
             "dailyDisplay": "-2.11%"
           },
           {
             "date": "2026.02.03",
-            "value": 2.6533,
-            "display": "+2.65%",
+            "value": 2.0383,
+            "display": "+2.04%",
             "count": 5472,
             "dailyValue": 1.8868,
             "dailyDisplay": "+1.89%"
           },
           {
             "date": "2026.02.04",
-            "value": 3.3151,
-            "display": "+3.32%",
+            "value": 2.6068,
+            "display": "+2.61%",
             "count": 5472,
             "dailyValue": 0.4436,
             "dailyDisplay": "+0.44%"
           },
           {
             "date": "2026.02.05",
-            "value": 2.5168,
-            "display": "+2.52%",
+            "value": 1.7476,
+            "display": "+1.75%",
             "count": 5473,
             "dailyValue": -0.8477,
             "dailyDisplay": "-0.85%"
           },
           {
             "date": "2026.02.06",
-            "value": 2.5862,
-            "display": "+2.59%",
+            "value": 1.9874,
+            "display": "+1.99%",
             "count": 5473,
             "dailyValue": 0.0363,
             "dailyDisplay": "+0.04%"
           },
           {
             "date": "2026.02.09",
-            "value": 4.3096,
-            "display": "+4.31%",
+            "value": 3.5821,
+            "display": "+3.58%",
             "count": 5473,
             "dailyValue": 1.2935,
             "dailyDisplay": "+1.29%"
           },
           {
             "date": "2026.02.10",
-            "value": 4.4245,
-            "display": "+4.42%",
+            "value": 3.7107,
+            "display": "+3.71%",
             "count": 5476,
             "dailyValue": -0.2613,
             "dailyDisplay": "-0.26%"
           },
           {
             "date": "2026.02.11",
-            "value": 4.2184,
-            "display": "+4.22%",
+            "value": 3.4804,
+            "display": "+3.48%",
             "count": 5477,
             "dailyValue": -0.3053,
             "dailyDisplay": "-0.31%"
           },
           {
             "date": "2026.02.12",
-            "value": 3.9715,
-            "display": "+3.97%",
+            "value": 3.2983,
+            "display": "+3.30%",
             "count": 5478,
             "dailyValue": -0.5027,
             "dailyDisplay": "-0.50%"
           },
           {
             "date": "2026.02.13",
-            "value": 3.2901,
-            "display": "+3.29%",
+            "value": 2.6539,
+            "display": "+2.65%",
             "count": 5478,
             "dailyValue": -0.7189,
             "dailyDisplay": "-0.72%"
           },
           {
             "date": "2026.02.24",
-            "value": 4.6259,
-            "display": "+4.63%",
+            "value": 3.8637,
+            "display": "+3.86%",
             "count": 5478,
             "dailyValue": 1.2114,
             "dailyDisplay": "+1.21%"
           },
           {
             "date": "2026.02.25",
-            "value": 5.4385,
-            "display": "+5.44%",
+            "value": 4.6666,
+            "display": "+4.67%",
             "count": 5478,
             "dailyValue": 0.617,
             "dailyDisplay": "+0.62%"
           },
           {
             "date": "2026.02.26",
-            "value": 5.741,
-            "display": "+5.74%",
+            "value": 5.0425,
+            "display": "+5.04%",
             "count": 5479,
             "dailyValue": -0.1614,
             "dailyDisplay": "-0.16%"
           },
           {
             "date": "2026.02.27",
-            "value": 6.3747,
-            "display": "+6.37%",
+            "value": 5.5556,
+            "display": "+5.56%",
             "count": 5479,
             "dailyValue": 0.3534,
             "dailyDisplay": "+0.35%"
           },
           {
             "date": "2026.03.02",
-            "value": 4.1667,
-            "display": "+4.17%",
+            "value": 3.4444,
+            "display": "+3.44%",
             "count": 5479,
             "dailyValue": -2.4439,
             "dailyDisplay": "-2.44%"
           },
           {
             "date": "2026.03.03",
-            "value": 1.2146,
-            "display": "+1.21%",
+            "value": 0.5571,
+            "display": "+0.56%",
             "count": 5479,
             "dailyValue": -3.4012,
             "dailyDisplay": "-3.40%"
           },
           {
             "date": "2026.03.04",
-            "value": 0.3504,
-            "display": "+0.35%",
+            "value": -0.3123,
+            "display": "-0.31%",
             "count": 5480,
             "dailyValue": -0.7524,
             "dailyDisplay": "-0.75%"
           },
           {
             "date": "2026.03.05",
-            "value": 1.4063,
-            "display": "+1.41%",
+            "value": 0.8472,
+            "display": "+0.85%",
             "count": 5481,
             "dailyValue": 0.9884,
             "dailyDisplay": "+0.99%"
           },
           {
             "date": "2026.03.06",
-            "value": 3.488,
-            "display": "+3.49%",
+            "value": 2.8139,
+            "display": "+2.81%",
             "count": 5482,
             "dailyValue": 1.4199,
             "dailyDisplay": "+1.42%"
           },
           {
             "date": "2026.03.09",
-            "value": 2.8148,
-            "display": "+2.81%",
+            "value": 2.2013,
+            "display": "+2.20%",
             "count": 5483,
             "dailyValue": -0.9992,
             "dailyDisplay": "-1.00%"
           },
           {
             "date": "2026.03.10",
-            "value": 4.2842,
-            "display": "+4.28%",
+            "value": 3.7918,
+            "display": "+3.79%",
             "count": 5483,
             "dailyValue": 1.5518,
             "dailyDisplay": "+1.55%"
           },
           {
             "date": "2026.03.11",
-            "value": 4.3011,
-            "display": "+4.30%",
+            "value": 3.6137,
+            "display": "+3.61%",
             "count": 5483,
             "dailyValue": -0.4303,
             "dailyDisplay": "-0.43%"
           },
           {
             "date": "2026.03.12",
-            "value": 3.5778,
-            "display": "+3.58%",
+            "value": 2.8986,
+            "display": "+2.90%",
             "count": 5483,
             "dailyValue": -1.1033,
             "dailyDisplay": "-1.10%"
           },
           {
             "date": "2026.03.13",
-            "value": 2.9309,
-            "display": "+2.93%",
+            "value": 2.3657,
+            "display": "+2.37%",
             "count": 5483,
             "dailyValue": -0.8299,
             "dailyDisplay": "-0.83%"
           },
           {
             "date": "2026.03.16",
-            "value": 3.0963,
-            "display": "+3.10%",
+            "value": 2.5417,
+            "display": "+2.54%",
             "count": 5483,
             "dailyValue": 0.1385,
             "dailyDisplay": "+0.14%"
           },
           {
             "date": "2026.03.17",
-            "value": 1.2555,
-            "display": "+1.26%",
+            "value": 0.6358,
+            "display": "+0.64%",
             "count": 5483,
             "dailyValue": -1.8974,
             "dailyDisplay": "-1.90%"
           },
           {
             "date": "2026.03.18",
-            "value": 2.1993,
-            "display": "+2.20%",
+            "value": 1.6018,
+            "display": "+1.60%",
             "count": 5484,
             "dailyValue": 0.8,
             "dailyDisplay": "+0.80%"
           },
           {
             "date": "2026.03.19",
-            "value": -0.253,
-            "display": "-0.25%",
+            "value": -0.8735,
+            "display": "-0.87%",
             "count": 5484,
             "dailyValue": -2.6867,
             "dailyDisplay": "-2.69%"
           },
           {
             "date": "2026.03.20",
-            "value": -2.7027,
-            "display": "-2.70%",
+            "value": -3.3006,
+            "display": "-3.30%",
             "count": 5485,
             "dailyValue": -2.4828,
             "dailyDisplay": "-2.48%"
           },
           {
             "date": "2026.03.23",
-            "value": -8.2143,
-            "display": "-8.21%",
+            "value": -8.6397,
+            "display": "-8.64%",
             "count": 5485,
             "dailyValue": -5.6546,
             "dailyDisplay": "-5.65%"
           },
           {
             "date": "2026.03.24",
-            "value": -5.0984,
-            "display": "-5.10%",
+            "value": -5.5743,
+            "display": "-5.57%",
             "count": 5485,
             "dailyValue": 3.2442,
             "dailyDisplay": "+3.24%"
           },
           {
             "date": "2026.03.25",
-            "value": -3.2864,
-            "display": "-3.29%",
+            "value": -3.8289,
+            "display": "-3.83%",
             "count": 5487,
             "dailyValue": 1.6556,
             "dailyDisplay": "+1.66%"
           },
           {
             "date": "2026.03.26",
-            "value": -4.5631,
-            "display": "-4.56%",
+            "value": -5.1565,
+            "display": "-5.16%",
             "count": 5487,
             "dailyValue": -1.6313,
             "dailyDisplay": "-1.63%"
           },
           {
             "date": "2026.03.27",
-            "value": -3.2399,
-            "display": "-3.24%",
+            "value": -3.8494,
+            "display": "-3.85%",
             "count": 5488,
             "dailyValue": 1.1873,
             "dailyDisplay": "+1.19%"
           },
           {
             "date": "2026.03.30",
-            "value": -2.6735,
-            "display": "-2.67%",
+            "value": -3.4198,
+            "display": "-3.42%",
             "count": 5489,
             "dailyValue": 0.1495,
             "dailyDisplay": "+0.15%"
           },
           {
             "date": "2026.03.31",
-            "value": -3.8639,
-            "display": "-3.86%",
+            "value": -4.6458,
+            "display": "-4.65%",
             "count": 5492,
             "dailyValue": -1.4308,
             "dailyDisplay": "-1.43%"
           },
           {
             "date": "2026.04.01",
-            "value": -2.6255,
-            "display": "-2.63%",
+            "value": -3.3668,
+            "display": "-3.37%",
             "count": 5493,
             "dailyValue": 1.4911,
             "dailyDisplay": "+1.49%"
           },
           {
             "date": "2026.04.02",
-            "value": -4.0524,
-            "display": "-4.05%",
+            "value": -4.6495,
+            "display": "-4.65%",
             "count": 5493,
             "dailyValue": -1.7699,
             "dailyDisplay": "-1.77%"
           },
           {
             "date": "2026.04.03",
-            "value": -6.3898,
-            "display": "-6.39%",
+            "value": -7.0375,
+            "display": "-7.04%",
             "count": 5493,
             "dailyValue": -2.3523,
             "dailyDisplay": "-2.35%"
           },
           {
             "date": "2026.04.07",
-            "value": -5.1064,
-            "display": "-5.11%",
+            "value": -5.7283,
+            "display": "-5.73%",
             "count": 5493,
             "dailyValue": 1.1268,
             "dailyDisplay": "+1.13%"
           },
           {
             "date": "2026.04.08",
-            "value": -1.8018,
-            "display": "-1.80%",
+            "value": -2.5,
+            "display": "-2.50%",
             "count": 5495,
             "dailyValue": 3.7194,
             "dailyDisplay": "+3.72%"
           },
           {
             "date": "2026.04.09",
-            "value": -3.2175,
-            "display": "-3.22%",
+            "value": -3.9504,
+            "display": "-3.95%",
             "count": 5495,
             "dailyValue": -1.5962,
             "dailyDisplay": "-1.60%"
           },
           {
             "date": "2026.04.10",
-            "value": -2.2933,
-            "display": "-2.29%",
+            "value": -2.9296,
+            "display": "-2.93%",
             "count": 5498,
             "dailyValue": 0.8332,
             "dailyDisplay": "+0.83%"
           },
           {
             "date": "2026.04.13",
-            "value": -2.4181,
-            "display": "-2.42%",
+            "value": -3.1093,
+            "display": "-3.11%",
             "count": 5499,
             "dailyValue": -0.1986,
             "dailyDisplay": "-0.20%"
           },
           {
             "date": "2026.04.14",
-            "value": -1.8072,
-            "display": "-1.81%",
+            "value": -2.4055,
+            "display": "-2.41%",
             "count": 5499,
             "dailyValue": 0.625,
             "dailyDisplay": "+0.62%"
           },
           {
             "date": "2026.04.15",
-            "value": -2.0247,
-            "display": "-2.02%",
+            "value": -2.7586,
+            "display": "-2.76%",
             "count": 5499,
             "dailyValue": -0.6503,
             "dailyDisplay": "-0.65%"
           },
           {
             "date": "2026.04.16",
-            "value": -0.7243,
-            "display": "-0.72%",
+            "value": -1.491,
+            "display": "-1.49%",
             "count": 5502,
             "dailyValue": 1.0557,
             "dailyDisplay": "+1.06%"
           },
           {
             "date": "2026.04.17",
-            "value": -1.0381,
-            "display": "-1.04%",
+            "value": -1.5614,
+            "display": "-1.56%",
             "count": 5503,
             "dailyValue": -0.2406,
             "dailyDisplay": "-0.24%"
           },
           {
             "date": "2026.04.20",
-            "value": -0.312,
-            "display": "-0.31%",
+            "value": -0.8987,
+            "display": "-0.90%",
             "count": 5504,
             "dailyValue": 0.4781,
             "dailyDisplay": "+0.48%"
           },
           {
             "date": "2026.04.21",
-            "value": -0.3912,
-            "display": "-0.39%",
+            "value": -1.2339,
+            "display": "-1.23%",
             "count": 5506,
             "dailyValue": -0.5714,
             "dailyDisplay": "-0.57%"
           },
           {
             "date": "2026.04.22",
-            "value": -0.1242,
-            "display": "-0.12%",
+            "value": -0.8934,
+            "display": "-0.89%",
             "count": 5506,
             "dailyValue": 0.1642,
             "dailyDisplay": "+0.16%"
           },
           {
             "date": "2026.04.23",
-            "value": -1.1248,
-            "display": "-1.12%",
+            "value": -1.8997,
+            "display": "-1.90%",
             "count": 5506,
             "dailyValue": -1.3752,
             "dailyDisplay": "-1.38%"
           },
           {
             "date": "2026.04.24",
-            "value": -1.35,
-            "display": "-1.35%",
+            "value": -2.1691,
+            "display": "-2.17%",
             "count": 5508,
             "dailyValue": -0.6094,
             "dailyDisplay": "-0.61%"
           },
           {
             "date": "2026.04.27",
-            "value": -0.7261,
-            "display": "-0.73%",
+            "value": -1.3817,
+            "display": "-1.38%",
             "count": 5509,
             "dailyValue": 0.5748,
             "dailyDisplay": "+0.57%"
           },
           {
             "date": "2026.04.28",
-            "value": -1.4235,
-            "display": "-1.42%",
+            "value": -2.2049,
+            "display": "-2.20%",
             "count": 5509,
             "dailyValue": -1.2043,
             "dailyDisplay": "-1.20%"
           },
           {
             "date": "2026.04.29",
-            "value": -0.5445,
-            "display": "-0.54%",
+            "value": -1.1903,
+            "display": "-1.19%",
             "count": 5510,
             "dailyValue": 1.1197,
             "dailyDisplay": "+1.12%"
           },
           {
             "date": "2026.04.30",
-            "value": -0.0193,
-            "display": "-0.02%",
+            "value": -0.8174,
+            "display": "-0.82%",
             "count": 5511,
             "dailyValue": 0.171,
             "dailyDisplay": "+0.17%"
           },
           {
             "date": "2026.05.06",
-            "value": 0.7585,
-            "display": "+0.76%",
+            "value": 0.1605,
+            "display": "+0.16%",
             "count": 5511,
             "dailyValue": 1.0255,
             "dailyDisplay": "+1.03%"
           },
           {
             "date": "2026.05.07",
-            "value": 1.6026,
-            "display": "+1.60%",
+            "value": 0.9533,
+            "display": "+0.95%",
             "count": 5512,
             "dailyValue": 0.694,
             "dailyDisplay": "+0.69%"
           },
           {
             "date": "2026.05.08",
-            "value": 2.3819,
-            "display": "+2.38%",
+            "value": 1.8482,
+            "display": "+1.85%",
             "count": 5512,
             "dailyValue": 0.725,
             "dailyDisplay": "+0.72%"
           },
           {
             "date": "2026.05.11",
-            "value": 3.1966,
-            "display": "+3.20%",
+            "value": 2.3816,
+            "display": "+2.38%",
             "count": 5514,
             "dailyValue": 0.3226,
             "dailyDisplay": "+0.32%"
           },
           {
             "date": "2026.05.12",
-            "value": 1.9517,
-            "display": "+1.95%",
+            "value": 1.1627,
+            "display": "+1.16%",
             "count": 5514,
             "dailyValue": -1.4238,
             "dailyDisplay": "-1.42%"
           },
           {
             "date": "2026.05.13",
-            "value": 2.4572,
-            "display": "+2.46%",
+            "value": 1.7548,
+            "display": "+1.75%",
             "count": 5514,
             "dailyValue": 0.3559,
             "dailyDisplay": "+0.36%"
           },
           {
             "date": "2026.05.14",
-            "value": 1.0233,
-            "display": "+1.02%",
+            "value": 0.28,
+            "display": "+0.28%",
             "count": 5514,
             "dailyValue": -2.0611,
             "dailyDisplay": "-2.06%"
           },
           {
             "date": "2026.05.15",
-            "value": 0.6297,
-            "display": "+0.63%",
+            "value": -0.0555,
+            "display": "-0.06%",
             "count": 5516,
             "dailyValue": -0.8446,
             "dailyDisplay": "-0.84%"
           },
           {
             "date": "2026.05.18",
-            "value": 0.7984,
-            "display": "+0.80%",
+            "value": -0.0,
+            "display": "-0.00%",
             "count": 5518,
             "dailyValue": -0.3482,
             "dailyDisplay": "-0.35%"
           },
           {
             "date": "2026.05.19",
-            "value": 1.516,
-            "display": "+1.52%",
+            "value": 0.7059,
+            "display": "+0.71%",
             "count": 5518,
             "dailyValue": 0.7146,
             "dailyDisplay": "+0.71%"
           },
           {
             "date": "2026.05.20",
-            "value": 0.3216,
-            "display": "+0.32%",
+            "value": -0.3229,
+            "display": "-0.32%",
             "count": 5518,
             "dailyValue": -1.2075,
             "dailyDisplay": "-1.21%"
           },
           {
             "date": "2026.05.21",
-            "value": -2.5586,
-            "display": "-2.56%",
+            "value": -3.1609,
+            "display": "-3.16%",
             "count": 5518,
             "dailyValue": -3.0695,
             "dailyDisplay": "-3.07%"
           },
           {
             "date": "2026.05.22",
-            "value": -1.1079,
-            "display": "-1.11%",
+            "value": -1.511,
+            "display": "-1.51%",
             "count": 5521,
             "dailyValue": 1.1753,
             "dailyDisplay": "+1.18%"
           },
           {
             "date": "2026.05.25",
-            "value": -1.2094,
-            "display": "-1.21%",
+            "value": -1.8223,
+            "display": "-1.82%",
             "count": 5521,
             "dailyValue": -0.5843,
             "dailyDisplay": "-0.58%"
           },
           {
             "date": "2026.05.26",
-            "value": -2.5304,
-            "display": "-2.53%",
+            "value": -3.1618,
+            "display": "-3.16%",
             "count": 5521,
             "dailyValue": -1.6775,
             "dailyDisplay": "-1.68%"
           },
           {
             "date": "2026.05.27",
-            "value": -4.4949,
-            "display": "-4.49%",
+            "value": -5.1391,
+            "display": "-5.14%",
             "count": 5523,
             "dailyValue": -2.3265,
             "dailyDisplay": "-2.33%"
           },
           {
             "date": "2026.05.28",
-            "value": -4.2194,
-            "display": "-4.22%",
+            "value": -4.6811,
+            "display": "-4.68%",
             "count": 5523,
             "dailyValue": 0.3016,
             "dailyDisplay": "+0.30%"
           },
           {
             "date": "2026.05.29",
-            "value": -6.208,
-            "display": "-6.21%",
+            "value": -6.8034,
+            "display": "-6.80%",
             "count": 5524,
             "dailyValue": -2.2209,
             "dailyDisplay": "-2.22%"
           },
           {
             "date": "2026.06.01",
-            "value": -4.733,
-            "display": "-4.73%",
+            "value": -5.2453,
+            "display": "-5.25%",
             "count": 5524,
             "dailyValue": 1.3131,
             "dailyDisplay": "+1.31%"
           },
           {
             "date": "2026.06.02",
-            "value": -5.7973,
-            "display": "-5.80%",
+            "value": -6.3107,
+            "display": "-6.31%",
             "count": 5524,
             "dailyValue": -1.363,
             "dailyDisplay": "-1.36%"
           },
           {
             "date": "2026.06.03",
-            "value": -6.6202,
-            "display": "-6.62%",
+            "value": -7.0637,
+            "display": "-7.06%",
             "count": 5524,
             "dailyValue": -1.0221,
             "dailyDisplay": "-1.02%"
           },
           {
             "date": "2026.06.04",
-            "value": -7.8797,
-            "display": "-7.88%",
+            "value": -8.2778,
+            "display": "-8.28%",
             "count": 5524,
             "dailyValue": -1.6938,
             "dailyDisplay": "-1.69%"
           },
           {
             "date": "2026.06.05",
-            "value": -7.2742,
-            "display": "-7.27%",
+            "value": -7.6389,
+            "display": "-7.64%",
             "count": 5525,
             "dailyValue": 0.5134,
             "dailyDisplay": "+0.51%"
           },
           {
             "date": "2026.06.08",
-            "value": -9.5773,
-            "display": "-9.58%",
+            "value": -9.9717,
+            "display": "-9.97%",
             "count": 5526,
             "dailyValue": -2.981,
             "dailyDisplay": "-2.98%"
           },
           {
             "date": "2026.06.09",
-            "value": -9.1825,
-            "display": "-9.18%",
+            "value": -9.4966,
+            "display": "-9.50%",
             "count": 5527,
             "dailyValue": 0.5244,
             "dailyDisplay": "+0.52%"
           },
           {
             "date": "2026.06.10",
-            "value": -9.9497,
-            "display": "-9.95%",
+            "value": -10.5825,
+            "display": "-10.58%",
             "count": 5527,
             "dailyValue": -1.4674,
             "dailyDisplay": "-1.47%"
           },
           {
             "date": "2026.06.11",
-            "value": -11.0002,
-            "display": "-11.00%",
+            "value": -11.5615,
+            "display": "-11.56%",
             "count": 5528,
             "dailyValue": -1.4859,
             "dailyDisplay": "-1.49%"
           },
           {
             "date": "2026.06.12",
-            "value": -9.7932,
-            "display": "-9.79%",
+            "value": -10.2192,
+            "display": "-10.22%",
             "count": 5528,
             "dailyValue": 1.2877,
             "dailyDisplay": "+1.29%"
           },
           {
             "date": "2026.06.15",
-            "value": -8.9636,
-            "display": "-8.96%",
+            "value": -9.4381,
+            "display": "-9.44%",
             "count": 5529,
             "dailyValue": 1.253,
             "dailyDisplay": "+1.25%"
           },
           {
             "date": "2026.06.16",
-            "value": -8.8767,
-            "display": "-8.88%",
+            "value": -9.302,
+            "display": "-9.30%",
             "count": 5529,
             "dailyValue": 0.0,
             "dailyDisplay": "+0.00%"
           },
           {
             "date": "2026.06.17",
-            "value": -9.8638,
-            "display": "-9.86%",
+            "value": -10.2646,
+            "display": "-10.26%",
             "count": 5529,
             "dailyValue": -1.1944,
             "dailyDisplay": "-1.19%"
           },
           {
             "date": "2026.06.18",
-            "value": -10.4569,
-            "display": "-10.46%",
+            "value": -10.9504,
+            "display": "-10.95%",
             "count": 5529,
             "dailyValue": -0.7746,
             "dailyDisplay": "-0.77%"
           },
           {
             "date": "2026.06.22",
-            "value": -10.4235,
-            "display": "-10.42%",
+            "value": -10.6904,
+            "display": "-10.69%",
             "count": 5529,
             "dailyValue": 0.243,
             "dailyDisplay": "+0.24%"
           },
           {
             "date": "2026.06.23",
-            "value": -10.5128,
-            "display": "-10.51%",
+            "value": -10.9573,
+            "display": "-10.96%",
             "count": 5529,
             "dailyValue": 0.0481,
             "dailyDisplay": "+0.05%"
           },
           {
             "date": "2026.06.24",
-            "value": -12.0307,
-            "display": "-12.03%",
+            "value": -12.3468,
+            "display": "-12.35%",
             "count": 5530,
             "dailyValue": -2.0167,
             "dailyDisplay": "-2.02%"
           },
           {
             "date": "2026.06.25",
-            "value": -13.5519,
-            "display": "-13.55%",
+            "value": -13.8536,
+            "display": "-13.85%",
             "count": 5530,
             "dailyValue": -1.9868,
             "dailyDisplay": "-1.99%"
           },
           {
             "date": "2026.06.26",
-            "value": -15.7203,
-            "display": "-15.72%",
+            "value": -16.3107,
+            "display": "-16.31%",
             "count": 5531,
             "dailyValue": -2.8758,
             "dailyDisplay": "-2.88%"
           },
           {
             "date": "2026.06.29",
-            "value": -15.4953,
-            "display": "-15.50%",
+            "value": -15.8198,
+            "display": "-15.82%",
             "count": 5532,
             "dailyValue": -0.3035,
             "dailyDisplay": "-0.30%"
           },
           {
             "date": "2026.06.30",
-            "value": -15.2249,
-            "display": "-15.22%",
+            "value": -15.635,
+            "display": "-15.63%",
             "count": 5533,
             "dailyValue": 0.491,
             "dailyDisplay": "+0.49%"
           },
           {
             "date": "2026.07.01",
-            "value": -13.24,
-            "display": "-13.24%",
+            "value": -13.7117,
+            "display": "-13.71%",
             "count": 5533,
             "dailyValue": 2.1103,
             "dailyDisplay": "+2.11%"
           },
           {
             "date": "2026.07.02",
-            "value": -13.1346,
-            "display": "-13.13%",
+            "value": -13.5714,
+            "display": "-13.57%",
             "count": 5535,
             "dailyValue": -0.489,
             "dailyDisplay": "-0.49%"
           },
           {
             "date": "2026.07.03",
-            "value": -11.9054,
-            "display": "-11.91%",
+            "value": -12.319,
+            "display": "-12.32%",
             "count": 5535,
             "dailyValue": 1.2216,
             "dailyDisplay": "+1.22%"
           },
           {
             "date": "2026.07.06",
-            "value": -12.3923,
-            "display": "-12.39%",
+            "value": -12.7885,
+            "display": "-12.79%",
             "count": 5535,
             "dailyValue": -1.2702,
             "dailyDisplay": "-1.27%"
           },
           {
             "date": "2026.07.07",
-            "value": -14.8508,
-            "display": "-14.85%",
+            "value": -15.2961,
+            "display": "-15.30%",
             "count": 5535,
             "dailyValue": -2.9052,
             "dailyDisplay": "-2.91%"
           },
           {
             "date": "2026.07.08",
-            "value": -15.5565,
-            "display": "-15.56%",
+            "value": -15.8455,
+            "display": "-15.85%",
             "count": 5536,
             "dailyValue": -1.3958,
             "dailyDisplay": "-1.40%"
           },
           {
             "date": "2026.07.09",
-            "value": -15.6704,
-            "display": "-15.67%",
+            "value": -15.9303,
+            "display": "-15.93%",
             "count": 5537,
             "dailyValue": -0.1848,
             "dailyDisplay": "-0.18%"
           },
           {
             "date": "2026.07.10",
-            "value": -14.759,
-            "display": "-14.76%",
+            "value": -15.0812,
+            "display": "-15.08%",
             "count": 5539,
             "dailyValue": 1.2346,
             "dailyDisplay": "+1.23%"
           },
           {
             "date": "2026.07.13",
-            "value": -16.8725,
-            "display": "-16.87%",
+            "value": -17.3287,
+            "display": "-17.33%",
             "count": 5539,
             "dailyValue": -4.1881,
             "dailyDisplay": "-4.19%"
           },
           {
             "date": "2026.07.14",
-            "value": -15.8184,
-            "display": "-15.82%",
+            "value": -16.0215,
+            "display": "-16.02%",
             "count": 5539,
             "dailyValue": 1.5508,
             "dailyDisplay": "+1.55%"
           },
           {
             "date": "2026.07.15",
-            "value": -14.7363,
-            "display": "-14.74%",
+            "value": -15.3009,
+            "display": "-15.30%",
             "count": 5539,
             "dailyValue": 0.7692,
             "dailyDisplay": "+0.77%"
           },
           {
             "date": "2026.07.16",
-            "value": -14.9487,
-            "display": "-14.95%",
+            "value": -15.3147,
+            "display": "-15.31%",
             "count": 5540,
             "dailyValue": -0.1827,
             "dailyDisplay": "-0.18%"
           },
           {
             "date": "2026.07.17",
-            "value": -18.0171,
-            "display": "-18.02%",
+            "value": -18.5262,
+            "display": "-18.53%",
             "count": 5540,
             "dailyValue": -4.1209,
             "dailyDisplay": "-4.12%"
           },
           {
             "date": "2026.07.20",
-            "value": -19.4983,
-            "display": "-19.50%",
+            "value": -19.8,
+            "display": "-19.80%",
             "count": 5540,
             "dailyValue": -2.102,
             "dailyDisplay": "-2.10%"
           },
           {
             "date": "2026.07.21",
-            "value": -19.1046,
-            "display": "-19.10%",
+            "value": -19.7588,
+            "display": "-19.76%",
             "count": 5541,
             "dailyValue": 0.59,
             "dailyDisplay": "+0.59%"
           },
           {
             "date": "2026.07.22",
-            "value": -20.0579,
-            "display": "-20.06%",
+            "value": -20.561,
+            "display": "-20.56%",
             "count": 5542,
             "dailyValue": -1.277,
             "dailyDisplay": "-1.28%"
           },
           {
             "date": "2026.07.23",
-            "value": -18.5009,
-            "display": "-18.50%",
+            "value": -19.106,
+            "display": "-19.11%",
             "count": 5542,
             "dailyValue": 1.8236,
             "dailyDisplay": "+1.82%"
           },
           {
             "date": "2026.07.24",
-            "value": -20.6983,
-            "display": "-20.70%",
+            "value": -21.2171,
+            "display": "-21.22%",
             "count": 5543,
             "dailyValue": -2.858,
             "dailyDisplay": "-2.86%"
           },
           {
             "date": "2026.07.27",
-            "value": -18.5715,
-            "display": "-18.57%",
+            "value": -18.9592,
+            "display": "-18.96%",
             "count": 5545,
             "dailyValue": 2.7273,
             "dailyDisplay": "+2.73%"
           },
           {
             "date": "2026.07.28",
-            "value": -18.6841,
-            "display": "-18.68%",
+            "value": -19.114,
+            "display": "-19.11%",
             "count": 5545,
             "dailyValue": -0.048,
             "dailyDisplay": "-0.05%"
           },
           {
             "date": "2026.07.29",
-            "value": -17.8367,
-            "display": "-17.84%",
+            "value": -18.3244,
+            "display": "-18.32%",
             "count": 5545,
             "dailyValue": 1.5416,
             "dailyDisplay": "+1.54%"
           },
           {
             "date": "2026.07.30",
-            "value": -18.7005,
-            "display": "-18.70%",
+            "value": -19.1431,
+            "display": "-19.14%",
             "count": 5547,
             "dailyValue": -1.1526,
             "dailyDisplay": "-1.15%"
           },
           {
             "date": "2026.07.31",
-            "value": -17.0694,
-            "display": "-17.07%",
+            "value": -17.4622,
+            "display": "-17.46%",
             "count": 5547,
             "dailyValue": 2.0277,
             "dailyDisplay": "+2.03%"
           },
           {
             "date": "2026.08.03",
-            "value": -15.7929,
-            "display": "-15.79%",
+            "value": -16.2983,
+            "display": "-16.30%",
             "count": 5548,
             "dailyValue": 1.3453,
             "dailyDisplay": "+1.35%"
           },
           {
             "date": "2026.08.04",
-            "value": -14.9427,
-            "display": "-14.94%",
+            "value": -15.4529,
+            "display": "-15.45%",
             "count": 5549,
             "dailyValue": 0.9736,
             "dailyDisplay": "+0.97%"
           },
           {
             "date": "2026.08.05",
-            "value": -14.2935,
-            "display": "-14.29%",
+            "value": -14.7055,
+            "display": "-14.71%",
             "count": 5550,
             "dailyValue": 0.9263,
             "dailyDisplay": "+0.93%"
           },
           {
             "date": "2026.08.06",
-            "value": -14.2925,
-            "display": "-14.29%",
+            "value": -14.7259,
+            "display": "-14.73%",
             "count": 5551,
             "dailyValue": 0.0557,
             "dailyDisplay": "+0.06%"
           },
           {
             "date": "2026.08.07",
-            "value": -13.8166,
-            "display": "-13.82%",
+            "value": -14.3859,
+            "display": "-14.39%",
             "count": 5552,
             "dailyValue": 0.1212,
             "dailyDisplay": "+0.12%"
           },
           {
             "date": "2026.08.10",
-            "value": -12.6051,
-            "display": "-12.61%",
+            "value": -13.0748,
+            "display": "-13.07%",
             "count": 5552,
             "dailyValue": 1.2584,
             "dailyDisplay": "+1.26%"
           },
           {
             "date": "2026.08.11",
-            "value": -12.9198,
-            "display": "-12.92%",
+            "value": -13.392,
+            "display": "-13.39%",
             "count": 5555,
             "dailyValue": -0.6831,
             "dailyDisplay": "-0.68%"
           },
           {
             "date": "2026.08.12",
-            "value": -12.1262,
-            "display": "-12.13%",
+            "value": -12.6416,
+            "display": "-12.64%",
             "count": 5556,
             "dailyValue": 0.8361,
             "dailyDisplay": "+0.84%"
           },
           {
             "date": "2026.08.13",
-            "value": -12.9828,
-            "display": "-12.98%",
+            "value": -13.5839,
+            "display": "-13.58%",
             "count": 5556,
             "dailyValue": -1.4783,
             "dailyDisplay": "-1.48%"
           },
           {
             "date": "2026.08.14",
-            "value": -13.1497,
-            "display": "-13.15%",
+            "value": -13.6695,
+            "display": "-13.67%",
             "count": 5556,
             "dailyValue": -0.203,
             "dailyDisplay": "-0.20%"
           },
           {
             "date": "2026.08.17",
-            "value": -11.9707,
-            "display": "-11.97%",
+            "value": -12.6293,
+            "display": "-12.63%",
             "count": 5557,
             "dailyValue": 1.3466,
             "dailyDisplay": "+1.35%"
           },
           {
             "date": "2026.08.18",
-            "value": -12.0879,
-            "display": "-12.09%",
+            "value": -12.6997,
+            "display": "-12.70%",
             "count": 5558,
             "dailyValue": -0.4712,
             "dailyDisplay": "-0.47%"
           },
           {
             "date": "2026.08.19",
-            "value": -14.8387,
-            "display": "-14.84%",
+            "value": -15.3585,
+            "display": "-15.36%",
             "count": 5560,
             "dailyValue": -3.9223,
             "dailyDisplay": "-3.92%"
           },
           {
             "date": "2026.08.20",
-            "value": -13.5016,
-            "display": "-13.50%",
+            "value": -14.0543,
+            "display": "-14.05%",
             "count": 5561,
             "dailyValue": 1.1794,
             "dailyDisplay": "+1.18%"
           },
           {
             "date": "2026.08.21",
-            "value": -13.9629,
-            "display": "-13.96%",
+            "value": -14.5506,
+            "display": "-14.55%",
             "count": 5562,
             "dailyValue": -0.117,
             "dailyDisplay": "-0.12%"
           },
           {
             "date": "2026.08.24",
-            "value": -14.6757,
-            "display": "-14.68%",
+            "value": -15.362,
+            "display": "-15.36%",
             "count": 5562,
             "dailyValue": -1.2177,
             "dailyDisplay": "-1.22%"
           },
           {
             "date": "2026.08.25",
-            "value": -13.2946,
-            "display": "-13.29%",
+            "value": -13.8363,
+            "display": "-13.84%",
             "count": 5563,
             "dailyValue": 1.4668,
             "dailyDisplay": "+1.47%"
           },
           {
             "date": "2026.08.26",
-            "value": -12.9515,
-            "display": "-12.95%",
+            "value": -13.6112,
+            "display": "-13.61%",
             "count": 5563,
             "dailyValue": 0.1577,
             "dailyDisplay": "+0.16%"
           },
           {
             "date": "2026.08.27",
-            "value": -12.6192,
-            "display": "-12.62%",
+            "value": -13.2429,
+            "display": "-13.24%",
             "count": 5563,
             "dailyValue": 0.5291,
             "dailyDisplay": "+0.53%"
           },
           {
             "date": "2026.08.28",
-            "value": -12.0874,
-            "display": "-12.09%",
+            "value": -12.8757,
+            "display": "-12.88%",
             "count": 5564,
             "dailyValue": 0.2241,
             "dailyDisplay": "+0.22%"
           },
           {
             "date": "2026.08.31",
-            "value": -11.5571,
-            "display": "-11.56%",
+            "value": -12.21,
+            "display": "-12.21%",
             "count": 5564,
             "dailyValue": 0.451,
             "dailyDisplay": "+0.45%"
           },
           {
             "date": "2026.09.01",
-            "value": -10.7259,
-            "display": "-10.73%",
+            "value": -11.3622,
+            "display": "-11.36%",
             "count": 5566,
             "dailyValue": 0.5747,
             "dailyDisplay": "+0.57%"
           },
           {
             "date": "2026.09.02",
-            "value": -11.5101,
-            "display": "-11.51%",
+            "value": -12.1467,
+            "display": "-12.15%",
             "count": 5567,
             "dailyValue": -0.9474,
             "dailyDisplay": "-0.95%"
           },
           {
             "date": "2026.09.03",
-            "value": -12.1046,
-            "display": "-12.10%",
+            "value": -12.7217,
+            "display": "-12.72%",
             "count": 5568,
             "dailyValue": -0.6803,
             "dailyDisplay": "-0.68%"
           },
           {
             "date": "2026.09.04",
-            "value": -12.1931,
-            "display": "-12.19%",
+            "value": -12.5509,
+            "display": "-12.55%",
             "count": 5569,
             "dailyValue": -0.1714,
             "dailyDisplay": "-0.17%"
           },
           {
             "date": "2026.09.07",
-            "value": -11.4727,
-            "display": "-11.47%",
+            "value": -12.0008,
+            "display": "-12.00%",
             "count": 5571,
             "dailyValue": 0.3374,
             "dailyDisplay": "+0.34%"
           },
           {
             "date": "2026.09.08",
-            "value": -10.6455,
-            "display": "-10.65%",
+            "value": -11.1956,
+            "display": "-11.20%",
             "count": 5571,
             "dailyValue": 0.5376,
             "dailyDisplay": "+0.54%"
           },
           {
             "date": "2026.09.09",
-            "value": -11.0643,
-            "display": "-11.06%",
+            "value": -11.5386,
+            "display": "-11.54%",
             "count": 5573,
             "dailyValue": -0.678,
             "dailyDisplay": "-0.68%"
           },
           {
             "date": "2026.09.10",
-            "value": -12.0323,
-            "display": "-12.03%",
+            "value": -12.7224,
+            "display": "-12.72%",
             "count": 5574,
             "dailyValue": -1.4908,
             "dailyDisplay": "-1.49%"
           },
           {
             "date": "2026.09.11",
-            "value": -13.896,
-            "display": "-13.90%",
+            "value": -14.4824,
+            "display": "-14.48%",
             "count": 5575,
             "dailyValue": -2.2099,
             "dailyDisplay": "-2.21%"
           },
           {
             "date": "2026.09.14",
-            "value": -13.3659,
-            "display": "-13.37%",
+            "value": -14.0415,
+            "display": "-14.04%",
             "count": 5575,
             "dailyValue": 0.2829,
             "dailyDisplay": "+0.28%"
           },
           {
             "date": "2026.09.15",
-            "value": -15.1306,
-            "display": "-15.13%",
+            "value": -15.7172,
+            "display": "-15.72%",
             "count": 5575,
             "dailyValue": -1.4993,
             "dailyDisplay": "-1.50%"
           },
           {
             "date": "2026.09.16",
-            "value": -14.2155,
-            "display": "-14.22%",
+            "value": -14.939,
+            "display": "-14.94%",
             "count": 5577,
             "dailyValue": 0.9813,
             "dailyDisplay": "+0.98%"
           },
           {
             "date": "2026.09.17",
-            "value": -13.9112,
-            "display": "-13.91%",
+            "value": -14.5027,
+            "display": "-14.50%",
             "count": 5578,
             "dailyValue": -0.0782,
             "dailyDisplay": "-0.08%"
           },
           {
             "date": "2026.09.18",
-            "value": -13.1362,
-            "display": "-13.14%",
+            "value": -13.78,
+            "display": "-13.78%",
             "count": 5578,
             "dailyValue": 1.0733,
             "dailyDisplay": "+1.07%"
           },
           {
             "date": "2026.09.21",
-            "value": -11.3528,
-            "display": "-11.35%",
+            "value": -12.0562,
+            "display": "-12.06%",
             "count": 5578,
             "dailyValue": 1.5406,
             "dailyDisplay": "+1.54%"
           },
           {
             "date": "2026.09.22",
-            "value": -11.3649,
-            "display": "-11.36%",
+            "value": -11.8818,
+            "display": "-11.88%",
             "count": 5580,
             "dailyValue": -0.2078,
             "dailyDisplay": "-0.21%"
           },
           {
             "date": "2026.09.23",
-            "value": -11.7373,
-            "display": "-11.74%",
+            "value": -12.4357,
+            "display": "-12.44%",
             "count": 5581,
             "dailyValue": -0.6122,
             "dailyDisplay": "-0.61%"
           },
           {
             "date": "2026.09.24",
-            "value": -12.5727,
-            "display": "-12.57%",
+            "value": -13.2791,
+            "display": "-13.28%",
             "count": 5582,
             "dailyValue": -1.3021,
             "dailyDisplay": "-1.30%"
           },
           {
             "date": "2026.09.28",
-            "value": -13.9067,
-            "display": "-13.91%",
+            "value": -14.4045,
+            "display": "-14.40%",
             "count": 5582,
             "dailyValue": -1.8548,
             "dailyDisplay": "-1.85%"
           },
           {
             "date": "2026.09.29",
-            "value": -13.2633,
-            "display": "-13.26%",
+            "value": -13.7344,
+            "display": "-13.73%",
             "count": 5584,
             "dailyValue": 0.4785,
             "dailyDisplay": "+0.48%"
           },
           {
             "date": "2026.09.30",
-            "value": -13.0798,
-            "display": "-13.08%",
+            "value": -13.675,
+            "display": "-13.68%",
             "count": 5585,
             "dailyValue": -0.0917,
             "dailyDisplay": "-0.09%"
           },
           {
             "date": "2026.10.08",
-            "value": -13.8215,
-            "display": "-13.82%",
+            "value": -14.4042,
+            "display": "-14.40%",
             "count": 5585,
             "dailyValue": -1.0101,
             "dailyDisplay": "-1.01%"
           },
           {
             "date": "2026.10.09",
-            "value": -12.9011,
-            "display": "-12.90%",
+            "value": -13.4234,
+            "display": "-13.42%",
             "count": 5586,
             "dailyValue": 0.5959,
             "dailyDisplay": "+0.60%"
           },
           {
             "date": "2026.10.12",
-            "value": -13.9578,
-            "display": "-13.96%",
+            "value": -14.4367,
+            "display": "-14.44%",
             "count": 5586,
             "dailyValue": -1.6835,
             "dailyDisplay": "-1.68%"
           },
           {
             "date": "2026.10.13",
-            "value": -13.6401,
-            "display": "-13.64%",
+            "value": -14.2186,
+            "display": "-14.22%",
             "count": 5587,
             "dailyValue": 0.1567,
             "dailyDisplay": "+0.16%"
           },
           {
             "date": "2026.10.14",
-            "value": -14.9294,
-            "display": "-14.93%",
+            "value": -15.6919,
+            "display": "-15.69%",
             "count": 5587,
             "dailyValue": -1.9355,
             "dailyDisplay": "-1.94%"
           },
           {
             "date": "2026.10.15",
-            "value": -17.3748,
-            "display": "-17.37%",
+            "value": -17.8294,
+            "display": "-17.83%",
             "count": 5589,
             "dailyValue": -3.0387,
             "dailyDisplay": "-3.04%"
           },
           {
             "date": "2026.10.16",
-            "value": -16.8292,
-            "display": "-16.83%",
+            "value": -17.3723,
+            "display": "-17.37%",
             "count": 5590,
             "dailyValue": 0.4667,
             "dailyDisplay": "+0.47%"
           },
           {
             "date": "2026.10.19",
-            "value": -17.1861,
-            "display": "-17.19%",
+            "value": -17.6175,
+            "display": "-17.62%",
             "count": 5590,
             "dailyValue": -0.3817,
             "dailyDisplay": "-0.38%"
           },
           {
             "date": "2026.10.20",
-            "value": -16.496,
-            "display": "-16.50%",
+            "value": -16.8494,
+            "display": "-16.85%",
             "count": 5590,
             "dailyValue": 0.9658,
             "dailyDisplay": "+0.97%"
           },
           {
             "date": "2026.10.21",
-            "value": -16.752,
-            "display": "-16.75%",
+            "value": -17.1246,
+            "display": "-17.12%",
             "count": 5591,
             "dailyValue": -0.445,
             "dailyDisplay": "-0.45%"
           },
           {
             "date": "2026.10.22",
-            "value": -18.8919,
-            "display": "-18.89%",
+            "value": -19.2148,
+            "display": "-19.21%",
             "count": 5592,
             "dailyValue": -2.531,
             "dailyDisplay": "-2.53%"
           },
           {
             "date": "2026.10.23",
-            "value": -17.4886,
-            "display": "-17.49%",
+            "value": -17.9068,
+            "display": "-17.91%",
             "count": 5593,
             "dailyValue": 1.5608,
             "dailyDisplay": "+1.56%"
           },
           {
             "date": "2026.10.26",
-            "value": -17.5074,
-            "display": "-17.51%",
+            "value": -18.0024,
+            "display": "-18.00%",
             "count": 5593,
             "dailyValue": -0.4667,
             "dailyDisplay": "-0.47%"
           },
           {
             "date": "2026.10.27",
-            "value": -19.7401,
-            "display": "-19.74%",
+            "value": -20.2035,
+            "display": "-20.20%",
             "count": 5593,
             "dailyValue": -2.9749,
             "dailyDisplay": "-2.97%"
+          },
+          {
+            "date": "2026.10.28",
+            "value": -19.2033,
+            "display": "-19.20%",
+            "count": 5593,
+            "dailyValue": 1.3382,
+            "dailyDisplay": "+1.34%"
+          },
+          {
+            "date": "2026.10.29",
+            "value": -20.9897,
+            "display": "-20.99%",
+            "count": 5594,
+            "dailyValue": -2.599,
+            "dailyDisplay": "-2.60%"
           }
         ],
         "dailyPoints": [
-          {
-            "date": "2025.10.22",
-            "value": -0.2091,
-            "display": "-0.21%",
-            "count": 5420
-          },
-          {
-            "date": "2025.10.23",
-            "value": 0.2015,
-            "display": "+0.20%",
-            "count": 5422
-          },
           {
             "date": "2025.10.24",
             "value": 0.2846,
@@ -12095,1953 +12083,1965 @@ window.MARKET_TREND_DATA = {
             "value": -2.9749,
             "display": "-2.97%",
             "count": 5570
+          },
+          {
+            "date": "2026.10.28",
+            "value": 1.3382,
+            "display": "+1.34%",
+            "count": 5570
+          },
+          {
+            "date": "2026.10.29",
+            "value": -2.599,
+            "display": "-2.60%",
+            "count": 5570
           }
         ],
         "ranges": {
           "1y": [
             {
-              "date": "2025.10.27",
-              "value": 0.4071,
-              "display": "+0.41%",
-              "count": 5422,
-              "dailyValue": 0.4071,
-              "dailyDisplay": "+0.41%"
-            },
-            {
-              "date": "2025.10.28",
-              "value": 0.3272,
-              "display": "+0.33%",
-              "count": 5427,
-              "dailyValue": -0.18,
-              "dailyDisplay": "-0.18%"
-            },
-            {
               "date": "2025.10.29",
-              "value": 0.5528,
-              "display": "+0.55%",
-              "count": 5428,
+              "value": 0.0,
+              "display": "+0.00%",
+              "count": 5423,
               "dailyValue": 0.0,
               "dailyDisplay": "+0.00%"
             },
             {
               "date": "2025.10.30",
-              "value": -0.5547,
-              "display": "-0.55%",
-              "count": 5428,
+              "value": -1.1149,
+              "display": "-1.11%",
+              "count": 5424,
               "dailyValue": -1.2574,
               "dailyDisplay": "-1.26%"
             },
             {
               "date": "2025.10.31",
-              "value": 0.2807,
-              "display": "+0.28%",
-              "count": 5428,
+              "value": -0.2152,
+              "display": "-0.22%",
+              "count": 5424,
               "dailyValue": 0.8483,
               "dailyDisplay": "+0.85%"
             },
             {
               "date": "2025.11.03",
-              "value": 0.9524,
-              "display": "+0.95%",
-              "count": 5433,
+              "value": 0.5076,
+              "display": "+0.51%",
+              "count": 5429,
               "dailyValue": 0.609,
               "dailyDisplay": "+0.61%"
             },
             {
               "date": "2025.11.04",
-              "value": 0.4219,
-              "display": "+0.42%",
-              "count": 5433,
+              "value": 0.0,
+              "display": "+0.00%",
+              "count": 5430,
               "dailyValue": -0.8339,
               "dailyDisplay": "-0.83%"
             },
             {
               "date": "2025.11.05",
-              "value": 0.9969,
-              "display": "+1.00%",
-              "count": 5434,
+              "value": 0.5711,
+              "display": "+0.57%",
+              "count": 5431,
               "dailyValue": 0.4153,
               "dailyDisplay": "+0.42%"
             },
             {
               "date": "2025.11.06",
-              "value": 1.1246,
-              "display": "+1.12%",
-              "count": 5435,
+              "value": 0.6667,
+              "display": "+0.67%",
+              "count": 5432,
               "dailyValue": 0.13,
               "dailyDisplay": "+0.13%"
             },
             {
               "date": "2025.11.07",
-              "value": 0.9346,
-              "display": "+0.93%",
-              "count": 5437,
+              "value": 0.4157,
+              "display": "+0.42%",
+              "count": 5434,
               "dailyValue": -0.3628,
               "dailyDisplay": "-0.36%"
             },
             {
               "date": "2025.11.10",
-              "value": 1.6393,
-              "display": "+1.64%",
-              "count": 5438,
+              "value": 1.227,
+              "display": "+1.23%",
+              "count": 5435,
               "dailyValue": 0.4838,
               "dailyDisplay": "+0.48%"
             },
             {
               "date": "2025.11.11",
-              "value": 1.8951,
-              "display": "+1.90%",
-              "count": 5438,
+              "value": 1.5326,
+              "display": "+1.53%",
+              "count": 5437,
               "dailyValue": 0.0852,
               "dailyDisplay": "+0.09%"
             },
             {
               "date": "2025.11.12",
-              "value": 1.4269,
-              "display": "+1.43%",
+              "value": 1.1747,
+              "display": "+1.17%",
               "count": 5438,
               "dailyValue": -0.6583,
               "dailyDisplay": "-0.66%"
             },
             {
               "date": "2025.11.13",
-              "value": 2.212,
-              "display": "+2.21%",
+              "value": 1.9639,
+              "display": "+1.96%",
               "count": 5438,
               "dailyValue": 0.612,
               "dailyDisplay": "+0.61%"
             },
             {
               "date": "2025.11.14",
-              "value": 2.0441,
-              "display": "+2.04%",
+              "value": 1.6478,
+              "display": "+1.65%",
               "count": 5438,
               "dailyValue": -0.4875,
               "dailyDisplay": "-0.49%"
             },
             {
               "date": "2025.11.17",
-              "value": 1.9378,
-              "display": "+1.94%",
+              "value": 1.629,
+              "display": "+1.63%",
               "count": 5438,
               "dailyValue": -0.0405,
               "dailyDisplay": "-0.04%"
             },
             {
               "date": "2025.11.18",
-              "value": 0.791,
-              "display": "+0.79%",
+              "value": 0.4739,
+              "display": "+0.47%",
               "count": 5441,
               "dailyValue": -1.1728,
               "dailyDisplay": "-1.17%"
             },
             {
               "date": "2025.11.19",
-              "value": -0.5277,
-              "display": "-0.53%",
+              "value": -1.0137,
+              "display": "-1.01%",
               "count": 5441,
               "dailyValue": -1.5023,
               "dailyDisplay": "-1.50%"
             },
             {
               "date": "2025.11.20",
-              "value": -1.1525,
-              "display": "-1.15%",
+              "value": -1.6205,
+              "display": "-1.62%",
               "count": 5441,
               "dailyValue": -0.8032,
               "dailyDisplay": "-0.80%"
             },
             {
               "date": "2025.11.21",
-              "value": -4.9315,
-              "display": "-4.93%",
+              "value": -5.4457,
+              "display": "-5.45%",
               "count": 5442,
               "dailyValue": -3.9184,
               "dailyDisplay": "-3.92%"
             },
             {
               "date": "2025.11.24",
-              "value": -3.7934,
-              "display": "-3.79%",
+              "value": -4.2713,
+              "display": "-4.27%",
               "count": 5442,
               "dailyValue": 1.3117,
               "dailyDisplay": "+1.31%"
             },
             {
               "date": "2025.11.25",
-              "value": -2.8,
-              "display": "-2.80%",
+              "value": -3.1893,
+              "display": "-3.19%",
               "count": 5443,
               "dailyValue": 0.9563,
               "dailyDisplay": "+0.96%"
             },
             {
               "date": "2025.11.26",
-              "value": -3.2941,
-              "display": "-3.29%",
+              "value": -3.7275,
+              "display": "-3.73%",
               "count": 5443,
               "dailyValue": -0.635,
               "dailyDisplay": "-0.64%"
             },
             {
               "date": "2025.11.27",
-              "value": -3.1666,
-              "display": "-3.17%",
+              "value": -3.6278,
+              "display": "-3.63%",
               "count": 5444,
               "dailyValue": 0.0783,
               "dailyDisplay": "+0.08%"
             },
             {
               "date": "2025.11.28",
-              "value": -2.2284,
-              "display": "-2.23%",
+              "value": -2.5659,
+              "display": "-2.57%",
               "count": 5444,
               "dailyValue": 0.885,
               "dailyDisplay": "+0.89%"
             },
             {
               "date": "2025.12.01",
-              "value": -1.5955,
-              "display": "-1.60%",
+              "value": -1.9527,
+              "display": "-1.95%",
               "count": 5444,
               "dailyValue": 0.4619,
               "dailyDisplay": "+0.46%"
             },
             {
               "date": "2025.12.02",
-              "value": -2.2408,
-              "display": "-2.24%",
+              "value": -2.5692,
+              "display": "-2.57%",
               "count": 5445,
               "dailyValue": -0.7855,
               "dailyDisplay": "-0.79%"
             },
             {
               "date": "2025.12.03",
-              "value": -2.7541,
-              "display": "-2.75%",
+              "value": -3.3254,
+              "display": "-3.33%",
               "count": 5446,
               "dailyValue": -0.9159,
               "dailyDisplay": "-0.92%"
             },
             {
               "date": "2025.12.04",
-              "value": -3.6845,
-              "display": "-3.68%",
+              "value": -4.1081,
+              "display": "-4.11%",
               "count": 5446,
               "dailyValue": -0.9272,
               "dailyDisplay": "-0.93%"
             },
             {
               "date": "2025.12.05",
-              "value": -2.49,
-              "display": "-2.49%",
+              "value": -2.9667,
+              "display": "-2.97%",
               "count": 5447,
               "dailyValue": 1.1693,
               "dailyDisplay": "+1.17%"
             },
             {
               "date": "2025.12.08",
-              "value": -2.037,
-              "display": "-2.04%",
+              "value": -2.5168,
+              "display": "-2.52%",
               "count": 5447,
               "dailyValue": 0.459,
               "dailyDisplay": "+0.46%"
             },
             {
               "date": "2025.12.09",
-              "value": -2.7843,
-              "display": "-2.78%",
+              "value": -3.2333,
+              "display": "-3.23%",
               "count": 5447,
               "dailyValue": -0.9952,
               "dailyDisplay": "-1.00%"
             },
             {
               "date": "2025.12.10",
-              "value": -2.8551,
-              "display": "-2.86%",
+              "value": -3.3511,
+              "display": "-3.35%",
               "count": 5448,
               "dailyValue": -0.1351,
               "dailyDisplay": "-0.14%"
             },
             {
               "date": "2025.12.11",
-              "value": -4.2927,
-              "display": "-4.29%",
+              "value": -4.7214,
+              "display": "-4.72%",
               "count": 5448,
               "dailyValue": -1.6557,
               "dailyDisplay": "-1.66%"
             },
             {
               "date": "2025.12.12",
-              "value": -4.2393,
-              "display": "-4.24%",
+              "value": -4.7958,
+              "display": "-4.80%",
               "count": 5448,
               "dailyValue": 0.0,
               "dailyDisplay": "+0.00%"
             },
             {
               "date": "2025.12.15",
-              "value": -4.3665,
-              "display": "-4.37%",
+              "value": -4.8454,
+              "display": "-4.85%",
               "count": 5448,
               "dailyValue": -0.2667,
               "dailyDisplay": "-0.27%"
             },
             {
               "date": "2025.12.16",
-              "value": -5.6445,
-              "display": "-5.64%",
+              "value": -6.1058,
+              "display": "-6.11%",
               "count": 5449,
               "dailyValue": -1.6698,
               "dailyDisplay": "-1.67%"
             },
             {
               "date": "2025.12.17",
-              "value": -5.0356,
-              "display": "-5.04%",
+              "value": -5.558,
+              "display": "-5.56%",
               "count": 5450,
               "dailyValue": 0.5854,
               "dailyDisplay": "+0.59%"
             },
             {
               "date": "2025.12.18",
-              "value": -4.7264,
-              "display": "-4.73%",
+              "value": -5.2917,
+              "display": "-5.29%",
               "count": 5451,
               "dailyValue": 0.1316,
               "dailyDisplay": "+0.13%"
             },
             {
               "date": "2025.12.19",
-              "value": -3.4921,
-              "display": "-3.49%",
+              "value": -4.0788,
+              "display": "-4.08%",
               "count": 5452,
               "dailyValue": 1.2187,
               "dailyDisplay": "+1.22%"
             },
             {
               "date": "2025.12.22",
-              "value": -3.1849,
-              "display": "-3.18%",
+              "value": -3.7313,
+              "display": "-3.73%",
               "count": 5452,
               "dailyValue": 0.1821,
               "dailyDisplay": "+0.18%"
             },
             {
               "date": "2025.12.23",
-              "value": -3.818,
-              "display": "-3.82%",
+              "value": -4.3636,
+              "display": "-4.36%",
               "count": 5455,
               "dailyValue": -0.8155,
               "dailyDisplay": "-0.82%"
             },
             {
               "date": "2025.12.24",
-              "value": -2.8225,
-              "display": "-2.82%",
+              "value": -3.328,
+              "display": "-3.33%",
               "count": 5456,
               "dailyValue": 0.7921,
               "dailyDisplay": "+0.79%"
             },
             {
               "date": "2025.12.25",
-              "value": -2.1127,
-              "display": "-2.11%",
+              "value": -2.7083,
+              "display": "-2.71%",
               "count": 5457,
               "dailyValue": 0.5345,
               "dailyDisplay": "+0.53%"
             },
             {
               "date": "2025.12.26",
-              "value": -2.4828,
-              "display": "-2.48%",
+              "value": -3.0142,
+              "display": "-3.01%",
               "count": 5457,
               "dailyValue": -0.4831,
               "dailyDisplay": "-0.48%"
             },
             {
               "date": "2025.12.29",
-              "value": -2.6731,
-              "display": "-2.67%",
+              "value": -3.1023,
+              "display": "-3.10%",
               "count": 5457,
               "dailyValue": -0.4858,
               "dailyDisplay": "-0.49%"
             },
             {
               "date": "2025.12.30",
-              "value": -2.7582,
-              "display": "-2.76%",
+              "value": -3.3797,
+              "display": "-3.38%",
               "count": 5460,
               "dailyValue": -0.5066,
               "dailyDisplay": "-0.51%"
             },
             {
               "date": "2025.12.31",
-              "value": -2.7848,
-              "display": "-2.78%",
+              "value": -3.3012,
+              "display": "-3.30%",
               "count": 5462,
               "dailyValue": -0.0721,
               "dailyDisplay": "-0.07%"
             },
             {
               "date": "2026.01.05",
-              "value": -1.2747,
-              "display": "-1.27%",
+              "value": -1.9419,
+              "display": "-1.94%",
               "count": 5462,
               "dailyValue": 1.1632,
               "dailyDisplay": "+1.16%"
             },
             {
               "date": "2026.01.06",
-              "value": -0.2091,
-              "display": "-0.21%",
+              "value": -0.9291,
+              "display": "-0.93%",
               "count": 5463,
               "dailyValue": 0.8447,
               "dailyDisplay": "+0.84%"
             },
             {
               "date": "2026.01.07",
-              "value": -0.46,
-              "display": "-0.46%",
+              "value": -1.0118,
+              "display": "-1.01%",
               "count": 5463,
               "dailyValue": -0.392,
               "dailyDisplay": "-0.39%"
             },
             {
               "date": "2026.01.08",
-              "value": 0.3916,
-              "display": "+0.39%",
+              "value": -0.2305,
+              "display": "-0.23%",
               "count": 5463,
               "dailyValue": 0.6873,
               "dailyDisplay": "+0.69%"
             },
             {
               "date": "2026.01.09",
-              "value": 1.5673,
-              "display": "+1.57%",
+              "value": 0.9857,
+              "display": "+0.99%",
               "count": 5463,
               "dailyValue": 0.6829,
               "dailyDisplay": "+0.68%"
             },
             {
               "date": "2026.01.12",
-              "value": 3.4208,
-              "display": "+3.42%",
+              "value": 2.7382,
+              "display": "+2.74%",
               "count": 5463,
               "dailyValue": 1.283,
               "dailyDisplay": "+1.28%"
             },
             {
               "date": "2026.01.13",
-              "value": 2.2383,
-              "display": "+2.24%",
+              "value": 1.6866,
+              "display": "+1.69%",
               "count": 5463,
               "dailyValue": -1.0395,
               "dailyDisplay": "-1.04%"
             },
             {
               "date": "2026.01.14",
-              "value": 3.0457,
-              "display": "+3.05%",
+              "value": 2.1818,
+              "display": "+2.18%",
               "count": 5463,
               "dailyValue": 0.0538,
               "dailyDisplay": "+0.05%"
             },
             {
               "date": "2026.01.15",
-              "value": 2.9108,
-              "display": "+2.91%",
+              "value": 2.0856,
+              "display": "+2.09%",
               "count": 5464,
               "dailyValue": -0.3741,
               "dailyDisplay": "-0.37%"
             },
             {
               "date": "2026.01.16",
-              "value": 2.8857,
-              "display": "+2.89%",
+              "value": 2.1628,
+              "display": "+2.16%",
               "count": 5465,
               "dailyValue": -0.3012,
               "dailyDisplay": "-0.30%"
             },
             {
               "date": "2026.01.19",
-              "value": 3.7377,
-              "display": "+3.74%",
+              "value": 3.0042,
+              "display": "+3.00%",
               "count": 5465,
               "dailyValue": 0.7718,
               "dailyDisplay": "+0.77%"
             },
             {
               "date": "2026.01.20",
-              "value": 3.5408,
-              "display": "+3.54%",
+              "value": 2.7287,
+              "display": "+2.73%",
               "count": 5465,
               "dailyValue": -0.4088,
               "dailyDisplay": "-0.41%"
             },
             {
               "date": "2026.01.21",
-              "value": 4.2573,
-              "display": "+4.26%",
+              "value": 3.3435,
+              "display": "+3.34%",
               "count": 5466,
               "dailyValue": 0.321,
               "dailyDisplay": "+0.32%"
             },
             {
               "date": "2026.01.22",
-              "value": 4.9914,
-              "display": "+4.99%",
+              "value": 4.2065,
+              "display": "+4.21%",
               "count": 5467,
               "dailyValue": 0.6237,
               "dailyDisplay": "+0.62%"
             },
             {
               "date": "2026.01.23",
-              "value": 6.2053,
-              "display": "+6.21%",
+              "value": 5.3937,
+              "display": "+5.39%",
               "count": 5467,
               "dailyValue": 0.9047,
               "dailyDisplay": "+0.90%"
             },
             {
               "date": "2026.01.26",
-              "value": 5.0027,
-              "display": "+5.00%",
+              "value": 4.3079,
+              "display": "+4.31%",
               "count": 5467,
               "dailyValue": -1.3523,
               "dailyDisplay": "-1.35%"
             },
             {
               "date": "2026.01.27",
-              "value": 4.6715,
-              "display": "+4.67%",
+              "value": 4.0636,
+              "display": "+4.06%",
               "count": 5467,
               "dailyValue": -0.654,
               "dailyDisplay": "-0.65%"
             },
             {
               "date": "2026.01.28",
-              "value": 4.0087,
-              "display": "+4.01%",
+              "value": 3.4203,
+              "display": "+3.42%",
               "count": 5469,
               "dailyValue": -1.0462,
               "dailyDisplay": "-1.05%"
             },
             {
               "date": "2026.01.29",
-              "value": 3.1949,
-              "display": "+3.19%",
+              "value": 2.5535,
+              "display": "+2.55%",
               "count": 5470,
               "dailyValue": -0.944,
               "dailyDisplay": "-0.94%"
             },
             {
               "date": "2026.01.30",
-              "value": 3.0493,
-              "display": "+3.05%",
+              "value": 2.462,
+              "display": "+2.46%",
               "count": 5471,
               "dailyValue": -0.2182,
               "dailyDisplay": "-0.22%"
             },
             {
               "date": "2026.02.02",
-              "value": 0.6858,
-              "display": "+0.69%",
+              "value": 0.0403,
+              "display": "+0.04%",
               "count": 5471,
               "dailyValue": -2.1091,
               "dailyDisplay": "-2.11%"
             },
             {
               "date": "2026.02.03",
-              "value": 2.6533,
-              "display": "+2.65%",
+              "value": 2.0383,
+              "display": "+2.04%",
               "count": 5472,
               "dailyValue": 1.8868,
               "dailyDisplay": "+1.89%"
             },
             {
               "date": "2026.02.04",
-              "value": 3.3151,
-              "display": "+3.32%",
+              "value": 2.6068,
+              "display": "+2.61%",
               "count": 5472,
               "dailyValue": 0.4436,
               "dailyDisplay": "+0.44%"
             },
             {
               "date": "2026.02.05",
-              "value": 2.5168,
-              "display": "+2.52%",
+              "value": 1.7476,
+              "display": "+1.75%",
               "count": 5473,
               "dailyValue": -0.8477,
               "dailyDisplay": "-0.85%"
             },
             {
               "date": "2026.02.06",
-              "value": 2.5862,
-              "display": "+2.59%",
+              "value": 1.9874,
+              "display": "+1.99%",
               "count": 5473,
               "dailyValue": 0.0363,
               "dailyDisplay": "+0.04%"
             },
             {
               "date": "2026.02.09",
-              "value": 4.3096,
-              "display": "+4.31%",
+              "value": 3.5821,
+              "display": "+3.58%",
               "count": 5473,
               "dailyValue": 1.2935,
               "dailyDisplay": "+1.29%"
             },
             {
               "date": "2026.02.10",
-              "value": 4.4245,
-              "display": "+4.42%",
+              "value": 3.7107,
+              "display": "+3.71%",
               "count": 5476,
               "dailyValue": -0.2613,
               "dailyDisplay": "-0.26%"
             },
             {
               "date": "2026.02.11",
-              "value": 4.2184,
-              "display": "+4.22%",
+              "value": 3.4804,
+              "display": "+3.48%",
               "count": 5477,
               "dailyValue": -0.3053,
               "dailyDisplay": "-0.31%"
             },
             {
               "date": "2026.02.12",
-              "value": 3.9715,
-              "display": "+3.97%",
+              "value": 3.2983,
+              "display": "+3.30%",
               "count": 5478,
               "dailyValue": -0.5027,
               "dailyDisplay": "-0.50%"
             },
             {
               "date": "2026.02.13",
-              "value": 3.2901,
-              "display": "+3.29%",
+              "value": 2.6539,
+              "display": "+2.65%",
               "count": 5478,
               "dailyValue": -0.7189,
               "dailyDisplay": "-0.72%"
             },
             {
               "date": "2026.02.24",
-              "value": 4.6259,
-              "display": "+4.63%",
+              "value": 3.8637,
+              "display": "+3.86%",
               "count": 5478,
               "dailyValue": 1.2114,
               "dailyDisplay": "+1.21%"
             },
             {
               "date": "2026.02.25",
-              "value": 5.4385,
-              "display": "+5.44%",
+              "value": 4.6666,
+              "display": "+4.67%",
               "count": 5478,
               "dailyValue": 0.617,
               "dailyDisplay": "+0.62%"
             },
             {
               "date": "2026.02.26",
-              "value": 5.741,
-              "display": "+5.74%",
+              "value": 5.0425,
+              "display": "+5.04%",
               "count": 5479,
               "dailyValue": -0.1614,
               "dailyDisplay": "-0.16%"
             },
             {
               "date": "2026.02.27",
-              "value": 6.3747,
-              "display": "+6.37%",
+              "value": 5.5556,
+              "display": "+5.56%",
               "count": 5479,
               "dailyValue": 0.3534,
               "dailyDisplay": "+0.35%"
             },
             {
               "date": "2026.03.02",
-              "value": 4.1667,
-              "display": "+4.17%",
+              "value": 3.4444,
+              "display": "+3.44%",
               "count": 5479,
               "dailyValue": -2.4439,
               "dailyDisplay": "-2.44%"
             },
             {
               "date": "2026.03.03",
-              "value": 1.2146,
-              "display": "+1.21%",
+              "value": 0.5571,
+              "display": "+0.56%",
               "count": 5479,
               "dailyValue": -3.4012,
               "dailyDisplay": "-3.40%"
             },
             {
               "date": "2026.03.04",
-              "value": 0.3504,
-              "display": "+0.35%",
+              "value": -0.3123,
+              "display": "-0.31%",
               "count": 5480,
               "dailyValue": -0.7524,
               "dailyDisplay": "-0.75%"
             },
             {
               "date": "2026.03.05",
-              "value": 1.4063,
-              "display": "+1.41%",
+              "value": 0.8472,
+              "display": "+0.85%",
               "count": 5481,
               "dailyValue": 0.9884,
               "dailyDisplay": "+0.99%"
             },
             {
               "date": "2026.03.06",
-              "value": 3.488,
-              "display": "+3.49%",
+              "value": 2.8139,
+              "display": "+2.81%",
               "count": 5482,
               "dailyValue": 1.4199,
               "dailyDisplay": "+1.42%"
             },
             {
               "date": "2026.03.09",
-              "value": 2.8148,
-              "display": "+2.81%",
+              "value": 2.2013,
+              "display": "+2.20%",
               "count": 5483,
               "dailyValue": -0.9992,
               "dailyDisplay": "-1.00%"
             },
             {
               "date": "2026.03.10",
-              "value": 4.2842,
-              "display": "+4.28%",
+              "value": 3.7918,
+              "display": "+3.79%",
               "count": 5483,
               "dailyValue": 1.5518,
               "dailyDisplay": "+1.55%"
             },
             {
               "date": "2026.03.11",
-              "value": 4.3011,
-              "display": "+4.30%",
+              "value": 3.6137,
+              "display": "+3.61%",
               "count": 5483,
               "dailyValue": -0.4303,
               "dailyDisplay": "-0.43%"
             },
             {
               "date": "2026.03.12",
-              "value": 3.5778,
-              "display": "+3.58%",
+              "value": 2.8986,
+              "display": "+2.90%",
               "count": 5483,
               "dailyValue": -1.1033,
               "dailyDisplay": "-1.10%"
             },
             {
               "date": "2026.03.13",
-              "value": 2.9309,
-              "display": "+2.93%",
+              "value": 2.3657,
+              "display": "+2.37%",
               "count": 5483,
               "dailyValue": -0.8299,
               "dailyDisplay": "-0.83%"
             },
             {
               "date": "2026.03.16",
-              "value": 3.0963,
-              "display": "+3.10%",
+              "value": 2.5417,
+              "display": "+2.54%",
               "count": 5483,
               "dailyValue": 0.1385,
               "dailyDisplay": "+0.14%"
             },
             {
               "date": "2026.03.17",
-              "value": 1.2555,
-              "display": "+1.26%",
+              "value": 0.6358,
+              "display": "+0.64%",
               "count": 5483,
               "dailyValue": -1.8974,
               "dailyDisplay": "-1.90%"
             },
             {
               "date": "2026.03.18",
-              "value": 2.1993,
-              "display": "+2.20%",
+              "value": 1.6018,
+              "display": "+1.60%",
               "count": 5484,
               "dailyValue": 0.8,
               "dailyDisplay": "+0.80%"
             },
             {
               "date": "2026.03.19",
-              "value": -0.253,
-              "display": "-0.25%",
+              "value": -0.8735,
+              "display": "-0.87%",
               "count": 5484,
               "dailyValue": -2.6867,
               "dailyDisplay": "-2.69%"
             },
             {
               "date": "2026.03.20",
-              "value": -2.7027,
-              "display": "-2.70%",
+              "value": -3.3006,
+              "display": "-3.30%",
               "count": 5485,
               "dailyValue": -2.4828,
               "dailyDisplay": "-2.48%"
             },
             {
               "date": "2026.03.23",
-              "value": -8.2143,
-              "display": "-8.21%",
+              "value": -8.6397,
+              "display": "-8.64%",
               "count": 5485,
               "dailyValue": -5.6546,
               "dailyDisplay": "-5.65%"
             },
             {
               "date": "2026.03.24",
-              "value": -5.0984,
-              "display": "-5.10%",
+              "value": -5.5743,
+              "display": "-5.57%",
               "count": 5485,
               "dailyValue": 3.2442,
               "dailyDisplay": "+3.24%"
             },
             {
               "date": "2026.03.25",
-              "value": -3.2864,
-              "display": "-3.29%",
+              "value": -3.8289,
+              "display": "-3.83%",
               "count": 5487,
               "dailyValue": 1.6556,
               "dailyDisplay": "+1.66%"
             },
             {
               "date": "2026.03.26",
-              "value": -4.5631,
-              "display": "-4.56%",
+              "value": -5.1565,
+              "display": "-5.16%",
               "count": 5487,
               "dailyValue": -1.6313,
               "dailyDisplay": "-1.63%"
             },
             {
               "date": "2026.03.27",
-              "value": -3.2399,
-              "display": "-3.24%",
+              "value": -3.8494,
+              "display": "-3.85%",
               "count": 5488,
               "dailyValue": 1.1873,
               "dailyDisplay": "+1.19%"
             },
             {
               "date": "2026.03.30",
-              "value": -2.6735,
-              "display": "-2.67%",
+              "value": -3.4198,
+              "display": "-3.42%",
               "count": 5489,
               "dailyValue": 0.1495,
               "dailyDisplay": "+0.15%"
             },
             {
               "date": "2026.03.31",
-              "value": -3.8639,
-              "display": "-3.86%",
+              "value": -4.6458,
+              "display": "-4.65%",
               "count": 5492,
               "dailyValue": -1.4308,
               "dailyDisplay": "-1.43%"
             },
             {
               "date": "2026.04.01",
-              "value": -2.6255,
-              "display": "-2.63%",
+              "value": -3.3668,
+              "display": "-3.37%",
               "count": 5493,
               "dailyValue": 1.4911,
               "dailyDisplay": "+1.49%"
             },
             {
               "date": "2026.04.02",
-              "value": -4.0524,
-              "display": "-4.05%",
+              "value": -4.6495,
+              "display": "-4.65%",
               "count": 5493,
               "dailyValue": -1.7699,
               "dailyDisplay": "-1.77%"
             },
             {
               "date": "2026.04.03",
-              "value": -6.3898,
-              "display": "-6.39%",
+              "value": -7.0375,
+              "display": "-7.04%",
               "count": 5493,
               "dailyValue": -2.3523,
               "dailyDisplay": "-2.35%"
             },
             {
               "date": "2026.04.07",
-              "value": -5.1064,
-              "display": "-5.11%",
+              "value": -5.7283,
+              "display": "-5.73%",
               "count": 5493,
               "dailyValue": 1.1268,
               "dailyDisplay": "+1.13%"
             },
             {
               "date": "2026.04.08",
-              "value": -1.8018,
-              "display": "-1.80%",
+              "value": -2.5,
+              "display": "-2.50%",
               "count": 5495,
               "dailyValue": 3.7194,
               "dailyDisplay": "+3.72%"
             },
             {
               "date": "2026.04.09",
-              "value": -3.2175,
-              "display": "-3.22%",
+              "value": -3.9504,
+              "display": "-3.95%",
               "count": 5495,
               "dailyValue": -1.5962,
               "dailyDisplay": "-1.60%"
             },
             {
               "date": "2026.04.10",
-              "value": -2.2933,
-              "display": "-2.29%",
+              "value": -2.9296,
+              "display": "-2.93%",
               "count": 5498,
               "dailyValue": 0.8332,
               "dailyDisplay": "+0.83%"
             },
             {
               "date": "2026.04.13",
-              "value": -2.4181,
-              "display": "-2.42%",
+              "value": -3.1093,
+              "display": "-3.11%",
               "count": 5499,
               "dailyValue": -0.1986,
               "dailyDisplay": "-0.20%"
             },
             {
               "date": "2026.04.14",
-              "value": -1.8072,
-              "display": "-1.81%",
+              "value": -2.4055,
+              "display": "-2.41%",
               "count": 5499,
               "dailyValue": 0.625,
               "dailyDisplay": "+0.62%"
             },
             {
               "date": "2026.04.15",
-              "value": -2.0247,
-              "display": "-2.02%",
+              "value": -2.7586,
+              "display": "-2.76%",
               "count": 5499,
               "dailyValue": -0.6503,
               "dailyDisplay": "-0.65%"
             },
             {
               "date": "2026.04.16",
-              "value": -0.7243,
-              "display": "-0.72%",
+              "value": -1.491,
+              "display": "-1.49%",
               "count": 5502,
               "dailyValue": 1.0557,
               "dailyDisplay": "+1.06%"
             },
             {
               "date": "2026.04.17",
-              "value": -1.0381,
-              "display": "-1.04%",
+              "value": -1.5614,
+              "display": "-1.56%",
               "count": 5503,
               "dailyValue": -0.2406,
               "dailyDisplay": "-0.24%"
             },
             {
               "date": "2026.04.20",
-              "value": -0.312,
-              "display": "-0.31%",
+              "value": -0.8987,
+              "display": "-0.90%",
               "count": 5504,
               "dailyValue": 0.4781,
               "dailyDisplay": "+0.48%"
             },
             {
               "date": "2026.04.21",
-              "value": -0.3912,
-              "display": "-0.39%",
+              "value": -1.2339,
+              "display": "-1.23%",
               "count": 5506,
               "dailyValue": -0.5714,
               "dailyDisplay": "-0.57%"
             },
             {
               "date": "2026.04.22",
-              "value": -0.1242,
-              "display": "-0.12%",
+              "value": -0.8934,
+              "display": "-0.89%",
               "count": 5506,
               "dailyValue": 0.1642,
               "dailyDisplay": "+0.16%"
             },
             {
               "date": "2026.04.23",
-              "value": -1.1248,
-              "display": "-1.12%",
+              "value": -1.8997,
+              "display": "-1.90%",
               "count": 5506,
               "dailyValue": -1.3752,
               "dailyDisplay": "-1.38%"
             },
             {
               "date": "2026.04.24",
-              "value": -1.35,
-              "display": "-1.35%",
+              "value": -2.1691,
+              "display": "-2.17%",
               "count": 5508,
               "dailyValue": -0.6094,
               "dailyDisplay": "-0.61%"
             },
             {
               "date": "2026.04.27",
-              "value": -0.7261,
-              "display": "-0.73%",
+              "value": -1.3817,
+              "display": "-1.38%",
               "count": 5509,
               "dailyValue": 0.5748,
               "dailyDisplay": "+0.57%"
             },
             {
               "date": "2026.04.28",
-              "value": -1.4235,
-              "display": "-1.42%",
+              "value": -2.2049,
+              "display": "-2.20%",
               "count": 5509,
               "dailyValue": -1.2043,
               "dailyDisplay": "-1.20%"
             },
             {
               "date": "2026.04.29",
-              "value": -0.5445,
-              "display": "-0.54%",
+              "value": -1.1903,
+              "display": "-1.19%",
               "count": 5510,
               "dailyValue": 1.1197,
               "dailyDisplay": "+1.12%"
             },
             {
               "date": "2026.04.30",
-              "value": -0.0193,
-              "display": "-0.02%",
+              "value": -0.8174,
+              "display": "-0.82%",
               "count": 5511,
               "dailyValue": 0.171,
               "dailyDisplay": "+0.17%"
             },
             {
               "date": "2026.05.06",
-              "value": 0.7585,
-              "display": "+0.76%",
+              "value": 0.1605,
+              "display": "+0.16%",
               "count": 5511,
               "dailyValue": 1.0255,
               "dailyDisplay": "+1.03%"
             },
             {
               "date": "2026.05.07",
-              "value": 1.6026,
-              "display": "+1.60%",
+              "value": 0.9533,
+              "display": "+0.95%",
               "count": 5512,
               "dailyValue": 0.694,
               "dailyDisplay": "+0.69%"
             },
             {
               "date": "2026.05.08",
-              "value": 2.3819,
-              "display": "+2.38%",
+              "value": 1.8482,
+              "display": "+1.85%",
               "count": 5512,
               "dailyValue": 0.725,
               "dailyDisplay": "+0.72%"
             },
             {
               "date": "2026.05.11",
-              "value": 3.1966,
-              "display": "+3.20%",
+              "value": 2.3816,
+              "display": "+2.38%",
               "count": 5514,
               "dailyValue": 0.3226,
               "dailyDisplay": "+0.32%"
             },
             {
               "date": "2026.05.12",
-              "value": 1.9517,
-              "display": "+1.95%",
+              "value": 1.1627,
+              "display": "+1.16%",
               "count": 5514,
               "dailyValue": -1.4238,
               "dailyDisplay": "-1.42%"
             },
             {
               "date": "2026.05.13",
-              "value": 2.4572,
-              "display": "+2.46%",
+              "value": 1.7548,
+              "display": "+1.75%",
               "count": 5514,
               "dailyValue": 0.3559,
               "dailyDisplay": "+0.36%"
             },
             {
               "date": "2026.05.14",
-              "value": 1.0233,
-              "display": "+1.02%",
+              "value": 0.28,
+              "display": "+0.28%",
               "count": 5514,
               "dailyValue": -2.0611,
               "dailyDisplay": "-2.06%"
             },
             {
               "date": "2026.05.15",
-              "value": 0.6297,
-              "display": "+0.63%",
+              "value": -0.0555,
+              "display": "-0.06%",
               "count": 5516,
               "dailyValue": -0.8446,
               "dailyDisplay": "-0.84%"
             },
             {
               "date": "2026.05.18",
-              "value": 0.7984,
-              "display": "+0.80%",
+              "value": -0.0,
+              "display": "-0.00%",
               "count": 5518,
               "dailyValue": -0.3482,
               "dailyDisplay": "-0.35%"
             },
             {
               "date": "2026.05.19",
-              "value": 1.516,
-              "display": "+1.52%",
+              "value": 0.7059,
+              "display": "+0.71%",
               "count": 5518,
               "dailyValue": 0.7146,
               "dailyDisplay": "+0.71%"
             },
             {
               "date": "2026.05.20",
-              "value": 0.3216,
-              "display": "+0.32%",
+              "value": -0.3229,
+              "display": "-0.32%",
               "count": 5518,
               "dailyValue": -1.2075,
               "dailyDisplay": "-1.21%"
             },
             {
               "date": "2026.05.21",
-              "value": -2.5586,
-              "display": "-2.56%",
+              "value": -3.1609,
+              "display": "-3.16%",
               "count": 5518,
               "dailyValue": -3.0695,
               "dailyDisplay": "-3.07%"
             },
             {
               "date": "2026.05.22",
-              "value": -1.1079,
-              "display": "-1.11%",
+              "value": -1.511,
+              "display": "-1.51%",
               "count": 5521,
               "dailyValue": 1.1753,
               "dailyDisplay": "+1.18%"
             },
             {
               "date": "2026.05.25",
-              "value": -1.2094,
-              "display": "-1.21%",
+              "value": -1.8223,
+              "display": "-1.82%",
               "count": 5521,
               "dailyValue": -0.5843,
               "dailyDisplay": "-0.58%"
             },
             {
               "date": "2026.05.26",
-              "value": -2.5304,
-              "display": "-2.53%",
+              "value": -3.1618,
+              "display": "-3.16%",
               "count": 5521,
               "dailyValue": -1.6775,
               "dailyDisplay": "-1.68%"
             },
             {
               "date": "2026.05.27",
-              "value": -4.4949,
-              "display": "-4.49%",
+              "value": -5.1391,
+              "display": "-5.14%",
               "count": 5523,
               "dailyValue": -2.3265,
               "dailyDisplay": "-2.33%"
             },
             {
               "date": "2026.05.28",
-              "value": -4.2194,
-              "display": "-4.22%",
+              "value": -4.6811,
+              "display": "-4.68%",
               "count": 5523,
               "dailyValue": 0.3016,
               "dailyDisplay": "+0.30%"
             },
             {
               "date": "2026.05.29",
-              "value": -6.208,
-              "display": "-6.21%",
+              "value": -6.8034,
+              "display": "-6.80%",
               "count": 5524,
               "dailyValue": -2.2209,
               "dailyDisplay": "-2.22%"
             },
             {
               "date": "2026.06.01",
-              "value": -4.733,
-              "display": "-4.73%",
+              "value": -5.2453,
+              "display": "-5.25%",
               "count": 5524,
               "dailyValue": 1.3131,
               "dailyDisplay": "+1.31%"
             },
             {
               "date": "2026.06.02",
-              "value": -5.7973,
-              "display": "-5.80%",
+              "value": -6.3107,
+              "display": "-6.31%",
               "count": 5524,
               "dailyValue": -1.363,
               "dailyDisplay": "-1.36%"
             },
             {
               "date": "2026.06.03",
-              "value": -6.6202,
-              "display": "-6.62%",
+              "value": -7.0637,
+              "display": "-7.06%",
               "count": 5524,
               "dailyValue": -1.0221,
               "dailyDisplay": "-1.02%"
             },
             {
               "date": "2026.06.04",
-              "value": -7.8797,
-              "display": "-7.88%",
+              "value": -8.2778,
+              "display": "-8.28%",
               "count": 5524,
               "dailyValue": -1.6938,
               "dailyDisplay": "-1.69%"
             },
             {
               "date": "2026.06.05",
-              "value": -7.2742,
-              "display": "-7.27%",
+              "value": -7.6389,
+              "display": "-7.64%",
               "count": 5525,
               "dailyValue": 0.5134,
               "dailyDisplay": "+0.51%"
             },
             {
               "date": "2026.06.08",
-              "value": -9.5773,
-              "display": "-9.58%",
+              "value": -9.9717,
+              "display": "-9.97%",
               "count": 5526,
               "dailyValue": -2.981,
               "dailyDisplay": "-2.98%"
             },
             {
               "date": "2026.06.09",
-              "value": -9.1825,
-              "display": "-9.18%",
+              "value": -9.4966,
+              "display": "-9.50%",
               "count": 5527,
               "dailyValue": 0.5244,
               "dailyDisplay": "+0.52%"
             },
             {
               "date": "2026.06.10",
-              "value": -9.9497,
-              "display": "-9.95%",
+              "value": -10.5825,
+              "display": "-10.58%",
               "count": 5527,
               "dailyValue": -1.4674,
               "dailyDisplay": "-1.47%"
             },
             {
               "date": "2026.06.11",
-              "value": -11.0002,
-              "display": "-11.00%",
+              "value": -11.5615,
+              "display": "-11.56%",
               "count": 5528,
               "dailyValue": -1.4859,
               "dailyDisplay": "-1.49%"
             },
             {
               "date": "2026.06.12",
-              "value": -9.7932,
-              "display": "-9.79%",
+              "value": -10.2192,
+              "display": "-10.22%",
               "count": 5528,
               "dailyValue": 1.2877,
               "dailyDisplay": "+1.29%"
             },
             {
               "date": "2026.06.15",
-              "value": -8.9636,
-              "display": "-8.96%",
+              "value": -9.4381,
+              "display": "-9.44%",
               "count": 5529,
               "dailyValue": 1.253,
               "dailyDisplay": "+1.25%"
             },
             {
               "date": "2026.06.16",
-              "value": -8.8767,
-              "display": "-8.88%",
+              "value": -9.302,
+              "display": "-9.30%",
               "count": 5529,
               "dailyValue": 0.0,
               "dailyDisplay": "+0.00%"
             },
             {
               "date": "2026.06.17",
-              "value": -9.8638,
-              "display": "-9.86%",
+              "value": -10.2646,
+              "display": "-10.26%",
               "count": 5529,
               "dailyValue": -1.1944,
               "dailyDisplay": "-1.19%"
             },
             {
               "date": "2026.06.18",
-              "value": -10.4569,
-              "display": "-10.46%",
+              "value": -10.9504,
+              "display": "-10.95%",
               "count": 5529,
               "dailyValue": -0.7746,
               "dailyDisplay": "-0.77%"
             },
             {
               "date": "2026.06.22",
-              "value": -10.4235,
-              "display": "-10.42%",
+              "value": -10.6904,
+              "display": "-10.69%",
               "count": 5529,
               "dailyValue": 0.243,
               "dailyDisplay": "+0.24%"
             },
             {
               "date": "2026.06.23",
-              "value": -10.5128,
-              "display": "-10.51%",
+              "value": -10.9573,
+              "display": "-10.96%",
               "count": 5529,
               "dailyValue": 0.0481,
               "dailyDisplay": "+0.05%"
             },
             {
               "date": "2026.06.24",
-              "value": -12.0307,
-              "display": "-12.03%",
+              "value": -12.3468,
+              "display": "-12.35%",
               "count": 5530,
               "dailyValue": -2.0167,
               "dailyDisplay": "-2.02%"
             },
             {
               "date": "2026.06.25",
-              "value": -13.5519,
-              "display": "-13.55%",
+              "value": -13.8536,
+              "display": "-13.85%",
               "count": 5530,
               "dailyValue": -1.9868,
               "dailyDisplay": "-1.99%"
             },
             {
               "date": "2026.06.26",
-              "value": -15.7203,
-              "display": "-15.72%",
+              "value": -16.3107,
+              "display": "-16.31%",
               "count": 5531,
               "dailyValue": -2.8758,
               "dailyDisplay": "-2.88%"
             },
             {
               "date": "2026.06.29",
-              "value": -15.4953,
-              "display": "-15.50%",
+              "value": -15.8198,
+              "display": "-15.82%",
               "count": 5532,
               "dailyValue": -0.3035,
               "dailyDisplay": "-0.30%"
             },
             {
               "date": "2026.06.30",
-              "value": -15.2249,
-              "display": "-15.22%",
+              "value": -15.635,
+              "display": "-15.63%",
               "count": 5533,
               "dailyValue": 0.491,
               "dailyDisplay": "+0.49%"
             },
             {
               "date": "2026.07.01",
-              "value": -13.24,
-              "display": "-13.24%",
+              "value": -13.7117,
+              "display": "-13.71%",
               "count": 5533,
               "dailyValue": 2.1103,
               "dailyDisplay": "+2.11%"
             },
             {
               "date": "2026.07.02",
-              "value": -13.1346,
-              "display": "-13.13%",
+              "value": -13.5714,
+              "display": "-13.57%",
               "count": 5535,
               "dailyValue": -0.489,
               "dailyDisplay": "-0.49%"
             },
             {
               "date": "2026.07.03",
-              "value": -11.9054,
-              "display": "-11.91%",
+              "value": -12.319,
+              "display": "-12.32%",
               "count": 5535,
               "dailyValue": 1.2216,
               "dailyDisplay": "+1.22%"
             },
             {
               "date": "2026.07.06",
-              "value": -12.3923,
-              "display": "-12.39%",
+              "value": -12.7885,
+              "display": "-12.79%",
               "count": 5535,
               "dailyValue": -1.2702,
               "dailyDisplay": "-1.27%"
             },
             {
               "date": "2026.07.07",
-              "value": -14.8508,
-              "display": "-14.85%",
+              "value": -15.2961,
+              "display": "-15.30%",
               "count": 5535,
               "dailyValue": -2.9052,
               "dailyDisplay": "-2.91%"
             },
             {
               "date": "2026.07.08",
-              "value": -15.5565,
-              "display": "-15.56%",
+              "value": -15.8455,
+              "display": "-15.85%",
               "count": 5536,
               "dailyValue": -1.3958,
               "dailyDisplay": "-1.40%"
             },
             {
               "date": "2026.07.09",
-              "value": -15.6704,
-              "display": "-15.67%",
+              "value": -15.9303,
+              "display": "-15.93%",
               "count": 5537,
               "dailyValue": -0.1848,
               "dailyDisplay": "-0.18%"
             },
             {
               "date": "2026.07.10",
-              "value": -14.759,
-              "display": "-14.76%",
+              "value": -15.0812,
+              "display": "-15.08%",
               "count": 5539,
               "dailyValue": 1.2346,
               "dailyDisplay": "+1.23%"
             },
             {
               "date": "2026.07.13",
-              "value": -16.8725,
-              "display": "-16.87%",
+              "value": -17.3287,
+              "display": "-17.33%",
               "count": 5539,
               "dailyValue": -4.1881,
               "dailyDisplay": "-4.19%"
             },
             {
               "date": "2026.07.14",
-              "value": -15.8184,
-              "display": "-15.82%",
+              "value": -16.0215,
+              "display": "-16.02%",
               "count": 5539,
               "dailyValue": 1.5508,
               "dailyDisplay": "+1.55%"
             },
             {
               "date": "2026.07.15",
-              "value": -14.7363,
-              "display": "-14.74%",
+              "value": -15.3009,
+              "display": "-15.30%",
               "count": 5539,
               "dailyValue": 0.7692,
               "dailyDisplay": "+0.77%"
             },
             {
               "date": "2026.07.16",
-              "value": -14.9487,
-              "display": "-14.95%",
+              "value": -15.3147,
+              "display": "-15.31%",
               "count": 5540,
               "dailyValue": -0.1827,
               "dailyDisplay": "-0.18%"
             },
             {
               "date": "2026.07.17",
-              "value": -18.0171,
-              "display": "-18.02%",
+              "value": -18.5262,
+              "display": "-18.53%",
               "count": 5540,
               "dailyValue": -4.1209,
               "dailyDisplay": "-4.12%"
             },
             {
               "date": "2026.07.20",
-              "value": -19.4983,
-              "display": "-19.50%",
+              "value": -19.8,
+              "display": "-19.80%",
               "count": 5540,
               "dailyValue": -2.102,
               "dailyDisplay": "-2.10%"
             },
             {
               "date": "2026.07.21",
-              "value": -19.1046,
-              "display": "-19.10%",
+              "value": -19.7588,
+              "display": "-19.76%",
               "count": 5541,
               "dailyValue": 0.59,
               "dailyDisplay": "+0.59%"
             },
             {
               "date": "2026.07.22",
-              "value": -20.0579,
-              "display": "-20.06%",
+              "value": -20.561,
+              "display": "-20.56%",
               "count": 5542,
               "dailyValue": -1.277,
               "dailyDisplay": "-1.28%"
             },
             {
               "date": "2026.07.23",
-              "value": -18.5009,
-              "display": "-18.50%",
+              "value": -19.106,
+              "display": "-19.11%",
               "count": 5542,
               "dailyValue": 1.8236,
               "dailyDisplay": "+1.82%"
             },
             {
               "date": "2026.07.24",
-              "value": -20.6983,
-              "display": "-20.70%",
+              "value": -21.2171,
+              "display": "-21.22%",
               "count": 5543,
               "dailyValue": -2.858,
               "dailyDisplay": "-2.86%"
             },
             {
               "date": "2026.07.27",
-              "value": -18.5715,
-              "display": "-18.57%",
+              "value": -18.9592,
+              "display": "-18.96%",
               "count": 5545,
               "dailyValue": 2.7273,
               "dailyDisplay": "+2.73%"
             },
             {
               "date": "2026.07.28",
-              "value": -18.6841,
-              "display": "-18.68%",
+              "value": -19.114,
+              "display": "-19.11%",
               "count": 5545,
               "dailyValue": -0.048,
               "dailyDisplay": "-0.05%"
             },
             {
               "date": "2026.07.29",
-              "value": -17.8367,
-              "display": "-17.84%",
+              "value": -18.3244,
+              "display": "-18.32%",
               "count": 5545,
               "dailyValue": 1.5416,
               "dailyDisplay": "+1.54%"
             },
             {
               "date": "2026.07.30",
-              "value": -18.7005,
-              "display": "-18.70%",
+              "value": -19.1431,
+              "display": "-19.14%",
               "count": 5547,
               "dailyValue": -1.1526,
               "dailyDisplay": "-1.15%"
             },
             {
               "date": "2026.07.31",
-              "value": -17.0694,
-              "display": "-17.07%",
+              "value": -17.4622,
+              "display": "-17.46%",
               "count": 5547,
               "dailyValue": 2.0277,
               "dailyDisplay": "+2.03%"
             },
             {
               "date": "2026.08.03",
-              "value": -15.7929,
-              "display": "-15.79%",
+              "value": -16.2983,
+              "display": "-16.30%",
               "count": 5548,
               "dailyValue": 1.3453,
               "dailyDisplay": "+1.35%"
             },
             {
               "date": "2026.08.04",
-              "value": -14.9427,
-              "display": "-14.94%",
+              "value": -15.4529,
+              "display": "-15.45%",
               "count": 5549,
               "dailyValue": 0.9736,
               "dailyDisplay": "+0.97%"
             },
             {
               "date": "2026.08.05",
-              "value": -14.2935,
-              "display": "-14.29%",
+              "value": -14.7055,
+              "display": "-14.71%",
               "count": 5550,
               "dailyValue": 0.9263,
               "dailyDisplay": "+0.93%"
             },
             {
               "date": "2026.08.06",
-              "value": -14.2925,
-              "display": "-14.29%",
+              "value": -14.7259,
+              "display": "-14.73%",
               "count": 5551,
               "dailyValue": 0.0557,
               "dailyDisplay": "+0.06%"
             },
             {
               "date": "2026.08.07",
-              "value": -13.8166,
-              "display": "-13.82%",
+              "value": -14.3859,
+              "display": "-14.39%",
               "count": 5552,
               "dailyValue": 0.1212,
               "dailyDisplay": "+0.12%"
             },
             {
               "date": "2026.08.10",
-              "value": -12.6051,
-              "display": "-12.61%",
+              "value": -13.0748,
+              "display": "-13.07%",
               "count": 5552,
               "dailyValue": 1.2584,
               "dailyDisplay": "+1.26%"
             },
             {
               "date": "2026.08.11",
-              "value": -12.9198,
-              "display": "-12.92%",
+              "value": -13.392,
+              "display": "-13.39%",
               "count": 5555,
               "dailyValue": -0.6831,
               "dailyDisplay": "-0.68%"
             },
             {
               "date": "2026.08.12",
-              "value": -12.1262,
-              "display": "-12.13%",
+              "value": -12.6416,
+              "display": "-12.64%",
               "count": 5556,
               "dailyValue": 0.8361,
               "dailyDisplay": "+0.84%"
             },
             {
               "date": "2026.08.13",
-              "value": -12.9828,
-              "display": "-12.98%",
+              "value": -13.5839,
+              "display": "-13.58%",
               "count": 5556,
               "dailyValue": -1.4783,
               "dailyDisplay": "-1.48%"
             },
             {
               "date": "2026.08.14",
-              "value": -13.1497,
-              "display": "-13.15%",
+              "value": -13.6695,
+              "display": "-13.67%",
               "count": 5556,
               "dailyValue": -0.203,
               "dailyDisplay": "-0.20%"
             },
             {
               "date": "2026.08.17",
-              "value": -11.9707,
-              "display": "-11.97%",
+              "value": -12.6293,
+              "display": "-12.63%",
               "count": 5557,
               "dailyValue": 1.3466,
               "dailyDisplay": "+1.35%"
             },
             {
               "date": "2026.08.18",
-              "value": -12.0879,
-              "display": "-12.09%",
+              "value": -12.6997,
+              "display": "-12.70%",
               "count": 5558,
               "dailyValue": -0.4712,
               "dailyDisplay": "-0.47%"
             },
             {
               "date": "2026.08.19",
-              "value": -14.8387,
-              "display": "-14.84%",
+              "value": -15.3585,
+              "display": "-15.36%",
               "count": 5560,
               "dailyValue": -3.9223,
               "dailyDisplay": "-3.92%"
             },
             {
               "date": "2026.08.20",
-              "value": -13.5016,
-              "display": "-13.50%",
+              "value": -14.0543,
+              "display": "-14.05%",
               "count": 5561,
               "dailyValue": 1.1794,
               "dailyDisplay": "+1.18%"
             },
             {
               "date": "2026.08.21",
-              "value": -13.9629,
-              "display": "-13.96%",
+              "value": -14.5506,
+              "display": "-14.55%",
               "count": 5562,
               "dailyValue": -0.117,
               "dailyDisplay": "-0.12%"
             },
             {
               "date": "2026.08.24",
-              "value": -14.6757,
-              "display": "-14.68%",
+              "value": -15.362,
+              "display": "-15.36%",
               "count": 5562,
               "dailyValue": -1.2177,
               "dailyDisplay": "-1.22%"
             },
             {
               "date": "2026.08.25",
-              "value": -13.2946,
-              "display": "-13.29%",
+              "value": -13.8363,
+              "display": "-13.84%",
               "count": 5563,
               "dailyValue": 1.4668,
               "dailyDisplay": "+1.47%"
             },
             {
               "date": "2026.08.26",
-              "value": -12.9515,
-              "display": "-12.95%",
+              "value": -13.6112,
+              "display": "-13.61%",
               "count": 5563,
               "dailyValue": 0.1577,
               "dailyDisplay": "+0.16%"
             },
             {
               "date": "2026.08.27",
-              "value": -12.6192,
-              "display": "-12.62%",
+              "value": -13.2429,
+              "display": "-13.24%",
               "count": 5563,
               "dailyValue": 0.5291,
               "dailyDisplay": "+0.53%"
             },
             {
               "date": "2026.08.28",
-              "value": -12.0874,
-              "display": "-12.09%",
+              "value": -12.8757,
+              "display": "-12.88%",
               "count": 5564,
               "dailyValue": 0.2241,
               "dailyDisplay": "+0.22%"
             },
             {
               "date": "2026.08.31",
-              "value": -11.5571,
-              "display": "-11.56%",
+              "value": -12.21,
+              "display": "-12.21%",
               "count": 5564,
               "dailyValue": 0.451,
               "dailyDisplay": "+0.45%"
             },
             {
               "date": "2026.09.01",
-              "value": -10.7259,
-              "display": "-10.73%",
+              "value": -11.3622,
+              "display": "-11.36%",
               "count": 5566,
               "dailyValue": 0.5747,
               "dailyDisplay": "+0.57%"
             },
             {
               "date": "2026.09.02",
-              "value": -11.5101,
-              "display": "-11.51%",
+              "value": -12.1467,
+              "display": "-12.15%",
               "count": 5567,
               "dailyValue": -0.9474,
               "dailyDisplay": "-0.95%"
             },
             {
               "date": "2026.09.03",
-              "value": -12.1046,
-              "display": "-12.10%",
+              "value": -12.7217,
+              "display": "-12.72%",
               "count": 5568,
               "dailyValue": -0.6803,
               "dailyDisplay": "-0.68%"
             },
             {
               "date": "2026.09.04",
-              "value": -12.1931,
-              "display": "-12.19%",
+              "value": -12.5509,
+              "display": "-12.55%",
               "count": 5569,
               "dailyValue": -0.1714,
               "dailyDisplay": "-0.17%"
             },
             {
               "date": "2026.09.07",
-              "value": -11.4727,
-              "display": "-11.47%",
+              "value": -12.0008,
+              "display": "-12.00%",
               "count": 5571,
               "dailyValue": 0.3374,
               "dailyDisplay": "+0.34%"
             },
             {
               "date": "2026.09.08",
-              "value": -10.6455,
-              "display": "-10.65%",
+              "value": -11.1956,
+              "display": "-11.20%",
               "count": 5571,
               "dailyValue": 0.5376,
               "dailyDisplay": "+0.54%"
             },
             {
               "date": "2026.09.09",
-              "value": -11.0643,
-              "display": "-11.06%",
+              "value": -11.5386,
+              "display": "-11.54%",
               "count": 5573,
               "dailyValue": -0.678,
               "dailyDisplay": "-0.68%"
             },
             {
               "date": "2026.09.10",
-              "value": -12.0323,
-              "display": "-12.03%",
+              "value": -12.7224,
+              "display": "-12.72%",
               "count": 5574,
               "dailyValue": -1.4908,
               "dailyDisplay": "-1.49%"
             },
             {
               "date": "2026.09.11",
-              "value": -13.896,
-              "display": "-13.90%",
+              "value": -14.4824,
+              "display": "-14.48%",
               "count": 5575,
               "dailyValue": -2.2099,
               "dailyDisplay": "-2.21%"
             },
             {
               "date": "2026.09.14",
-              "value": -13.3659,
-              "display": "-13.37%",
+              "value": -14.0415,
+              "display": "-14.04%",
               "count": 5575,
               "dailyValue": 0.2829,
               "dailyDisplay": "+0.28%"
             },
             {
               "date": "2026.09.15",
-              "value": -15.1306,
-              "display": "-15.13%",
+              "value": -15.7172,
+              "display": "-15.72%",
               "count": 5575,
               "dailyValue": -1.4993,
               "dailyDisplay": "-1.50%"
             },
             {
               "date": "2026.09.16",
-              "value": -14.2155,
-              "display": "-14.22%",
+              "value": -14.939,
+              "display": "-14.94%",
               "count": 5577,
               "dailyValue": 0.9813,
               "dailyDisplay": "+0.98%"
             },
             {
               "date": "2026.09.17",
-              "value": -13.9112,
-              "display": "-13.91%",
+              "value": -14.5027,
+              "display": "-14.50%",
               "count": 5578,
               "dailyValue": -0.0782,
               "dailyDisplay": "-0.08%"
             },
             {
               "date": "2026.09.18",
-              "value": -13.1362,
-              "display": "-13.14%",
+              "value": -13.78,
+              "display": "-13.78%",
               "count": 5578,
               "dailyValue": 1.0733,
               "dailyDisplay": "+1.07%"
             },
             {
               "date": "2026.09.21",
-              "value": -11.3528,
-              "display": "-11.35%",
+              "value": -12.0562,
+              "display": "-12.06%",
               "count": 5578,
               "dailyValue": 1.5406,
               "dailyDisplay": "+1.54%"
             },
             {
               "date": "2026.09.22",
-              "value": -11.3649,
-              "display": "-11.36%",
+              "value": -11.8818,
+              "display": "-11.88%",
               "count": 5580,
               "dailyValue": -0.2078,
               "dailyDisplay": "-0.21%"
             },
             {
               "date": "2026.09.23",
-              "value": -11.7373,
-              "display": "-11.74%",
+              "value": -12.4357,
+              "display": "-12.44%",
               "count": 5581,
               "dailyValue": -0.6122,
               "dailyDisplay": "-0.61%"
             },
             {
               "date": "2026.09.24",
-              "value": -12.5727,
-              "display": "-12.57%",
+              "value": -13.2791,
+              "display": "-13.28%",
               "count": 5582,
               "dailyValue": -1.3021,
               "dailyDisplay": "-1.30%"
             },
             {
               "date": "2026.09.28",
-              "value": -13.9067,
-              "display": "-13.91%",
+              "value": -14.4045,
+              "display": "-14.40%",
               "count": 5582,
               "dailyValue": -1.8548,
               "dailyDisplay": "-1.85%"
             },
             {
               "date": "2026.09.29",
-              "value": -13.2633,
-              "display": "-13.26%",
+              "value": -13.7344,
+              "display": "-13.73%",
               "count": 5584,
               "dailyValue": 0.4785,
               "dailyDisplay": "+0.48%"
             },
             {
               "date": "2026.09.30",
-              "value": -13.0798,
-              "display": "-13.08%",
+              "value": -13.675,
+              "display": "-13.68%",
               "count": 5585,
               "dailyValue": -0.0917,
               "dailyDisplay": "-0.09%"
             },
             {
               "date": "2026.10.08",
-              "value": -13.8215,
-              "display": "-13.82%",
+              "value": -14.4042,
+              "display": "-14.40%",
               "count": 5585,
               "dailyValue": -1.0101,
               "dailyDisplay": "-1.01%"
             },
             {
               "date": "2026.10.09",
-              "value": -12.9011,
-              "display": "-12.90%",
+              "value": -13.4234,
+              "display": "-13.42%",
               "count": 5586,
               "dailyValue": 0.5959,
               "dailyDisplay": "+0.60%"
             },
             {
               "date": "2026.10.12",
-              "value": -13.9578,
-              "display": "-13.96%",
+              "value": -14.4367,
+              "display": "-14.44%",
               "count": 5586,
               "dailyValue": -1.6835,
               "dailyDisplay": "-1.68%"
             },
             {
               "date": "2026.10.13",
-              "value": -13.6401,
-              "display": "-13.64%",
+              "value": -14.2186,
+              "display": "-14.22%",
               "count": 5587,
               "dailyValue": 0.1567,
               "dailyDisplay": "+0.16%"
             },
             {
               "date": "2026.10.14",
-              "value": -14.9294,
-              "display": "-14.93%",
+              "value": -15.6919,
+              "display": "-15.69%",
               "count": 5587,
               "dailyValue": -1.9355,
               "dailyDisplay": "-1.94%"
             },
             {
               "date": "2026.10.15",
-              "value": -17.3748,
-              "display": "-17.37%",
+              "value": -17.8294,
+              "display": "-17.83%",
               "count": 5589,
               "dailyValue": -3.0387,
               "dailyDisplay": "-3.04%"
             },
             {
               "date": "2026.10.16",
-              "value": -16.8292,
-              "display": "-16.83%",
+              "value": -17.3723,
+              "display": "-17.37%",
               "count": 5590,
               "dailyValue": 0.4667,
               "dailyDisplay": "+0.47%"
             },
             {
               "date": "2026.10.19",
-              "value": -17.1861,
-              "display": "-17.19%",
+              "value": -17.6175,
+              "display": "-17.62%",
               "count": 5590,
               "dailyValue": -0.3817,
               "dailyDisplay": "-0.38%"
             },
             {
               "date": "2026.10.20",
-              "value": -16.496,
-              "display": "-16.50%",
+              "value": -16.8494,
+              "display": "-16.85%",
               "count": 5590,
               "dailyValue": 0.9658,
               "dailyDisplay": "+0.97%"
             },
             {
               "date": "2026.10.21",
-              "value": -16.752,
-              "display": "-16.75%",
+              "value": -17.1246,
+              "display": "-17.12%",
               "count": 5591,
               "dailyValue": -0.445,
               "dailyDisplay": "-0.45%"
             },
             {
               "date": "2026.10.22",
-              "value": -18.8919,
-              "display": "-18.89%",
+              "value": -19.2148,
+              "display": "-19.21%",
               "count": 5592,
               "dailyValue": -2.531,
               "dailyDisplay": "-2.53%"
             },
             {
               "date": "2026.10.23",
-              "value": -17.4886,
-              "display": "-17.49%",
+              "value": -17.9068,
+              "display": "-17.91%",
               "count": 5593,
               "dailyValue": 1.5608,
               "dailyDisplay": "+1.56%"
             },
             {
               "date": "2026.10.26",
-              "value": -17.5074,
-              "display": "-17.51%",
+              "value": -18.0024,
+              "display": "-18.00%",
               "count": 5593,
               "dailyValue": -0.4667,
               "dailyDisplay": "-0.47%"
             },
             {
               "date": "2026.10.27",
-              "value": -19.7401,
-              "display": "-19.74%",
+              "value": -20.2035,
+              "display": "-20.20%",
               "count": 5593,
               "dailyValue": -2.9749,
               "dailyDisplay": "-2.97%"
+            },
+            {
+              "date": "2026.10.28",
+              "value": -19.2033,
+              "display": "-19.20%",
+              "count": 5593,
+              "dailyValue": 1.3382,
+              "dailyDisplay": "+1.34%"
+            },
+            {
+              "date": "2026.10.29",
+              "value": -20.9897,
+              "display": "-20.99%",
+              "count": 5594,
+              "dailyValue": -2.599,
+              "dailyDisplay": "-2.60%"
             }
           ],
           "ytd": [
@@ -15604,194 +15604,218 @@ window.MARKET_TREND_DATA = {
               "count": 5593,
               "dailyValue": -2.9749,
               "dailyDisplay": "-2.97%"
+            },
+            {
+              "date": "2026.10.28",
+              "value": -18.8237,
+              "display": "-18.82%",
+              "count": 5593,
+              "dailyValue": 1.3382,
+              "dailyDisplay": "+1.34%"
+            },
+            {
+              "date": "2026.10.29",
+              "value": -20.5267,
+              "display": "-20.53%",
+              "count": 5594,
+              "dailyValue": -2.599,
+              "dailyDisplay": "-2.60%"
             }
           ],
           "1m": [
             {
-              "date": "2026.09.28",
-              "value": -1.8548,
-              "display": "-1.85%",
-              "count": 5557,
-              "dailyValue": -1.8548,
-              "dailyDisplay": "-1.85%"
-            },
-            {
               "date": "2026.09.29",
-              "value": -1.2766,
-              "display": "-1.28%",
-              "count": 5562,
+              "value": 0.4785,
+              "display": "+0.48%",
+              "count": 5559,
               "dailyValue": 0.4785,
               "dailyDisplay": "+0.48%"
             },
             {
               "date": "2026.09.30",
-              "value": -1.1756,
-              "display": "-1.18%",
-              "count": 5565,
+              "value": 0.5366,
+              "display": "+0.54%",
+              "count": 5564,
               "dailyValue": -0.0917,
               "dailyDisplay": "-0.09%"
             },
             {
               "date": "2026.10.08",
-              "value": -1.8674,
-              "display": "-1.87%",
-              "count": 5565,
+              "value": -0.2503,
+              "display": "-0.25%",
+              "count": 5564,
               "dailyValue": -1.0101,
               "dailyDisplay": "-1.01%"
             },
             {
               "date": "2026.10.09",
-              "value": -0.7818,
-              "display": "-0.78%",
-              "count": 5566,
+              "value": 0.7295,
+              "display": "+0.73%",
+              "count": 5565,
               "dailyValue": 0.5959,
               "dailyDisplay": "+0.60%"
             },
             {
               "date": "2026.10.12",
-              "value": -2.2628,
-              "display": "-2.26%",
-              "count": 5566,
+              "value": -0.8069,
+              "display": "-0.81%",
+              "count": 5565,
               "dailyValue": -1.6835,
               "dailyDisplay": "-1.68%"
             },
             {
               "date": "2026.10.13",
-              "value": -2.0481,
-              "display": "-2.05%",
-              "count": 5568,
+              "value": -0.4689,
+              "display": "-0.47%",
+              "count": 5567,
               "dailyValue": 0.1567,
               "dailyDisplay": "+0.16%"
             },
             {
               "date": "2026.10.14",
-              "value": -3.9761,
-              "display": "-3.98%",
-              "count": 5569,
+              "value": -2.3592,
+              "display": "-2.36%",
+              "count": 5568,
               "dailyValue": -1.9355,
               "dailyDisplay": "-1.94%"
             },
             {
               "date": "2026.10.15",
-              "value": -6.8886,
-              "display": "-6.89%",
-              "count": 5571,
+              "value": -5.2966,
+              "display": "-5.30%",
+              "count": 5570,
               "dailyValue": -3.0387,
               "dailyDisplay": "-3.04%"
             },
             {
               "date": "2026.10.16",
-              "value": -6.0587,
-              "display": "-6.06%",
-              "count": 5572,
+              "value": -4.5326,
+              "display": "-4.53%",
+              "count": 5571,
               "dailyValue": 0.4667,
               "dailyDisplay": "+0.47%"
             },
             {
               "date": "2026.10.19",
-              "value": -6.7034,
-              "display": "-6.70%",
-              "count": 5572,
+              "value": -5.1595,
+              "display": "-5.16%",
+              "count": 5571,
               "dailyValue": -0.3817,
               "dailyDisplay": "-0.38%"
             },
             {
               "date": "2026.10.20",
-              "value": -5.428,
-              "display": "-5.43%",
+              "value": -3.9583,
+              "display": "-3.96%",
               "count": 5572,
               "dailyValue": 0.9658,
               "dailyDisplay": "+0.97%"
             },
             {
               "date": "2026.10.21",
-              "value": -5.9727,
-              "display": "-5.97%",
+              "value": -4.3619,
+              "display": "-4.36%",
               "count": 5573,
               "dailyValue": -0.445,
               "dailyDisplay": "-0.45%"
             },
             {
               "date": "2026.10.22",
-              "value": -8.2318,
-              "display": "-8.23%",
+              "value": -6.6569,
+              "display": "-6.66%",
               "count": 5574,
               "dailyValue": -2.531,
               "dailyDisplay": "-2.53%"
             },
             {
               "date": "2026.10.23",
-              "value": -6.5541,
-              "display": "-6.55%",
+              "value": -5.002,
+              "display": "-5.00%",
               "count": 5576,
               "dailyValue": 1.5608,
               "dailyDisplay": "+1.56%"
             },
             {
               "date": "2026.10.26",
-              "value": -6.7646,
-              "display": "-6.76%",
+              "value": -5.3767,
+              "display": "-5.38%",
               "count": 5576,
               "dailyValue": -0.4667,
               "dailyDisplay": "-0.47%"
             },
             {
               "date": "2026.10.27",
-              "value": -9.5821,
-              "display": "-9.58%",
+              "value": -8.1155,
+              "display": "-8.12%",
               "count": 5576,
               "dailyValue": -2.9749,
               "dailyDisplay": "-2.97%"
+            },
+            {
+              "date": "2026.10.28",
+              "value": -6.7466,
+              "display": "-6.75%",
+              "count": 5576,
+              "dailyValue": 1.3382,
+              "dailyDisplay": "+1.34%"
+            },
+            {
+              "date": "2026.10.29",
+              "value": -9.0826,
+              "display": "-9.08%",
+              "count": 5577,
+              "dailyValue": -2.599,
+              "dailyDisplay": "-2.60%"
             }
           ],
           "1w": [
             {
-              "date": "2026.10.20",
-              "value": 0.9658,
-              "display": "+0.97%",
-              "count": 5568,
-              "dailyValue": 0.9658,
-              "dailyDisplay": "+0.97%"
-            },
-            {
-              "date": "2026.10.21",
-              "value": 0.5776,
-              "display": "+0.58%",
-              "count": 5569,
-              "dailyValue": -0.445,
-              "dailyDisplay": "-0.45%"
-            },
-            {
               "date": "2026.10.22",
-              "value": -2.0649,
-              "display": "-2.06%",
-              "count": 5571,
+              "value": -2.531,
+              "display": "-2.53%",
+              "count": 5570,
               "dailyValue": -2.531,
               "dailyDisplay": "-2.53%"
             },
             {
               "date": "2026.10.23",
-              "value": -0.6047,
-              "display": "-0.60%",
-              "count": 5573,
+              "value": -0.9709,
+              "display": "-0.97%",
+              "count": 5572,
               "dailyValue": 1.5608,
               "dailyDisplay": "+1.56%"
             },
             {
               "date": "2026.10.26",
-              "value": -0.9049,
-              "display": "-0.90%",
-              "count": 5574,
+              "value": -1.1364,
+              "display": "-1.14%",
+              "count": 5573,
               "dailyValue": -0.4667,
               "dailyDisplay": "-0.47%"
             },
             {
               "date": "2026.10.27",
-              "value": -3.6364,
-              "display": "-3.64%",
-              "count": 5574,
+              "value": -4.1176,
+              "display": "-4.12%",
+              "count": 5573,
               "dailyValue": -2.9749,
               "dailyDisplay": "-2.97%"
+            },
+            {
+              "date": "2026.10.28",
+              "value": -2.6549,
+              "display": "-2.65%",
+              "count": 5573,
+              "dailyValue": 1.3382,
+              "dailyDisplay": "+1.34%"
+            },
+            {
+              "date": "2026.10.29",
+              "value": -5.1082,
+              "display": "-5.11%",
+              "count": 5574,
+              "dailyValue": -2.599,
+              "dailyDisplay": "-2.60%"
             }
           ]
         }
@@ -15799,22 +15823,6 @@ window.MARKET_TREND_DATA = {
       "breadth": {
         "label": "个股宽度",
         "points": [
-          {
-            "date": "2025.10.22",
-            "value": 43.4683,
-            "display": "2276 / 2960",
-            "up": 2276,
-            "down": 2960,
-            "flat": 184
-          },
-          {
-            "date": "2025.10.23",
-            "value": 56.4971,
-            "display": "2987 / 2300",
-            "up": 2987,
-            "down": 2300,
-            "flat": 135
-          },
           {
             "date": "2025.10.24",
             "value": 57.151,
@@ -17766,26 +17774,28 @@ window.MARKET_TREND_DATA = {
             "up": 606,
             "down": 4922,
             "flat": 42
+          },
+          {
+            "date": "2026.10.28",
+            "value": 77.0343,
+            "display": "4156 / 1239",
+            "up": 4156,
+            "down": 1239,
+            "flat": 175
+          },
+          {
+            "date": "2026.10.29",
+            "value": 14.1768,
+            "display": "781 / 4728",
+            "up": 781,
+            "down": 4728,
+            "flat": 61
           }
         ]
       },
       "limitUp": {
         "label": "涨停 / 跌停",
         "points": [
-          {
-            "date": "2025.10.22",
-            "value": 72,
-            "display": "72 / 8",
-            "limitUp": 72,
-            "limitDown": 8
-          },
-          {
-            "date": "2025.10.23",
-            "value": 72,
-            "display": "72 / 9",
-            "limitUp": 72,
-            "limitDown": 9
-          },
           {
             "date": "2025.10.24",
             "value": 71,
@@ -19493,6 +19503,20 @@ window.MARKET_TREND_DATA = {
             "display": "42 / 23",
             "limitUp": 42,
             "limitDown": 23
+          },
+          {
+            "date": "2026.10.28",
+            "value": 73,
+            "display": "73 / 6",
+            "limitUp": 73,
+            "limitDown": 6
+          },
+          {
+            "date": "2026.10.29",
+            "value": 39,
+            "display": "39 / 42",
+            "limitUp": 39,
+            "limitDown": 42
           }
         ]
       }
