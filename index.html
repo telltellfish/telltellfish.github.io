@@ -1296,7 +1296,9 @@
     }
 
     .market-structure {
-      padding: 8px 16px 22px;
+      --structure-up: #ab1f3b;
+      --structure-down: #076947;
+      padding: 10px 16px 22px;
     }
 
     .market-structure [hidden],
@@ -1313,57 +1315,101 @@
     .structure-metrics {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
-      margin: 0 0 8px;
+      gap: 10px;
+      margin: 0 0 10px;
     }
 
     .structure-metric {
+      --metric-accent: #245b8f;
+      --metric-bg: #edf5ff;
+      --metric-border: #d9e7f9;
       min-width: 0;
-      padding: 10px 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--metric-border);
+      border-top: 3px solid var(--metric-accent);
       border-radius: 8px;
-      background: var(--soft-2);
+      background: var(--metric-bg);
+    }
+
+    .structure-metric[data-tone="sealed"] {
+      --metric-accent: #ab1f3b;
+      --metric-bg: #fff1f3;
+      --metric-border: #f5dce2;
+    }
+
+    .structure-metric[data-tone="failed"] {
+      --metric-accent: #895015;
+      --metric-bg: #fff5e7;
+      --metric-border: #f1e1c8;
+    }
+
+    .structure-metric[data-tone="seal-rate"] {
+      --metric-accent: #14685f;
+      --metric-bg: #e9f7f4;
+      --metric-border: #d1ece5;
     }
 
     .structure-metric dt,
     .structure-caption {
-      color: var(--muted);
+      color: #576474;
       font-size: 13px;
     }
 
+    .structure-metric dt {
+      font-weight: 720;
+    }
+
     .structure-metric dd {
-      margin: 2px 0 0;
-      font-size: 22px;
+      margin: 3px 0 0;
+      color: var(--metric-accent);
+      font-size: 26px;
       font-weight: 850;
       font-variant-numeric: tabular-nums;
     }
 
     .structure-metric small {
       display: block;
-      margin-top: 2px;
-      color: var(--muted);
+      margin-top: 3px;
+      color: #576474;
       font-size: 12px;
       font-weight: 600;
     }
 
+    .structure-metric progress {
+      display: block;
+      width: 100%;
+      height: 4px;
+      margin-top: 9px;
+      appearance: none;
+      border: 0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .structure-metric progress::-webkit-progress-bar { background: var(--metric-border); }
+    .structure-metric progress::-webkit-progress-value { background: var(--metric-accent); border-radius: 4px; }
+    .structure-metric progress::-moz-progress-bar { background: var(--metric-accent); border-radius: 4px; }
+
     .structure-themes {
-      margin-top: 18px;
+      margin-top: 22px;
     }
 
     .structure-table-wrap {
       overflow-x: auto;
-      border-bottom: 1px solid var(--line);
+      border: 1px solid #e3e9f1;
+      border-radius: 8px;
     }
 
     .structure-table {
       width: 100%;
-      min-width: 590px;
+      min-width: 610px;
       border-collapse: collapse;
       font-size: 14px;
       font-variant-numeric: tabular-nums;
     }
 
     .structure-table th, .structure-table td {
-      padding: 8px 10px;
+      padding: 9px 12px;
       text-align: right;
       border-top: 1px solid var(--line);
       white-space: nowrap;
@@ -1374,12 +1420,70 @@
       white-space: normal;
     }
 
-    .structure-table th {
-      background: var(--soft-2);
+    .structure-table thead th {
+      border-top: 0;
+      background: #f2f5f9;
+      color: #465367;
+      font-size: 13px;
     }
+
+    .structure-table tbody th {
+      background: #fff;
+      font-weight: 760;
+    }
+
+    .structure-table tbody tr:nth-child(even) > * {
+      background: #fafcfe;
+    }
+
+    .structure-table :is(thead, tbody) tr > .structure-current {
+      background: #edf4ff;
+      font-weight: 780;
+    }
+
+    .structure-table td[data-tone="up"] { color: var(--structure-up); }
+    .structure-table td[data-tone="down"] { color: var(--structure-down); }
+    .structure-table td[data-tone="flat"] { color: #647184; }
+
+    .structure-delta {
+      font-weight: 780;
+    }
+
+    .structure-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 7px;
+      border-radius: 4px;
+      background: #edf1f5;
+      color: #516071;
+      font-size: 12px;
+      font-weight: 760;
+    }
+
+    .structure-status::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .structure-status[data-tone="rising"] { color: var(--structure-up); background: #fce9ee; }
+    .structure-status[data-tone="falling"] { color: var(--structure-down); background: #e6f5ed; }
+    .structure-status[data-tone="strong"] { color: #245b8f; background: #e8f1fc; }
+    .structure-status[data-tone="pressure"] { color: #895015; background: #fff1df; }
 
     @media (max-width: 620px) {
       .structure-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .structure-metric { padding: 10px; }
+      .structure-table tr > :first-child {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        width: 150px;
+        box-shadow: 1px 0 0 #e3e9f1;
+      }
     }
 
     .blocks {
@@ -3065,7 +3169,7 @@
         <h3>主线切换</h3>
         <div class="structure-table-wrap" tabindex="0" aria-label="主线强弱对照">
           <table class="structure-table">
-            <thead><tr><th scope="col">方向</th><th scope="col" data-structure-previous>前日相对全A</th><th scope="col">当日相对全A</th><th scope="col">变化（百分点）</th><th scope="col">状态</th></tr></thead>
+            <thead><tr><th scope="col">方向</th><th scope="col" data-structure-previous>前日相对全A</th><th scope="col" class="structure-current">当日相对全A</th><th scope="col">变化（百分点）</th><th scope="col">状态</th></tr></thead>
             <tbody data-structure-rows></tbody>
           </table>
         </div>
@@ -3195,7 +3299,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/stock_daily_web.js?v=20261110172556`;
+          script.src = `data/stock_daily_web.js?v=20261110175001`;
           script.onload = () => resolve(window.STOCK_DAILY_REPORTS || {});
           script.onerror = () => reject(new Error("个股日报加载失败"));
           document.head.appendChild(script);
@@ -3221,7 +3325,7 @@
         if (!window.STOCK_DAILY_CONTEXTS) {
           if (!manifestPromise) manifestPromise = new Promise((resolve, reject) => {
             const script = document.createElement("script");
-            script.src = `data/stock_daily_contexts_web.js?v=20261110172556`;
+            script.src = `data/stock_daily_contexts_web.js?v=20261110175001`;
             script.onload = () => resolve(window.STOCK_DAILY_CONTEXTS || {});
             script.onerror = () => {
               script.remove();
@@ -3810,7 +3914,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/rotation_constituents.js?v=20261110172556`;
+          script.src = `data/rotation_constituents.js?v=20261110175001`;
           script.onload = () => resolve(window.ROTATION_CONSTITUENTS || {});
           script.onerror = () => reject(new Error("板块个股明细加载失败"));
           document.head.appendChild(script);
@@ -3826,7 +3930,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/rotation_datasets.js?v=20261110172556`;
+          script.src = `data/rotation_datasets.js?v=20261110175001`;
           script.onload = () => resolve(window.ROTATION_DATASETS || {});
           script.onerror = () => reject(new Error("板块轮动榜单加载失败"));
           document.head.appendChild(script);
@@ -3940,32 +4044,56 @@
       if (ladder) {
         const repeat = ladder.repeat;
         const metrics = [
-          ["收盘涨停", ladder.sealed, `盘中触板 ${ladder.touched} 只`],
-          ["触板未封", ladder.failed, "日高触及涨停价，收盘未封"],
-          ["封板率", percent(ladder.sealRate), `${ladder.sealed} / ${ladder.touched}`],
-          ["昨板续封率", percent(repeat?.rate), repeat
+          ["sealed", "收盘涨停", ladder.sealed, `盘中触板 ${ladder.touched} 只`],
+          ["failed", "触板未封", ladder.failed, "日高触及涨停价，收盘未封"],
+          ["seal-rate", "封板率", percent(ladder.sealRate), `${ladder.sealed} / ${ladder.touched}`, ladder.sealRate],
+          ["repeat-rate", "昨板续封率", percent(repeat?.rate), repeat
             ? `${repeat.sealedAgain} / ${repeat.eligible}${repeat.excluded ? `，另排除 ${repeat.excluded} 只` : ""}`
-            : "暂无可核验前一日名单"],
+            : "暂无可核验前一日名单", repeat?.rate],
         ];
-        section.querySelector("[data-structure-metrics]").replaceChildren(...metrics.map(([label, value, detail]) => {
+        section.querySelector("[data-structure-metrics]").replaceChildren(...metrics.map(([tone, label, value, detail, rate]) => {
           const card = make("div", "");
           card.className = "structure-metric";
+          card.dataset.tone = tone;
           const description = make("dd", value);
           description.append(make("small", detail));
+          if (Number.isFinite(rate)) {
+            const progress = document.createElement("progress");
+            progress.max = 1;
+            progress.value = rate;
+            progress.setAttribute("aria-hidden", "true");
+            description.append(progress);
+          }
           card.append(make("dt", label), description);
           return card;
         }));
         set("sample", `沪深京 A 股｜有效限价样本 ${ladder.eligibleCount.toLocaleString("zh-CN")} / ${ladder.activeCount.toLocaleString("zh-CN")}`);
       }
       if (themes?.rows?.length) {
+        const statusTones = {
+          "由弱转强": "rising", "相对走强": "rising",
+          "由强转弱": "falling", "相对走弱": "falling",
+          "延续强势": "strong", "延续承压": "pressure",
+        };
+        const valueCell = (value, className = "") => {
+          const cell = make("td", pp(value));
+          cell.className = className;
+          cell.dataset.tone = value > 0 ? "up" : value < 0 ? "down" : "flat";
+          return cell;
+        };
         set("previous", `${themes.previousTradeDate.slice(5)} 相对全A`);
         section.querySelector("[data-structure-rows]").replaceChildren(...themes.rows.map(row => {
           const tr = make("tr", "");
           const heading = make("th", row.name);
           heading.scope = "row";
           heading.title = row.board;
-          tr.append(heading, make("td", pp(row.previousRelative)), make("td", pp(row.todayRelative)),
-                    make("td", pp(row.delta)), make("td", row.status));
+          const badge = make("span", row.status);
+          badge.className = "structure-status";
+          badge.dataset.tone = statusTones[row.status] || "neutral";
+          const status = make("td", "");
+          status.append(badge);
+          tr.append(heading, valueCell(row.previousRelative), valueCell(row.todayRelative, "structure-current"),
+                    valueCell(row.delta, "structure-delta"), status);
           return tr;
         }));
       }
