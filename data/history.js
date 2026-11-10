@@ -1364,7 +1364,109 @@ window.MARKET_SENTIMENT_HISTORY = [
     "stockDailyDate": "2026.11.10",
     "observation": "观察重点：跟踪CPO / 光模块 / 铜缆的板块强弱、成交占比与核心股反馈能否相互确认，并观察全A与个股宽度是否同向。",
     "note": "注：该指数为基于同花顺 iFinD 数据整理的示意型多空情绪值，不代表官方发布口径。",
-    "generatedAt": "2026-11-10T16:36:27+08:00"
+    "generatedAt": "2026-11-10T16:36:27+08:00",
+    "marketStructure": {
+      "version": "market-structure-20261110",
+      "tradeDate": "2026.11.10",
+      "ladder": {
+        "tradeDate": "2026.11.10",
+        "activeCount": 5573,
+        "eligibleCount": 5572,
+        "touched": 115,
+        "sealed": 95,
+        "failed": 20,
+        "limitDown": 0,
+        "sealRate": 0.8260869565217391,
+        "repeat": {
+          "previousTradeDate": "2026.11.09",
+          "previousSealed": 58,
+          "eligible": 58,
+          "sealedAgain": 19,
+          "excluded": 0,
+          "rate": 0.3275862068965517
+        }
+      },
+      "themes": {
+        "previousTradeDate": "2026.11.09",
+        "referenceName": "同花顺全A",
+        "todayBenchmark": 1.7412,
+        "previousBenchmark": 0.1062,
+        "rows": [
+          {
+            "name": "CPO / 光模块 / 铜缆",
+            "tag": "主线",
+            "board": "通信设备",
+            "code": "881129.TI",
+            "todayChange": 2.8182,
+            "previousChange": 1.7815,
+            "todayRelative": 1.077,
+            "previousRelative": 1.6753,
+            "delta": -0.5983,
+            "status": "延续强势"
+          },
+          {
+            "name": "PCB / 元件 / 被动元件",
+            "tag": "主线",
+            "board": "元件",
+            "code": "881270.TI",
+            "todayChange": 2.6489,
+            "previousChange": 2.5669,
+            "todayRelative": 0.9077,
+            "previousRelative": 2.4607,
+            "delta": -1.553,
+            "status": "相对走弱"
+          },
+          {
+            "name": "数字芯片设计",
+            "tag": "主线",
+            "board": "数字芯片设计",
+            "code": "884287.TI",
+            "todayChange": 4.1424,
+            "previousChange": 0.93556377239176,
+            "todayRelative": 2.4012,
+            "previousRelative": 0.8294,
+            "delta": 1.5718,
+            "status": "相对走强"
+          },
+          {
+            "name": "消费电子 / 免税 / 品牌消费",
+            "tag": "扩散",
+            "board": "消费电子",
+            "code": "881124.TI",
+            "todayChange": 4.3524,
+            "previousChange": 1.2581,
+            "todayRelative": 2.6112,
+            "previousRelative": 1.1519,
+            "delta": 1.4593,
+            "status": "相对走强"
+          },
+          {
+            "name": "机器人 / 工业母机 / 低空",
+            "tag": "成长",
+            "board": "人形机器人",
+            "code": "886069.TI",
+            "todayChange": 3.3213,
+            "previousChange": 1.5988,
+            "todayRelative": 1.5801,
+            "previousRelative": 1.4926,
+            "delta": 0.0875,
+            "status": "延续强势"
+          },
+          {
+            "name": "通用设备",
+            "tag": "扩散",
+            "board": "通用设备",
+            "code": "881117.TI",
+            "todayChange": 2.6203,
+            "previousChange": 1.1577,
+            "todayRelative": 0.8791,
+            "previousRelative": 1.0515,
+            "delta": -0.1724,
+            "status": "延续强势"
+          }
+        ]
+      }
+    }
   },
   {
     "title": "复盘啦",
