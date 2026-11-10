@@ -1239,6 +1239,26 @@
       color: var(--blue);
     }
 
+    .factor.cross {
+      grid-column: 1 / -1;
+    }
+
+    .factor.cross h3 {
+      font-size: 20px;
+    }
+
+    .factor[hidden] {
+      display: none;
+    }
+
+    .factor-grid.is-single {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .factor-grid.is-reviewed {
+      row-gap: 16px;
+    }
+
     .factor ul {
       list-style: none;
       padding: 0;
@@ -2877,6 +2897,10 @@
           <li>热点快速轮动，若后续不能放量，持续性仍需观察</li>
         </ul>
       </div>
+      <div class="factor cross" hidden>
+        <h3>盘面分化</h3>
+        <ul></ul>
+      </div>
     </section>
 
     <div class="bar-title">主线板块</div>
@@ -3062,7 +3086,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/stock_daily_web.js?v=20261110094250`;
+          script.src = `data/stock_daily_web.js?v=20261110164001`;
           script.onload = () => resolve(window.STOCK_DAILY_REPORTS || {});
           script.onerror = () => reject(new Error("个股日报加载失败"));
           document.head.appendChild(script);
@@ -3088,7 +3112,7 @@
         if (!window.STOCK_DAILY_CONTEXTS) {
           if (!manifestPromise) manifestPromise = new Promise((resolve, reject) => {
             const script = document.createElement("script");
-            script.src = `data/stock_daily_contexts_web.js?v=20261110094250`;
+            script.src = `data/stock_daily_contexts_web.js?v=20261110164001`;
             script.onload = () => resolve(window.STOCK_DAILY_CONTEXTS || {});
             script.onerror = () => {
               script.remove();
@@ -3667,8 +3691,8 @@
       };
     })();
   </script>
-  <script src="data/trend.js?v=20261109"></script>
-  <script src="data/latest_web.js?v=20261109" onerror="document.querySelector('[data-loading-text]').textContent='最新数据加载失败，请刷新后重试。'"></script>
+  <script src="data/trend.js?v=20261110"></script>
+  <script src="data/latest_web.js?v=20261110" onerror="document.querySelector('[data-loading-text]').textContent='最新数据加载失败，请刷新后重试。'"></script>
   <script>
     window.ensureRotationConstituents = (() => {
       let loadingPromise = null;
@@ -3677,7 +3701,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/rotation_constituents.js?v=20261110094250`;
+          script.src = `data/rotation_constituents.js?v=20261110164001`;
           script.onload = () => resolve(window.ROTATION_CONSTITUENTS || {});
           script.onerror = () => reject(new Error("板块个股明细加载失败"));
           document.head.appendChild(script);
@@ -3693,7 +3717,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/rotation_datasets.js?v=20261110094250`;
+          script.src = `data/rotation_datasets.js?v=20261110164001`;
           script.onload = () => resolve(window.ROTATION_DATASETS || {});
           script.onerror = () => reject(new Error("板块轮动榜单加载失败"));
           document.head.appendChild(script);
@@ -3754,6 +3778,40 @@
         block.appendChild(desc);
         components.appendChild(block);
       });
+    };
+
+    window.renderMarketReviewFactors = function renderMarketReviewFactors(data) {
+      const grid = document.querySelector(".factor-grid");
+      if (!grid) return;
+      const groups = [
+        ["bull", data.bullFactors || []],
+        ["bear", data.bearFactors || []],
+        ["cross", data.crossFactors || []],
+      ];
+      const revised = Boolean(data.marketReview);
+      const directional = groups.slice(0, 2).filter(([, items]) => items.length).length;
+      const hasEvidence = groups.some(([, items]) => items.length);
+      grid.classList.toggle("is-reviewed", revised);
+      grid.classList.toggle("is-single", revised && directional < 2);
+      groups.forEach(([side, items]) => {
+        const section = grid.querySelector(`.factor.${side}`);
+        const list = section?.querySelector("ul");
+        if (!list) return;
+        section.hidden = (side === "cross" || revised) && !items.length;
+        list.replaceChildren(...items.map((text) => {
+          const item = document.createElement("li");
+          item.textContent = text;
+          return item;
+        }));
+      });
+      let empty = grid.querySelector("[data-review-empty]");
+      if (!empty) {
+        empty = document.createElement("p");
+        empty.dataset.reviewEmpty = "";
+        empty.textContent = "暂无达到展示阈值的收盘信号。";
+        grid.appendChild(empty);
+      }
+      empty.hidden = !revised || hasEvidence;
     };
 
     window.bindMainBlockDetails = function bindMainBlockDetails(data, blocks) {
@@ -3854,7 +3912,7 @@
       })();
       const mergeLeaderStock = (leader) => {
         const detailStock = detailStocksByCode.get(normalizeCode(leader?.code)) || {};
-        const pct = Number.isFinite(Number(leader?.pct)) ? Number(leader.pct) : detailStock.pct;
+        const pct = leader?.pct != null && Number.isFinite(Number(leader.pct)) ? Number(leader.pct) : detailStock.pct;
         return {
           ...detailStock,
           ...leader,
@@ -3956,9 +4014,12 @@
           return;
         }
         const keywords = splitKeywords(block?.name || "");
-        const matchedPayloads = constituentItems.filter((payload) => matchPayload(payload, keywords));
+        const assignedCodes = Array.isArray(block?.stockCodes) ? new Set(block.stockCodes.map(normalizeCode)) : null;
+        const matchedPayloads = constituentItems.filter((payload) => assignedCodes
+          ? payload.blockName === block.evidence?.board
+          : matchPayload(payload, keywords));
         const leaderMatches = turnoverLeaders
-          .filter((stock) => matchLeaderStock(stock, keywords))
+          .filter((stock) => assignedCodes ? assignedCodes.has(normalizeCode(stock.code)) : matchLeaderStock(stock, keywords))
           .map(mergeLeaderStock);
         const allStocks = leaderMatches;
         const hasAmount = (stock) => Number.isFinite(Number(stock.amountValue)) && Number(stock.amountValue) > 0;
@@ -3979,10 +4040,13 @@
           : "全市场成交额前200股票池还没有写入本地数据，下一次更新后会自动补齐。";
         cards.forEach((item) => item.classList.toggle("is-selected", item === card));
         detail.hidden = false;
-        if (title) title.textContent = `${block?.name || "主线方向"} 全市场成交额前200内关注股 ${detailState.stocks.length} 只`;
+        const poolSize = data.marketReview?.poolSize || 200;
+        if (title) title.textContent = `${block?.name || "主线方向"} 全市场成交额前${poolSize}内关注股 ${detailState.stocks.length} 只`;
         if (meta) {
           const matched = Array.from(new Set(detailState.matchedBlocks)).slice(0, 8).join(" / ");
-          const source = "筛选口径：先取全市场成交额前200，再按方向关键词 / 行业 / 概念匹配";
+          const source = assignedCodes
+            ? `板块依据：${block.evidence?.board || block.name}｜成交前${poolSize}内去重归属`
+            : "筛选口径：先取全市场成交额前200，再按方向关键词 / 行业 / 概念匹配";
           meta.textContent = matched ? `${source}｜参考板块：${matched}` : source;
         }
         renderDetail();
@@ -4076,17 +4140,13 @@
         });
       }
 
-      function renderList(selector, items) {
-        const list = document.querySelector(selector);
-        if (!list || !Array.isArray(items)) return;
-        list.textContent = "";
-        items.forEach((text) => list.appendChild(make("li", "", text)));
-      }
-
       function renderBlocks(items, dashboardData) {
         const grid = document.querySelector(".block-grid");
         if (!grid || !Array.isArray(items)) return;
         grid.textContent = "";
+        if (!items.length && dashboardData?.marketReview) {
+          grid.appendChild(make("p", "", "暂无板块达到确认条件。"));
+        }
         items.forEach((item) => {
           const card = make("article", `block-card ${item.tone === "down" ? "is-pressure" : ""}`.trim());
           card.appendChild(make("div", "tag", item.tag));
@@ -4521,8 +4581,7 @@
       renderMiniGauges(data.miniGauges || []);
       if (window.renderSentimentV2Panel) window.renderSentimentV2Panel(data.sentimentV2);
       renderMarket(data.marketData || []);
-      renderList(".factor.bull ul", data.bullFactors || []);
-      renderList(".factor.bear ul", data.bearFactors || []);
+      window.renderMarketReviewFactors?.(data);
       renderBlocks(data.blocks || [], data);
       renderRotation(data.rotation);
       if (window.renderStockDailyReports) window.renderStockDailyReports(data.stockDailyDate || data.tradeDate);
@@ -4534,8 +4593,8 @@
       if (loadingScreen) loadingScreen.hidden = true;
     })();
   </script>
-  <script src="data/history.js?v=20261109"></script>
-  <script src="data/bond_equity_value.js?v=20261109"></script>
+  <script src="data/history.js?v=20261110"></script>
+  <script src="data/bond_equity_value.js?v=20261110"></script>
   <script>
     (function setupHistoryTrendPanel() {
       const latestData = window.MARKET_SENTIMENT_DATA || {};
@@ -5351,17 +5410,13 @@
         });
       }
 
-      function renderList(selector, items) {
-        const list = document.querySelector(selector);
-        if (!list || !Array.isArray(items)) return;
-        list.textContent = "";
-        items.forEach((text) => list.appendChild(make("li", "", text)));
-      }
-
       function renderBlocks(items, dashboardData) {
         const grid = document.querySelector(".block-grid");
         if (!grid || !Array.isArray(items)) return;
         grid.textContent = "";
+        if (!items.length && dashboardData?.marketReview) {
+          grid.appendChild(make("p", "", "暂无板块达到确认条件。"));
+        }
         items.forEach((item) => {
           const card = make("article", `block-card ${item.tone === "down" ? "is-pressure" : ""}`.trim());
           card.appendChild(make("div", "tag", item.tag));
@@ -5798,8 +5853,7 @@
         renderMiniGauges(data.miniGauges || []);
         if (window.renderSentimentV2Panel) window.renderSentimentV2Panel(data.sentimentV2);
         renderMarket(data.marketData || []);
-        renderList(".factor.bull ul", data.bullFactors || []);
-        renderList(".factor.bear ul", data.bearFactors || []);
+        window.renderMarketReviewFactors?.(data);
         renderBlocks(data.blocks || [], data);
         renderRotation(data.rotation);
         if (window.renderStockDailyReports) window.renderStockDailyReports(data.stockDailyDate || data.tradeDate);
