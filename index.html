@@ -1251,12 +1251,16 @@
       display: none;
     }
 
-    .factor-grid.is-single {
-      grid-template-columns: minmax(0, 1fr);
-    }
-
     .factor-grid.is-reviewed {
       row-gap: 16px;
+    }
+
+    .factor li.factor-empty {
+      color: var(--muted);
+    }
+
+    .factor li.factor-empty::before {
+      display: none;
     }
 
     .factor ul {
@@ -2674,10 +2678,10 @@
               </div>
             </div>
             <div class="trend-range-controls" aria-label="历史区间">
-              <button class="trend-button is-active" type="button" data-trend-range="1y">近一年</button>
-              <button class="trend-button" type="button" data-trend-range="ytd">今年以来</button>
-              <button class="trend-button" type="button" data-trend-range="1m">近一月</button>
-              <button class="trend-button" type="button" data-trend-range="1w">近一周</button>
+              <button class="trend-button is-active" type="button" data-trend-range="1m" aria-pressed="true">近一月</button>
+              <button class="trend-button" type="button" data-trend-range="1w" aria-pressed="false">近一周</button>
+              <button class="trend-button" type="button" data-trend-range="ytd" aria-pressed="false">今年以来</button>
+              <button class="trend-button" type="button" data-trend-range="1y" aria-pressed="false">近一年</button>
             </div>
           </div>
           <div class="trend-slider">
@@ -3086,7 +3090,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/stock_daily_web.js?v=20261110164001`;
+          script.src = `data/stock_daily_web.js?v=20261110165913`;
           script.onload = () => resolve(window.STOCK_DAILY_REPORTS || {});
           script.onerror = () => reject(new Error("个股日报加载失败"));
           document.head.appendChild(script);
@@ -3112,7 +3116,7 @@
         if (!window.STOCK_DAILY_CONTEXTS) {
           if (!manifestPromise) manifestPromise = new Promise((resolve, reject) => {
             const script = document.createElement("script");
-            script.src = `data/stock_daily_contexts_web.js?v=20261110164001`;
+            script.src = `data/stock_daily_contexts_web.js?v=20261110165913`;
             script.onload = () => resolve(window.STOCK_DAILY_CONTEXTS || {});
             script.onerror = () => {
               script.remove();
@@ -3701,7 +3705,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/rotation_constituents.js?v=20261110164001`;
+          script.src = `data/rotation_constituents.js?v=20261110165913`;
           script.onload = () => resolve(window.ROTATION_CONSTITUENTS || {});
           script.onerror = () => reject(new Error("板块个股明细加载失败"));
           document.head.appendChild(script);
@@ -3717,7 +3721,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/rotation_datasets.js?v=20261110164001`;
+          script.src = `data/rotation_datasets.js?v=20261110165913`;
           script.onload = () => resolve(window.ROTATION_DATASETS || {});
           script.onerror = () => reject(new Error("板块轮动榜单加载失败"));
           document.head.appendChild(script);
@@ -3789,29 +3793,24 @@
         ["cross", data.crossFactors || []],
       ];
       const revised = Boolean(data.marketReview);
-      const directional = groups.slice(0, 2).filter(([, items]) => items.length).length;
-      const hasEvidence = groups.some(([, items]) => items.length);
       grid.classList.toggle("is-reviewed", revised);
-      grid.classList.toggle("is-single", revised && directional < 2);
       groups.forEach(([side, items]) => {
         const section = grid.querySelector(`.factor.${side}`);
         const list = section?.querySelector("ul");
         if (!list) return;
-        section.hidden = (side === "cross" || revised) && !items.length;
+        section.hidden = side === "cross" && !items.length;
         list.replaceChildren(...items.map((text) => {
           const item = document.createElement("li");
           item.textContent = text;
           return item;
         }));
+        if (revised && side !== "cross" && !items.length) {
+          const item = document.createElement("li");
+          item.className = "factor-empty";
+          item.textContent = `暂无达到阈值的${side === "bull" ? "多头" : "空头"}证据。`;
+          list.appendChild(item);
+        }
       });
-      let empty = grid.querySelector("[data-review-empty]");
-      if (!empty) {
-        empty = document.createElement("p");
-        empty.dataset.reviewEmpty = "";
-        empty.textContent = "暂无达到展示阈值的收盘信号。";
-        grid.appendChild(empty);
-      }
-      empty.hidden = !revised || hasEvidence;
     };
 
     window.bindMainBlockDetails = function bindMainBlockDetails(data, blocks) {
@@ -4622,7 +4621,8 @@
       const trendPanes = Array.from(panel.querySelectorAll(".trend-pane"));
       const bondEquityData = window.BOND_EQUITY_VALUE_DATA || {};
       const referenceCode = trendData.referenceCode || "883957.TI";
-      const state = { metric: "sentiment", range: "1y", view: "history" };
+      const defaultRange = panel.querySelector("[data-trend-range].is-active")?.dataset.trendRange || "1m";
+      const state = { metric: "sentiment", range: defaultRange, view: "history" };
       const rangeLabels = Object.assign(
         { "1y": "近一年", ytd: "今年以来", "1m": "近一月", "1w": "近一周" },
         Object.fromEntries((trendData.rangeOptions || []).map((item) => [item.value, item.label]))
@@ -5314,9 +5314,12 @@
 
       panel.querySelectorAll("[data-trend-range]").forEach((button) => {
         button.addEventListener("click", () => {
-          state.range = button.dataset.trendRange || "1y";
+          state.range = button.dataset.trendRange || defaultRange;
           state.selectedDate = "";
-          panel.querySelectorAll("[data-trend-range]").forEach((item) => item.classList.toggle("is-active", item === button));
+          panel.querySelectorAll("[data-trend-range]").forEach((item) => {
+            item.classList.toggle("is-active", item === button);
+            item.setAttribute("aria-pressed", String(item === button));
+          });
           render();
         });
       });
