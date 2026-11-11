@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>复盘啦</title>
   <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="assets/workbench.css?v=874c11f32b">
   <style>
     :root {
       --ink: #1d222b;
@@ -2821,6 +2822,9 @@
       </div>
     </header>
 
+    <div class="review-workbench" data-workbench></div>
+    <details class="review-audit" data-review-audit></details>
+
     <div class="bar-title">A股收盘温度指数</div>
 
     <section class="overview" aria-label="A股收盘温度指数">
@@ -3176,6 +3180,25 @@
       </div>
     </section>
 
+    <div class="bar-title">成交前排</div>
+
+    <section class="leaders-section" data-leaders-section aria-label="全市场成交前排">
+      <div class="leaders-head"><div>
+        <h2>全市场成交前排</h2>
+        <div class="leaders-summary" data-leaders-summary></div>
+      </div></div>
+      <div class="leader-controls">
+        <input type="search" data-leaders-search aria-label="搜索成交前排个股" placeholder="代码、名称、行业或概念" autocomplete="off">
+        <select data-leaders-industry aria-label="成交前排行业筛选"></select>
+        <button class="leader-reset" type="button" data-leaders-reset hidden>重置</button>
+        <span class="leader-count" data-leaders-count role="status"></span>
+      </div>
+      <div class="review-table-wrap leaders-scroll" tabindex="0" aria-label="全市场成交前排表格">
+        <table class="review-table leaders-table"><thead><tr></tr></thead><tbody></tbody></table>
+        <div class="leader-empty" data-leaders-empty hidden></div>
+      </div>
+    </section>
+
     <div class="bar-title">板块轮动</div>
 
     <section class="rotation" aria-label="板块轮动展示">
@@ -3299,7 +3322,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/stock_daily_web.js?v=20261110175001`;
+          script.src = `data/stock_daily_web.js?v=20261111091836`;
           script.onload = () => resolve(window.STOCK_DAILY_REPORTS || {});
           script.onerror = () => reject(new Error("个股日报加载失败"));
           document.head.appendChild(script);
@@ -3325,7 +3348,7 @@
         if (!window.STOCK_DAILY_CONTEXTS) {
           if (!manifestPromise) manifestPromise = new Promise((resolve, reject) => {
             const script = document.createElement("script");
-            script.src = `data/stock_daily_contexts_web.js?v=20261110175001`;
+            script.src = `data/stock_daily_contexts_web.js?v=20261111091836`;
             script.onload = () => resolve(window.STOCK_DAILY_CONTEXTS || {});
             script.onerror = () => {
               script.remove();
@@ -3381,6 +3404,14 @@
             select.appendChild(option);
           });
           select.dataset.signature = signature;
+        }
+        select.querySelectorAll("[data-missing-date]").forEach(option => option.remove());
+        if (activeDate && !Array.from(select.options).some(option => option.value === activeDate)) {
+          const option = document.createElement("option");
+          option.value = activeDate;
+          option.textContent = `${activeDate} · 暂无日报`;
+          option.dataset.missingDate = "1";
+          select.prepend(option);
         }
         select.value = activeDate;
       };
@@ -3841,6 +3872,7 @@
       window.renderStockDailyReports = function renderStockDailyReports(preferredDate) {
         const section = document.querySelector(".stock-daily");
         if (!section) return;
+        section.__stockDailyPreferredDate = preferredDate || section.__stockDailyDate;
         if (!window.STOCK_DAILY_REPORTS && window.ensureStockDailyReports) {
           const summaryEl = document.querySelector("[data-stock-daily-summary]");
           const themesEl = document.querySelector("[data-stock-daily-themes]");
@@ -3854,7 +3886,7 @@
               .then(() => {
                 section.__stockDailyReportsLoading = false;
                 if (themesEl) themesEl.textContent = "";
-                window.renderStockDailyReports(preferredDate);
+                window.renderStockDailyReports(section.__stockDailyPreferredDate);
               })
               .catch(() => {
                 section.__stockDailyReportsLoading = false;
@@ -3865,7 +3897,7 @@
         }
         const reports = window.STOCK_DAILY_REPORTS || {};
         const items = reports.items || {};
-        const requestedDate = section.__stockDailyDate || preferredDate;
+        const requestedDate = preferredDate || section.__stockDailyDate;
         const activeDate = firstAvailableDate(reports, requestedDate);
         const report = items[activeDate];
         const summary = report?.summary || {};
@@ -3873,17 +3905,6 @@
         const summaryEl = document.querySelector("[data-stock-daily-summary]");
         const themesEl = document.querySelector("[data-stock-daily-themes]");
 
-        if (!report) {
-          if (summaryEl) summaryEl.textContent = "桌面“日报总结”里暂未找到可展示的 md 文档。";
-          if (themesEl) {
-            themesEl.textContent = "";
-            themesEl.appendChild(make("div", "stock-daily-empty", "暂无个股日报数据。"));
-          }
-          return;
-        }
-
-        section.__stockDailyDate = activeDate;
-        fillDateSelect(select, reports, activeDate);
         if (select && section.dataset.stockDailyBound !== "1") {
           select.addEventListener("change", () => {
             section.__stockDailyDate = select.value;
@@ -3892,6 +3913,20 @@
           });
           section.dataset.stockDailyBound = "1";
         }
+        if (!report) {
+          section.__stockDailyDate = activeDate;
+          fillDateSelect(select, reports, activeDate);
+          if (summaryEl) summaryEl.textContent = `${activeDate || "该日"} 暂无个股日报，待补充。`;
+          if (themesEl) {
+            themesEl.textContent = "";
+            themesEl.appendChild(make("div", "stock-daily-empty", "暂无个股日报数据。"));
+          }
+          window.dispatchEvent(new Event("stock-daily-ready"));
+          return;
+        }
+
+        section.__stockDailyDate = activeDate;
+        fillDateSelect(select, reports, activeDate);
 
         const docs = report.documents || [];
         if (summaryEl) {
@@ -3901,6 +3936,7 @@
         }
 
         renderCombinedDaily(themesEl, report);
+        window.dispatchEvent(new Event("stock-daily-ready"));
       };
     })();
   </script>
@@ -3914,7 +3950,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/rotation_constituents.js?v=20261110175001`;
+          script.src = `data/rotation_constituents.js?v=20261111091836`;
           script.onload = () => resolve(window.ROTATION_CONSTITUENTS || {});
           script.onerror = () => reject(new Error("板块个股明细加载失败"));
           document.head.appendChild(script);
@@ -3930,7 +3966,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/rotation_datasets.js?v=20261110175001`;
+          script.src = `data/rotation_datasets.js?v=20261111091836`;
           script.onload = () => resolve(window.ROTATION_DATASETS || {});
           script.onerror = () => reject(new Error("板块轮动榜单加载失败"));
           document.head.appendChild(script);
@@ -5628,6 +5664,9 @@
       render();
     })();
 
+  </script>
+  <script src="assets/workbench.js?v=f515863ef4"></script>
+  <script>
     (function setupHistoryViewer() {
       const latestData = window.MARKET_SENTIMENT_DATA;
       const clamp = (value) => Math.max(0, Math.min(100, Number(value) || 0));
@@ -6150,12 +6189,13 @@
         if (window.renderStockDailyReports) window.renderStockDailyReports(data.stockDailyDate || data.tradeDate);
         setText(".observe-box", data.observation);
         setText(".note", data.note);
+        window.renderReviewWorkbench?.(data);
       }
 
       function getHistoryItems() {
         const source = Array.isArray(window.MARKET_SENTIMENT_HISTORY) ? window.MARKET_SENTIMENT_HISTORY : [];
         const byDate = new Map();
-        [latestData, ...source].forEach((item) => {
+        [...source, latestData].forEach((item) => {
           if (item && item.tradeDate) byDate.set(item.tradeDate, item);
         });
         return Array.from(byDate.values()).sort((a, b) => String(b.tradeDate).localeCompare(String(a.tradeDate)));
@@ -6203,19 +6243,28 @@
         });
       }
 
+      let historyReturnFocus, historyBodyOverflow;
       function openHistory() {
         renderHistoryList();
         const overlay = document.querySelector("[data-history-overlay]");
         if (!overlay) return;
+        historyReturnFocus = document.activeElement;
+        historyBodyOverflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
+        document.querySelector(".page").inert = true;
         overlay.classList.add("open");
         overlay.setAttribute("aria-hidden", "false");
+        overlay.querySelector("[data-history-close]")?.focus();
       }
 
       function closeHistory() {
         const overlay = document.querySelector("[data-history-overlay]");
-        if (!overlay) return;
+        if (!overlay?.classList.contains("open")) return;
         overlay.classList.remove("open");
         overlay.setAttribute("aria-hidden", "true");
+        document.querySelector(".page").inert = false;
+        document.body.style.overflow = historyBodyOverflow || "";
+        historyReturnFocus?.focus({ preventScroll: true });
       }
 
       window.renderMarketSentiment = renderDashboard;
@@ -6227,6 +6276,13 @@
         if (event.target === event.currentTarget) closeHistory();
       });
       document.addEventListener("keydown", (event) => {
+        const overlay = document.querySelector("[data-history-overlay].open");
+        if (overlay && event.key === "Tab") {
+          const buttons = Array.from(overlay.querySelectorAll("button"));
+          const first = buttons[0], last = buttons.at(-1);
+          if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+          else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+        }
         if (event.key === "Escape") closeHistory();
       });
     })();
