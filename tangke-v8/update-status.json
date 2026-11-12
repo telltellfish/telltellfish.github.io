@@ -1,10 +1,11 @@
 {
   "status": "checked",
-  "checkedAt": "2026-11-12T14:37:28+08:00",
+  "checkedAt": "2026-11-12T14:54:38+08:00",
   "dataAsOf": "2026-11-11",
   "requestedDate": "2026-11-11",
   "message": "数据和计算已验证",
   "defaultStrategy": "v8_cash_pilot30",
+  "defaultRange": "3",
   "pilotWeight": 0.3,
   "maxWeight": 1,
   "allowBorrowing": false,
@@ -12,8 +13,8 @@
   "actualExposure": 0.2996531680141149,
   "pendingOrder": true,
   "pendingExecutionDate": "2026-11-12",
-  "buildId": "0e6defc1f80e84b22234",
-  "htmlSHA256": "27be964cc763ee3f82fb32fd55b6fd83dd5806fe662d48db686b4dd1c2d468b9",
+  "buildId": "cc32518ea108381b333d",
+  "htmlSHA256": "e0a069d6e5be4ee01240e86cc16d0550353c2d4ccbb691a92f0026e17e65a3e8",
   "sources": {
     "market": {
       "lastDate": "2026-11-11",
