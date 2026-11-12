@@ -28,6 +28,20 @@ export function migrateDailyMonitoring(positions){
  }
  return {positions:next,count};
 }
+// A holding reopened after being sold has a separate cost basis. The marker
+// is assigned by the pool configuration and survives manual cost edits.
+export function applyHoldingCycles(positions,pool){
+ const next={...positions};let count=0;
+ for(const h of pool){
+  const {code,positionCycle,monitorStartDate:date}=h,p=next[code];
+  if(h.poolType==='watch'||h.monitorMode==='long-only'||h.assetType==='index'||typeof positionCycle!=='string'||!positionCycle||!validDate(date))continue;
+  if(p?.positionCycle===positionCycle&&p.date===date&&!p.costImportVersion)continue;
+  const etf=h.assetType==='etf';
+  next[code]={id:'holding-cycle:'+positionCycle,positionCycle,date,costDate:date,pendingCost:true,basis:etf?'etf-adjusted':h.monitorMode==='price-only'?'reference':'factor',monitorMode:h.monitorMode||'signals',assetType:h.assetType||'stock',priceDecimals:h.priceDecimals||(etf?3:2),origin:'current-cost'};
+  count++;
+ }
+ return {positions:next,count};
+}
 export function applyAssetMonitoring(positions,pool){
  const next={...positions};let count=0;
  for(const h of pool){
@@ -42,7 +56,7 @@ export function applyCostBaseline(positions,baseline,exact){
  if(!baseline?.version||!validDate(baseline.date))return {positions:next,count};
  for(const [code,price] of Object.entries(baseline.costs||{})){
   const p=next[code],meta=baseline.costMeta?.[code]||{},costDate=meta.costDate||baseline.date,date=meta.monitorStartDate||baseline.date,reference=meta.costBasis==='reference',etf=meta.costBasis==='etf-adjusted',factor=exact[code]?.factorHistory?.[costDate],version=meta.version||baseline.version,costScope=baseline.costScope,costLabel=meta.costLabel||baseline.costLabel||meta.account||baseline.account;
-  if(!p||(!p.pendingCost&&!p.costImportVersion)||!valid(price)||!validDate(date)||!validDate(costDate)||!reference&&!etf&&!valid(factor))continue;
+  if(!p||p.positionCycle||(!p.pendingCost&&!p.costImportVersion)||!valid(price)||!validDate(date)||!validDate(costDate)||!reference&&!etf&&!valid(factor))continue;
   if(p.costImportVersion===version){if(p.costScope!==costScope||p.costLabel!==costLabel){next[code]={...p,costScope,costLabel};count++}continue;}
   next[code]={...p,id:version+':'+code,date,price,...(!reference&&!etf?{factor}:{}),cost:price,costDate,basis:etf?'etf-adjusted':reference?'reference':'factor',origin:'current-cost',pendingCost:false,account:meta.account||baseline.account,costScope,costLabel,costSource:meta.source||baseline.source,costImportVersion:version,...(meta.monitorMode?{monitorMode:meta.monitorMode}:{}),...(meta.costDecimals?{costDecimals:meta.costDecimals}:{})};
   delete next[code].closedAt;delete next[code].frozenCost;count++;

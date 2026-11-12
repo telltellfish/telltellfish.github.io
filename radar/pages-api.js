@@ -155,23 +155,27 @@ export async function createIndexedStore(indexedDBImpl,name){
  };
 }
 
-export function createPagesApi({getBundle,refreshBundle,fetchJournal,store,now=()=>new Date()}){
+export function createPagesApi({getBundle,refreshBundle,fetchJournal,store,publicAccess=false,now=()=>new Date()}){
+ const isPublic=()=>publicAccess||getBundle().pool.storage==='pages-public';
  const stateRecord=records=>records.state||{revision:0,state:{positions:{},events:[],signalStates:{}}};
  const today=()=>new Date(now().getTime()+8*3600000).toISOString().slice(0,10);
  async function stateGet(){
   return store.mutate(records=>{
    const previous=stateRecord(records),bundle=getBundle(),merged=mergePageStates({...bundle.state,journalDates:datesOf(bundle.journalDates||[],bundle.state.journalDates||[])},previous.state);
+   if(isPublic())merged.positions={};
    const changed=JSON.stringify(merged)!==JSON.stringify(previous.state),revision=previous.revision+Number(changed);
    records.state={state:merged,revision};
    return {exists:true,revision:'pages:'+revision,state:merged,journalDates:merged.journalDates};
   });
  }
  async function statePost(payload){
-  if(!payload?.state||typeof payload.state.positions!=='object'||!Array.isArray(payload.state.events)||payload.state.events.some(e=>typeof e?.id!=='string'))return response({error:'记录格式错误'},400);
+  if(!payload?.state?.positions||typeof payload.state.positions!=='object'||Array.isArray(payload.state.positions)||!Array.isArray(payload.state.events)||payload.state.events.some(e=>typeof e?.id!=='string'))return response({error:'记录格式错误'},400);
+  if(isPublic()&&Object.keys(payload.state.positions).length)return response({error:'公开页面不保存持仓成本。'},403);
   return store.mutate(records=>{
    const previous=stateRecord(records);
    if(payload.revision!=='pages:'+previous.revision)return {error:'另一页面已更新本设备记录，请刷新后重试。',status:409};
    const merged=mergePageStates(previous.state,payload.state),sequence=Math.max(merged.journalSequence||0,previous.state.journalSequence||0)+1;
+   if(isPublic())merged.positions={};
    const days=datesOf(merged.journalDates||[],merged.events.map(eventDay),Object.keys(merged.pendingJournals||{}));
    for(const day of days){
     const key='journal:'+day,entries=merged.events.filter(e=>eventDay(e)===day),details=merged.pendingJournals?.[day]||{};
@@ -205,7 +209,7 @@ export function createPagesApi({getBundle,refreshBundle,fetchJournal,store,now=(
    const url=new URL(path,'https://radar.invalid');method=method.toUpperCase();
    if(url.pathname==='/api/state')return method==='GET'?response(await stateGet()):method==='POST'?await statePost(typeof body==='string'?JSON.parse(body):body):response({error:'不支持此操作'},405);
    if(method!=='GET')return response({error:'静态页面不支持此操作'},405);
-   if(url.pathname==='/api/pool')return response({...getBundle().pool,storage:'pages'});
+   if(url.pathname==='/api/pool')return response({...getBundle().pool,storage:isPublic()?'pages-public':'pages'});
    if(url.pathname==='/api/quotes'){await refreshBundle();return response(getBundle().feed);}
    if(url.pathname==='/api/journal')return await journalGet(url.searchParams.get('date'));
    if(url.pathname==='/api/history'){
@@ -285,11 +289,12 @@ export async function installPagesAdapter({win=window,document=win.document,nati
  const changeButton=document.createElement('button');changeButton.type='button';changeButton.textContent='更换访问码';changeButton.style.cssText=exportButton.style.cssText;
  corner.append(status,line,exportButton);if(!publicAccess)corner.append(changeButton);document.body.append(corner);
  const showStatus=()=>{status.textContent='行情截至 '+String(bundle.feed.receivedAt).replace('T',' ').replace(/\+08:00$/,'')+' · 记录保存在本设备';};showStatus();
+ const poolKey=value=>JSON.stringify(value.pool.holdings.map(h=>[h.code,h.poolType,h.monitorMode]));
  const refreshBundle=async()=>{
-  try{const next=validateBundle(await fetchSnapshot('latest.enc',keyBytes));if(Date.parse(next.publishedAt)<Date.parse(bundle.publishedAt))throw Error('收到较旧的同步快照，已保留当前数据。');const oldCodes=bundle.pool.holdings.map(h=>h.code).join(),newCodes=next.pool.holdings.map(h=>h.code).join();bundle=next;showStatus();if(oldCodes!==newCodes)status.textContent+='；标的池已更新，请刷新网页';}
+  try{const next=validateBundle(await fetchSnapshot('latest.enc',keyBytes));if(Date.parse(next.publishedAt)<Date.parse(bundle.publishedAt))throw Error('收到较旧的同步快照，已保留当前数据。');const poolChanged=poolKey(bundle)!==poolKey(next);bundle=next;showStatus();if(poolChanged)status.textContent+='；标的池已更新，请刷新网页';}
   catch(error){status.textContent='同步失败 · 保留截至 '+bundle.feed.receivedAt+' 的行情，暂停新判断';throw Error(error.message||'同步失败，当前保留上次行情并暂停判断。');}
  };
- const api=createPagesApi({getBundle:()=>bundle,refreshBundle,fetchJournal:day=>fetchSnapshot('journals/'+day+'.enc',keyBytes),store});
+ const api=createPagesApi({getBundle:()=>bundle,refreshBundle,fetchJournal:day=>fetchSnapshot('journals/'+day+'.enc',keyBytes),store,publicAccess});
  const paths=new Set(['/api/pool','/api/quotes','/api/state','/api/journal','/api/history']);
  win.fetch=async(input,options={})=>{
   const url=new URL(typeof input==='string'||input instanceof URL?input:input.url,win.location.href);
