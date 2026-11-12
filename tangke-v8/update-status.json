@@ -1,24 +1,24 @@
 {
-  "status": "pending",
-  "checkedAt": "2026-11-12T16:31:20+08:00",
-  "dataAsOf": "2026-11-11",
+  "status": "checked",
+  "checkedAt": "2026-11-12T16:56:05+08:00",
+  "dataAsOf": "2026-11-12",
   "requestedDate": "2026-11-12",
-  "message": "更新待补，保留上次有效结果：等待中证全指 2026-11-12 完整收盘数据",
+  "message": "数据和计算已验证",
   "defaultStrategy": "v8_cash_pilot30",
   "defaultRange": "3",
   "pilotWeight": 0.3,
   "maxWeight": 1,
   "allowBorrowing": false,
   "latestTarget": 1.0,
-  "actualExposure": 0.2996531680141149,
-  "pendingOrder": true,
-  "pendingExecutionDate": "2026-11-12",
-  "buildId": "cc32518ea108381b333d",
-  "htmlSHA256": "e0a069d6e5be4ee01240e86cc16d0550353c2d4ccbb691a92f0026e17e65a3e8",
+  "actualExposure": 1.0,
+  "pendingOrder": false,
+  "pendingExecutionDate": null,
+  "buildId": "332e65666d1451d06c88",
+  "htmlSHA256": "12347728287f40bb5f9e563498d2c2e1f1de663d1998b605f07c75d93deb868b",
   "sources": {
     "market": {
-      "lastDate": "2026-11-11",
-      "sourceUrl": "https://www.csindex.com.cn/csindex-home/perf/index-perf?indexCode=000985&startDate=20261028&endDate=20261111"
+      "lastDate": "2026-11-12",
+      "sourceUrl": "https://quantapi.51ifind.com/api/v1/history_data"
     },
     "fx": {
       "lastDate": "2026-11-06",
