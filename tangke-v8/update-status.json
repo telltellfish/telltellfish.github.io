@@ -1,0 +1,35 @@
+{
+  "status": "checked",
+  "checkedAt": "2026-11-12T14:21:09+08:00",
+  "dataAsOf": "2026-11-11",
+  "requestedDate": "2026-11-11",
+  "message": "数据和计算已验证",
+  "defaultStrategy": "v8_cash",
+  "pilotWeight": 0.5,
+  "maxWeight": 1,
+  "allowBorrowing": false,
+  "latestTarget": 1.0,
+  "actualExposure": 0.4995869683476719,
+  "pendingOrder": true,
+  "pendingExecutionDate": "2026-11-12",
+  "buildId": "1cc5b4e96da6a0bba909",
+  "htmlSHA256": "a8f3ceb1c1a0522f9477a8627461200c8d4e07c87da38a13ad1319d484e6f3f4",
+  "sources": {
+    "market": {
+      "lastDate": "2026-11-11",
+      "sourceUrl": "https://www.csindex.com.cn/csindex-home/perf/index-perf?indexCode=000985&startDate=20261028&endDate=20261111"
+    },
+    "fx": {
+      "lastDate": "2026-11-06",
+      "sourceUrl": "https://www.federalreserve.gov/releases/h10/hist/dat00_ch.htm"
+    },
+    "vix": {
+      "lastDate": "2026-11-11",
+      "sourceUrl": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv"
+    },
+    "dr007": {
+      "lastDate": "2026-11-11",
+      "sourceUrl": "https://quantapi.51ifind.com/api/v1/edb_service"
+    }
+  }
+}
