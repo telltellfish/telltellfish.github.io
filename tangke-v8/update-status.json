@@ -1,9 +1,9 @@
 {
-  "status": "checked",
-  "checkedAt": "2026-11-12T14:54:38+08:00",
+  "status": "pending",
+  "checkedAt": "2026-11-12T16:31:20+08:00",
   "dataAsOf": "2026-11-11",
-  "requestedDate": "2026-11-11",
-  "message": "数据和计算已验证",
+  "requestedDate": "2026-11-12",
+  "message": "更新待补，保留上次有效结果：等待中证全指 2026-11-12 完整收盘数据",
   "defaultStrategy": "v8_cash_pilot30",
   "defaultRange": "3",
   "pilotWeight": 0.3,
