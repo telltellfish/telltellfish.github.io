@@ -14,6 +14,10 @@ export const S8_ENABLED_AT='2026-09-22T14:01:00+08:00';
 export function normalizeShortVersion(value){return value==='no-profit'?'no-profit':'classic'}
 export function shortVersionLabel(value){return normalizeShortVersion(value)==='no-profit'?'新版':'旧版'}
 export function eventShortVersion(event){return normalizeShortVersion(event?.shortVersion)}
+export const NEW_LONG_RULE_DAY='2026-11-13';
+export function usesIndependentLong(assetType,day){return assetType!=='etf'&&assetType!=='index'&&typeof day==='string'&&day>=NEW_LONG_RULE_DAY}
+export function eventLongVersion(event){return normalizeShortVersion(event?.longVersion)}
+export function selectedLongVersion(version,assetType,day){return usesIndependentLong(assetType,day)?normalizeShortVersion(version):'classic'}
 export function dailySignalId(type,code,date=cnDate()){return type+':'+code+':'+date}
 export function signalDate(time){const stamp=Date.parse(time);return Number.isFinite(stamp)?cnDate(new Date(stamp)):null}
 export function hasDailySignal(events,type,code,date=cnDate()){
@@ -64,7 +68,7 @@ export function applyCostBaseline(positions,baseline,exact){
  return {positions:next,count};
 }
 function aligned(exact,dates,n){const calendar=exact.calendar?.filter(d=>d<=exact.previousTradeDate);return Array.isArray(dates)&&calendar?.length>=n&&dates.length>=n&&dates.slice(-n).every((d,i)=>d===calendar.slice(-n)[i])}
-export function replayLong(quote,exact,intraday){
+export function replayLong(quote,exact,intraday,shortVersion='classic'){
  if(!quote||!intraday||intraday.source!=='iFinD 正式 API'||intraday.date!==exact?.basisDate||intraday.date!==quote.time?.slice(0,10)||!Array.isArray(intraday.bars))return null;
  const expected=[];for(let m=570;m<=900;m++)if(m<=690||m>=781)expected.push(String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0'));
  let high=0,amount=0,previous=null;
@@ -73,18 +77,18 @@ export function replayLong(quote,exact,intraday){
   // A first-of-day claim requires an unbroken, valid prefix from the opening auction.
   if(minute!==expected[i]||b.time.slice(0,10)!==intraday.date||!valid(b.high)||!valid(b.close)||b.high<b.close||!Number.isFinite(b.amount)||b.amount<0||!valid(yesterdayAmount)||Date.parse(b.time)>Date.parse(quote.time))return null;
   high=Math.max(high,b.high);amount+=b.amount;
-  const q={...quote,price:b.close,high,amount,time:b.time},e={...exact,date:intraday.date,minute,currentSameMinuteAmount:amount,yesterdaySameMinuteAmount:yesterdayAmount},c=evaluate(q,null,e,new Date(b.time));
+  const q={...quote,price:b.close,high,amount,time:b.time},e={...exact,date:intraday.date,minute,currentSameMinuteAmount:amount,yesterdaySameMinuteAmount:yesterdayAmount},c=evaluate(q,null,e,new Date(b.time),shortVersion);
   if(c.long.some(r=>r.value===null))return null;
-  if(c.longHit)return {firstSatisfiedAt:b.time,price:b.close,open:q.open,high,limitUp:q.limitUp,currentAmount:amount,yesterdayAmount,previousTradeDate:exact.previousTradeDate,previousClose:exact.closes.at(-1),previousMA20:avg(exact.closes.slice(-20)),dynamicMA20:(exact.closes.slice(-19).reduce((a,v)=>a+v,0)+b.close)/20,industryName:exact.industryName,industryRank:exact.industryRank,assetType:c.assetType,conditionCount:c.long.length,source:intraday.source,resolution:'1m',previous};
+  if(c.longHit)return {firstSatisfiedAt:b.time,price:b.close,open:q.open,high,limitUp:q.limitUp,currentAmount:amount,yesterdayAmount,previousTradeDate:exact.previousTradeDate,previousClose:exact.closes.at(-1),previousMA20:avg(exact.closes.slice(-20)),dynamicMA20:(exact.closes.slice(-19).reduce((a,v)=>a+v,0)+b.close)/20,industryName:exact.industryName,industryRank:exact.industryRank,assetType:c.assetType,...(usesIndependentLong(c.assetType,intraday.date)?{longVersion:c.longVersion}:{}),conditionCount:c.long.length,source:intraday.source,resolution:'1m',previous};
   previous={time:b.time,price:b.close,failed:c.long.filter(r=>r.value===false).map(r=>r.title),currentAmount:amount,yesterdayAmount};
  }
  return null;
 }
 export function mergeLongReplay(events,holding,replay){
  if(!replay)return {events,changed:false};
- const id=dailySignalId('long',holding.code,replay.firstSatisfiedAt.slice(0,10)),old=events.find(e=>e.id===id);
+ const longVersion=eventLongVersion(replay),id=dailySignalId(longVersion==='no-profit'?'long:no-profit':'long',holding.code,replay.firstSatisfiedAt.slice(0,10)),old=events.find(e=>e.id===id);
  if(old?.replay&&JSON.stringify(old.replay)===JSON.stringify(replay))return {events,changed:false};
- const event=old?{...old,replay}:{id,type:'long',code:holding.code,name:holding.name,time:replay.firstSatisfiedAt,price:replay.price,reason:(replay.conditionCount||6)+'项多信号条件全部满足',replayOnly:true,replay};
+ const event=old?{...old,replay}:{id,type:'long',code:holding.code,name:holding.name,time:replay.firstSatisfiedAt,price:replay.price,reason:(replay.conditionCount||6)+'项多信号条件全部满足',replayOnly:true,replay,...(usesIndependentLong(replay.assetType,replay.firstSatisfiedAt.slice(0,10))?{longVersion,assetType:replay.assetType||'stock'}:{})};
  return {events:old?events.map(e=>e.id===id?event:e):[event,...events],changed:true};
 }
 export function prepareExact(raw={},position=null){
@@ -113,6 +117,7 @@ export function evaluate(q={},position=null,exact={},now=new Date(),shortVersion
  if(q.monitorMode==='price-only'||position?.monitorMode==='price-only'||exact.monitorMode==='price-only')return {shortVersion,long:[],short:[],longHit:false,hits:[],cost:adjustedCost(position,exact,cnDate(now)),eligible:null,isFresh:fresh(q,now)&&tradingWindow(now),profitable:null,missing:false,positionPending:!position||!!position.pendingCost,priceOnly:true};
  const declaredType=q.assetType||position?.assetType||exact.assetType,assetType=['etf','index'].includes(declaredType)?declaredType:'stock',etf=assetType==='etf',index=assetType==='index',longOnly=index||[q,position,exact].some(x=>x?.monitorMode==='long-only'),halfTick=etf?0.0005:0.005;
  const P=q.price,O=q.open,H=q.high,C=q.prevClose,A=q.amount,today=cnDate(now),isFresh=fresh(q,now)&&tradingWindow(now),minute=(q.time||'').slice(11,16);
+ const quoteDay=q.time?.slice(0,10),longVersion=selectedLongVersion(shortVersion,assetType,validDate(quoteDay)?quoteDay:today);
  const cost=adjustedCost(position,exact,today),eligible=!position||position.pendingCost||!validDate(position.date)?null:position.date>=today?false:true,profitable=test([P,cost],()=>gt(P,cost*1.05));
  // Price-index levels are unadjusted. Never accept that basis for a stock/ETF,
  // or infer index rules from a conflicting history record.
@@ -126,9 +131,9 @@ export function evaluate(q={},position=null,exact={},now=new Date(),shortVersion
  rule('L2','现价突破动态 MA20','（前 19 日收盘合计＋现价）÷ 20',test([P,dma20],()=>gt(P,dma20))),
  rule('L3','成交额超过昨日同期','比较同一已完成分钟的累计成交额',intraday?test([exact.currentSameMinuteAmount,exact.yesterdaySameMinuteAmount],()=>gt(exact.currentSameMinuteAmount,exact.yesterdaySameMinuteAmount)):null),
  rule('L4','回落幅度小于实体一半','（最高价−现价）×2 < 现价−开盘价',test([H,P,O],()=>lt((H-P)*2,P-O))),
- ...(!etf&&!index?[rule('L5','属于昨日强势行业 Top 10','同花顺二级行业：5 日排名×0.385＋15 日排名×0.615',exact.rankAsOf===exact.previousTradeDate&&exact.previousTradeDate&&Number.isInteger(exact.industryRank)?exact.industryRank>=1&&exact.industryRank<=10:null)]:[])
+ ...(!etf&&!index&&longVersion==='classic'?[rule('L5','属于昨日强势行业 Top 10','同花顺二级行业：5 日排名×0.385＋15 日排名×0.615',exact.rankAsOf===exact.previousTradeDate&&exact.previousTradeDate&&Number.isInteger(exact.industryRank)?exact.industryRank>=1&&exact.industryRank<=10:null)]:[])
  ];
- if(longOnly)return {shortVersion,long,short:[],longHit:isFresh&&long.every(x=>x.value===true),hits:[],cost:null,eligible:null,isFresh,profitable:null,missing:long.some(x=>x.value===null),positionPending:false,longOnly:true,assetType};
+ if(longOnly)return {shortVersion,longVersion,long,short:[],longHit:isFresh&&long.every(x=>x.value===true),hits:[],cost:null,eligible:null,isFresh,profitable:null,missing:long.some(x=>x.value===null),positionPending:false,longOnly:true,assetType};
  const shortRule=(id,title,desc,cond,profit=true)=>rule(id,title,shortVersion==='no-profit'?desc.replace(/^盈利 >5%；/,''):desc,all(eligible,profit&&shortVersion==='classic'?profitable:true,cond));
  let ma18=null;const h18=exact.ma18Basis==='ths-qfq'&&exact.basisDate===today&&Array.isArray(exact.ma18Closes)&&exact.ma18Closes.length===exact.ma18Dates?.length&&exact.ma18Closes.every(valid)&&aligned(exact,exact.ma18Dates,19)?exact.ma18Closes:null;
  if(h18&&valid(P)){const prev=avg(h18.slice(-18)),before=avg(h18.slice(-19,-1)),dynamic=(h18.slice(-17).reduce((a,b)=>a+b,0)+P)/18;ma18=gt(prev,before)&&lt(dynamic,prev)}
@@ -152,5 +157,5 @@ export function evaluate(q={},position=null,exact={},now=new Date(),shortVersion
  shortRule('S9','14:30 跌破 MA5','盈利 >5%；昨日收盘 > MA5；14:30 现价 < 动态 MA5',at1430?test([P,dma5,closes?.at(-1),ma5],()=>lt(P,dma5)&&gt(closes.at(-1),ma5)):false)
  ];
  const longHit=isFresh&&long.every(x=>x.value===true),hits=isFresh&&eligible===true?short.filter(x=>x.value===true):[];
- return {shortVersion,long,short,longHit,hits,cost,eligible,isFresh,profitable,s8,assetType,missing:long.some(x=>x.value===null)||short.some(x=>!x.disabled&&x.value===null),positionPending:!position||!!position.pendingCost};
+ return {shortVersion,longVersion,long,short,longHit,hits,cost,eligible,isFresh,profitable,s8,assetType,missing:long.some(x=>x.value===null)||short.some(x=>!x.disabled&&x.value===null),positionPending:!position||!!position.pendingCost};
 }

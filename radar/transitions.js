@@ -1,4 +1,4 @@
-import {cnDate,fresh,tradingWindow,evaluate,prepareExact,normalizeShortVersion,eventShortVersion} from './engine.js';
+import {cnDate,fresh,tradingWindow,evaluate,prepareExact,normalizeShortVersion,eventShortVersion,eventLongVersion,selectedLongVersion,usesIndependentLong} from './engine.js?v=a9eeebaa61d7';
 const positive=x=>Number.isFinite(x)&&x>0;
 export function directionValue(check,type){
  if(!check?.isFresh||check.priceOnly)return null;
@@ -43,12 +43,14 @@ export function summarizeClosingSignals(samples=[],day=cnDate(),shortVersion='cl
  const last=matching.at(-1),check=last?.check;
  const complete=rows.length===expected.length&&matching.length===expected.length&&matching.every((s,i)=>Number.isFinite(Date.parse(s.quote.time))&&s.quote.time.slice(11,16)===expected[i]);
  const applicable=!!check&&!check.priceOnly&&!check.longOnly;
+ const longVersion=selectedLongVersion(shortVersion,check?.assetType,day);
  const direction=type=>{
-  const value=complete?directionValue(check,type):null;
+  const aligned=type!=='long'||matching.every(s=>eventLongVersion(s.check)===longVersion);
+  const value=complete&&aligned?directionValue(check,type):null;
   const rules=value===true?(check[type]||[]).filter(r=>!r.disabled&&r.value===true):[];
   return {value,ruleIds:rules.map(r=>r.id),titles:rules.map(r=>r.title)};
  };
- return {shortVersion,time:last?.quote.time||null,price:Number.isFinite(last?.quote.price)?last.quote.price:null,complete,long:direction('long'),short:{...direction('short'),applicable,...(applicable&&check.eligible===false?{reason:'t-plus-one'}:{})}};
+ return {shortVersion,...(check&&usesIndependentLong(check.assetType,day)?{longVersion}:{}),time:last?.quote.time||null,price:Number.isFinite(last?.quote.price)?last.quote.price:null,complete,long:direction('long'),short:{...direction('short'),applicable,...(applicable&&check.eligible===false?{reason:'t-plus-one'}:{})}};
 }
 export function minuteSamples(quote,raw,intraday,position,shortVersion='classic'){
  shortVersion=normalizeShortVersion(shortVersion);
@@ -74,10 +76,17 @@ export function advanceSignal(old,value,time){
  else if(!value){if(previous.phase==='active')transition='invalidated';state.phase='inactive';}
  return {state,transition};
 }
-export function transitionId(type,code,time,transition,shortVersion='classic'){return 'minute:'+type+':'+(type==='short'&&normalizeShortVersion(shortVersion)==='no-profit'?'no-profit:':'')+code+':'+time.slice(0,16)+':'+(transition==='invalidated'?'off':'on')}
+export function signalStateKey(type,version='classic',assetType='stock',day=cnDate()){
+ if(type==='short')return normalizeShortVersion(version)==='no-profit'?'shortNoProfit':'short';
+ return selectedLongVersion(version,assetType,day)==='no-profit'?'longNoProfit':'long';
+}
+export function transitionId(type,code,time,transition,version='classic',assetType='stock'){
+ const key=signalStateKey(type,version,assetType,time.slice(0,10));
+ return 'minute:'+type+':'+(key.endsWith('NoProfit')?'no-profit:':'')+code+':'+time.slice(0,16)+':'+(transition==='invalidated'?'off':'on');
+}
 export function shortSnapshot(sample){return structuredClone({version:1,shortVersion:normalizeShortVersion(sample.check.shortVersion),quote:{time:sample.quote.time,price:sample.quote.price,open:sample.quote.open,high:sample.quote.high,prevClose:sample.quote.prevClose,amount:sample.quote.amount},check:{shortVersion:normalizeShortVersion(sample.check.shortVersion),cost:sample.check.cost,short:sample.check.short,s8:sample.check.s8}})}
 function snapshot(sample){const q=sample.quote,e=sample.exact;return {time:q.time,price:q.price,open:q.open,high:q.high,limitUp:q.limitUp,currentAmount:e.currentSameMinuteAmount,yesterdayAmount:e.yesterdaySameMinuteAmount,previousTradeDate:e.previousTradeDate,previousClose:e.closes?.at(-1),previousMA20:e.closes?.slice(-20).reduce((a,v)=>a+v,0)/20,dynamicMA20:((e.closes?.slice(-19).reduce((a,v)=>a+v,0)||0)+q.price)/20,industryName:e.industryName,industryRank:e.industryRank,assetType:sample.check.assetType,conditionCount:sample.check.long.length,conditions:sample.check.long.map(r=>({id:r.id,value:r.value}))}}
-function sameSignalVersion(a,b){return a.type===b.type&&(a.type!=='short'||eventShortVersion(a)===eventShortVersion(b))}
+function sameSignalVersion(a,b){return a.type===b.type&&(a.type==='short'?eventShortVersion(a)===eventShortVersion(b):a.type==='long'?eventLongVersion(a)===eventLongVersion(b):true)}
 export function mergeHistoricalTransitions(existing,historical=[]){
  const events=existing.map(e=>({...e}));
  for(const event of historical)if(!events.some(e=>e.id===event.id))events.push(structuredClone(event));
@@ -101,10 +110,16 @@ export function reconcileSignals(input,holding,samples,now=new Date(),liveQuote=
  samples=samples.filter(s=>normalizeShortVersion(s.check?.shortVersion)===shortVersion);
  let events=input.events.map(e=>({...e})),states=structuredClone(input.signalStates||{});const notifications=[];
  if(!samples.length||holding.monitorMode==='price-only'||position?.monitorMode==='price-only')return {events,signalStates:states,notifications};
- const code=holding.code,day=samples.at(-1).quote.time.slice(0,10);states[code]??={};
+ const code=holding.code,day=samples.at(-1).quote.time.slice(0,10),assetType=samples.at(-1).check.assetType||samples.at(-1).quote.assetType||holding.assetType||position?.assetType||'stock';states[code]??={};
  const longOnly=holding.monitorMode==='long-only'||holding.poolType==='watch'||position?.monitorMode==='long-only';
- for(const type of shortVersion==='no-profit'?(longOnly?[]:['short']):longOnly?['long']:['long','short']){
-  const stateKey=type==='short'&&shortVersion==='no-profit'?'shortNoProfit':type;
+ const splitLong=usesIndependentLong(assetType,day),longVersion=selectedLongVersion(shortVersion,assetType,day);
+ const types=[...(shortVersion==='classic'||splitLong?['long']:[]),...(!longOnly?['short']:[])];
+ for(const type of types){
+  if(type==='long'&&samples.some(s=>eventLongVersion(s.check)!==longVersion))continue;
+  const stateKey=signalStateKey(type,shortVersion,assetType,day);
+  const versioned=type==='short'?{shortVersion}:splitLong?{longVersion,assetType}:{assetType};
+  const eventVersion=type==='short'?shortVersion:longVersion;
+  const matchesVersion=e=>(type==='short'?eventShortVersion(e):eventLongVersion(e))===eventVersion;
   const previous=states[code][stateKey];
   if(previous?.tradeDate>day||previous?.tradeDate===day&&Date.parse(previous.lastDecidedAt)>Date.parse(samples.at(-1).quote.time))continue;
   // Confirmed minutes are immutable; an unknown minute can be filled later.
@@ -115,17 +130,17 @@ export function reconcileSignals(input,holding,samples,now=new Date(),liveQuote=
    if(!(minute in confirmed)&&rawValue!==null)confirmed[minute]=rawValue;
    const value=minute in confirmed?confirmed[minute]:null,result=advanceSignal(state,value,time);state=result.state;
    if(!result.transition)continue;
-   const transition=result.transition,id=transitionId(type,code,time,transition,shortVersion),off=transition==='invalidated',rules=type==='long'?sample.check.long:sample.check.short.filter(r=>!r.disabled);
+   const transition=result.transition,id=transitionId(type,code,time,transition,shortVersion,assetType),off=transition==='invalidated',rules=type==='long'?sample.check.long:sample.check.short.filter(r=>!r.disabled);
    canonicalIds.add(id);
    const reason=off?(type==='long'?rules.filter(r=>r.value===false).map(r=>r.title).join('、'):'已不满足任何已启用的空信号条件'):type==='long'?rules.length+'项多信号条件全部满足':rules.filter(r=>r.value===true).map(r=>r.title).join('、');
    const oldEvent=events.find(e=>e.id===id);
    if(oldEvent&&type==='short'&&!oldEvent.shortSnapshot&&(!Number.isFinite(oldEvent.signalCost)||oldEvent.signalCost===sample.check.cost))oldEvent.shortSnapshot=shortSnapshot(sample);
    if(oldEvent){oldEvent.episode=state.episode;oldEvent.transition=transition;delete oldEvent.supersededBy;}
-   else events.push({id,version:2,type,transition,tradeDate:day,code,name:holding.name,time,price:sample.quote.price,episode:state.episode,reason,ruleIds:rules.filter(r=>off?r.value===false:r.value===true).map(r=>r.id),replayOnly:true,resolution:'1m',...(holding.poolType==='watch'||holding.watchAccounts?.length?{poolScope:holding.poolType==='watch'?'watch':'held-and-watch',watchAccounts:holding.watchAccounts||[]}:{}),...(type==='long'?{snapshot:snapshot(sample)}:{shortVersion,shortSnapshot:shortSnapshot(sample),signalCost:sample.check.cost,positionId:position?.id,costLabel:position?.costLabel,account:position?.account})});
-   if(off){const activation=events.find(e=>e.id===transitionId(type,code,state.activeSince,'activated',shortVersion));if(activation){activation.invalidatedAt=time;activation.invalidatedPrice=sample.quote.price;activation.invalidatedReason=reason;}}
+   else events.push({id,version:2,type,transition,tradeDate:day,code,name:holding.name,time,price:sample.quote.price,episode:state.episode,reason,ruleIds:rules.filter(r=>off?r.value===false:r.value===true).map(r=>r.id),replayOnly:true,resolution:'1m',...versioned,...(holding.poolType==='watch'||holding.watchAccounts?.length?{poolScope:holding.poolType==='watch'?'watch':'held-and-watch',watchAccounts:holding.watchAccounts||[]}:{}),...(type==='long'?{snapshot:snapshot(sample)}:{shortSnapshot:shortSnapshot(sample),signalCost:sample.check.cost,positionId:position?.id,costLabel:position?.costLabel,account:position?.account})});
+   if(off){const activation=events.find(e=>e.id===transitionId(type,code,state.activeSince,'activated',shortVersion,assetType));if(activation){activation.invalidatedAt=time;activation.invalidatedPrice=sample.quote.price;activation.invalidatedReason=reason;}}
   }
   const canonical=events.filter(e=>canonicalIds.has(e.id)).sort((a,b)=>Date.parse(a.time)-Date.parse(b.time));
-  for(const obsolete of events.filter(e=>e.version===2&&e.code===code&&e.type===type&&(type!=='short'||eventShortVersion(e)===shortVersion)&&e.tradeDate===day&&!canonicalIds.has(e.id))){
+  for(const obsolete of events.filter(e=>e.version===2&&e.code===code&&e.type===type&&matchesVersion(e)&&e.tradeDate===day&&!canonicalIds.has(e.id))){
    const candidates=canonical.filter(e=>(e.transition==='invalidated')===(obsolete.transition==='invalidated'));
    const replacement=candidates.filter(e=>Date.parse(e.time)<=Date.parse(obsolete.time)).at(-1)||candidates[0];
    if(replacement)obsolete.supersededBy=replacement.id;
@@ -136,11 +151,12 @@ export function reconcileSignals(input,holding,samples,now=new Date(),liveQuote=
   const latest=samples.at(-1),value=directionValue(latest.check,type);state.paused=value===null;
   const current=day===cnDate(now)&&tradingWindow(now)&&isCurrentSample(latest,liveQuote,now)&&value===true&&!state.paused;
   if(current&&state.phase==='active'){
-   const id=transitionId(type,code,state.activeSince,'activated',shortVersion),event=events.find(e=>e.id===id);
+   const id=transitionId(type,code,state.activeSince,'activated',shortVersion,assetType),event=events.find(e=>e.id===id);
    if(event?.observedQuoteTime)state.notifiedActivation=id;
    if(event&&state.notifiedActivation!==id){state.notifiedActivation=id;Object.assign(event,{replayOnly:false,observedQuoteTime:liveQuote.time,observedPrice:liveQuote.price,detectedAt:now.toISOString()});notifications.push({...event,message:(holding.poolType==='watch'?'观察池 · ':type==='long'&&holding.watchAccounts?.length?'持仓/观察 · ':'')+holding.name+' '+(type==='long'?'多':'空')+'信号'+(event.transition==='reactivated'?'再次生效':'生效')+'，第'+event.episode+'段；分钟价 '+event.price.toFixed(holding.priceDecimals||2)+'，最新价 '+liveQuote.price.toFixed(holding.priceDecimals||2)});}
   }
   if(type==='short')state.shortVersion=shortVersion;
+  if(type==='long'&&splitLong)state.longVersion=longVersion;
   states[code][stateKey]=state;
  }
  events.sort((a,b)=>Date.parse(b.time)-Date.parse(a.time)||a.id.localeCompare(b.id));

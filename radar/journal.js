@@ -1,12 +1,22 @@
+import {eventLongVersion,usesIndependentLong} from './engine.js?v=a9eeebaa61d7';
+
 export const eventDay=e=>e.tradeDate||e.time?.slice(0,10)||'';
 // Older records without a strategy tag belong to the original short rules.
-// Long signals and test notifications are shared by both views.
 export const matchesShortVersion=(event,version='classic')=>event.type!=='short'||(event.shortVersion||'classic')===version;
-export const versionEvents=(events,version='classic')=>events.filter(e=>matchesShortVersion(e,version));
+export function hasLongVersions(event,assetType){
+ return event.type==='long'&&usesIndependentLong(event.assetType||event.snapshot?.assetType||event.replay?.assetType||assetType,eventDay(event));
+}
+export function versionEvents(events,version='classic',holdings=[]){
+ const types=new Map(holdings.map(h=>[h.code,h.assetType]));
+ return events.filter(event=>matchesShortVersion(event,version)&&(!hasLongVersions(event,types.get(event.code))||eventLongVersion(event)===version));
+}
 export function versionJournalDetails(journal,version='classic'){
  if(!journal)return null;
  if(version==='classic')return journal;
  return journal.shortVersions?.[version]||null;
+}
+export function hasVersionedLongDetail(row,assetType,day,version){
+ return version!=='no-profit'||!usesIndependentLong(row?.assetType||assetType,day)||row?.longVersion==='no-profit';
 }
 // Closing verdicts must be explicit; intraday episodes and their last known
 // state are not proof that a signal was still satisfied at the close.
@@ -16,13 +26,14 @@ export function closingJournalSummary(journal,version,day,holdings=[],code=''){
  const expected=codes.length?codes:holdings.filter(h=>h.monitorMode!=='price-only'&&(!h.monitorStartDate||h.monitorStartDate<=day)).map(h=>h.code);
  const rows=expected.filter(c=>!code||c===code).map(c=>{
   const h=holdings.find(h=>h.code===c),snapshot=closing[c];
-  const verified=snapshot?.complete===true&&snapshot.shortVersion===version&&snapshot.time?.slice(0,16)===day+'T15:00';
+  const closeComplete=snapshot?.complete===true&&snapshot.shortVersion===version&&snapshot.time?.slice(0,16)===day+'T15:00';
+  const verified=closeComplete&&hasVersionedLongDetail(snapshot,h?.assetType||coverage[c]?.assetType,day,version);
   return {code:c,name:snapshot?.name||coverage[c]?.name||h?.name||c,price:verified?snapshot.price:null,verified,
    long:verified?snapshot.long?.value??null:null,
-   short:verified?snapshot.short?.value??null:null,
+   short:closeComplete?snapshot.short?.value??null:null,
    shortApplicable:snapshot?.short?.applicable??!(h?.poolType==='watch'&&!h.accounts?.length||h?.monitorMode==='price-only'),
-   shortBlocked:verified&&snapshot.short?.reason==='t-plus-one',
-   shortTitles:verified?snapshot.short?.titles||[]:[]};
+   shortBlocked:closeComplete&&snapshot.short?.reason==='t-plus-one',
+   shortTitles:closeComplete?snapshot.short?.titles||[]:[]};
  });
  const group=type=>({matches:rows.filter(r=>r[type]===true),pending:rows.filter(r=>(type!=='short'||r.shortApplicable&&!r.shortBlocked)&&r[type]===null).length,blocked:type==='short'?rows.filter(r=>r.shortBlocked).length:0});
  return {rows,verified:rows.filter(r=>r.verified).length,long:group('long'),short:group('short')};

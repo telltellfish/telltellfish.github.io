@@ -1,6 +1,7 @@
 // GitHub Pages serves public or encrypted snapshots. No write credential or
 // iFinD credential is ever sent to this module or stored in the public config.
-import {eventDay} from './journal.js';
+import {eventDay} from './journal.js?v=a9eeebaa61d7';
+import {tradingWindow} from './engine.js?v=a9eeebaa61d7';
 
 const clone=value=>structuredClone(value);
 const dayPattern=/^\d{4}-\d{2}-\d{2}$/;
@@ -60,6 +61,12 @@ export function validateBundle(bundle){
  return bundle;
 }
 
+export function validateNewerBundle(current,candidate){
+ const next=validateBundle(candidate);
+ if(Date.parse(next.publishedAt)<Date.parse(current.publishedAt)||Date.parse(next.feed.receivedAt)<Date.parse(current.feed.receivedAt))throw Error('收到较旧的同步快照，已保留当前行情。');
+ return next;
+}
+
 function mergeEvents(old=[],fresh=[]){
  const map=new Map(old.filter(e=>e&&typeof e.id==='string').map(e=>[e.id,clone(e)]));
  for(const e of fresh){
@@ -78,7 +85,11 @@ function mergeEvents(old=[],fresh=[]){
 // event-day helper and readers; its server-side archive writers are not exports.
 export function mergeSignalDetails(old={},fresh={},version='classic'){
  const coverage={...old.coverage},summaries={...old.summaries};
- for(const [code,value] of Object.entries(fresh.coverage||{}))if(!coverage[code]||value.lastMinute>=coverage[code].lastMinute){coverage[code]=clone(value);summaries[code]=clone(fresh.summaries?.[code]||[]);}
+ for(const [code,value] of Object.entries(fresh.coverage||{}))if(!coverage[code]||value.lastMinute>=coverage[code].lastMinute){
+  const previous=coverage[code];
+  if(previous?.longVersion!=='no-profit'||value.longVersion==='no-profit')coverage[code]=clone(value);
+  summaries[code]=clone(fresh.summaries?.[code]||[]);
+ }
  const details={coverage,summaries};
  if(old.closing||fresh.closing){
   const closing={...old.closing};
@@ -86,7 +97,7 @@ export function mergeSignalDetails(old={},fresh={},version='classic'){
    if(!value||typeof value!=='object'||(value.shortVersion||'classic')!==version)continue;
    const previous=closing[code],time=Date.parse(value.time)||-Infinity,previousTime=Date.parse(previous?.time)||-Infinity;
    if(previous&&(time<previousTime||previous.complete===true&&value.complete!==true))continue;
-   closing[code]=clone(value);
+   closing[code]=clone(previous?.longVersion==='no-profit'&&value.longVersion!=='no-profit'?{...value,long:previous.long,longVersion:previous.longVersion}:value);
   }
   details.closing=closing;
  }
@@ -283,16 +294,26 @@ export async function installPagesAdapter({win=window,document=win.document,nati
  }
  let store;
  try{store=await createIndexedStore(win.indexedDB,'position-radar-pages-'+fingerprint);}catch{const problem=unlockPanel(document);problem.input.hidden=true;problem.button.hidden=true;problem.error.textContent='本浏览器未允许保存监控记录。请允许网站存储后刷新；为避免重复提醒，暂不启动监控。';return await new Promise(()=>{});}
- const corner=document.createElement('aside');corner.style.cssText='position:fixed;bottom:10px;right:10px;z-index:1000;max-width:min(450px,85vw);padding:9px 12px;background:#edf7f3;color:#1a514a;border:1px solid #bed5cf;border-radius:8px;font:12px/1.6 system-ui;box-shadow:0 2px 8px #143b3b15';
- const status=document.createElement('span'),line=document.createElement('div');line.textContent=(publicAccess?'公开监控页 · 无需访问码':'GitHub 阅读页')+' · 本机联网时同步 · 网页打开时提醒';
- const exportButton=document.createElement('button');exportButton.type='button';exportButton.textContent='导出本设备记录';exportButton.style.cssText='margin-left:10px;border:0;background:none;color:#086e62;text-decoration:underline;cursor:pointer;font:inherit';
+ const syncDetails=document.createElement('aside');syncDetails.id='pages-sync-info';syncDetails.setAttribute('aria-label','行情同步与本设备记录');syncDetails.style.cssText='display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding:12px 0 4px;border-top:1px solid #dfe8e8;color:#526d6b;font:12px/1.6 system-ui';
+ const status=document.createElement('span'),line=document.createElement('div'),feedback=document.createElement('span');line.style.cssText='flex-basis:100%';line.textContent='盘中约每分钟同步，网页行情可能晚于本机。网页打开时可提醒，记录保存在本设备。';feedback.hidden=true;feedback.setAttribute('role','status');
+ const exportButton=document.createElement('button');exportButton.type='button';exportButton.textContent='导出本设备记录';exportButton.style.cssText='border:0;background:none;color:#086e62;text-decoration:underline;cursor:pointer;font:inherit;padding:0';
  const changeButton=document.createElement('button');changeButton.type='button';changeButton.textContent='更换访问码';changeButton.style.cssText=exportButton.style.cssText;
- corner.append(status,line,exportButton);if(!publicAccess)corner.append(changeButton);document.body.append(corner);
- const showStatus=()=>{status.textContent='行情截至 '+String(bundle.feed.receivedAt).replace('T',' ').replace(/\+08:00$/,'')+' · 记录保存在本设备';};showStatus();
+ syncDetails.append(status,exportButton);if(!publicAccess)syncDetails.append(changeButton);syncDetails.append(feedback,line);(document.querySelector('main')||document.body).append(syncDetails);
+ const marketTime=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Shanghai',dateStyle:'short',timeStyle:'medium'});
+ const showStatus=(message='')=>{
+  const time=new Date(bundle.feed.receivedAt),now=new Date(),delayed=tradingWindow(now)&&now-time>180000;
+  status.textContent='行情截至 '+marketTime.format(time)+(message?' · '+message:delayed?' · 同步延迟，暂停新判断':'');
+ };showStatus();
  const poolKey=value=>JSON.stringify(value.pool.holdings.map(h=>[h.code,h.poolType,h.monitorMode]));
  const refreshBundle=async()=>{
-  try{const next=validateBundle(await fetchSnapshot('latest.enc',keyBytes));if(Date.parse(next.publishedAt)<Date.parse(bundle.publishedAt))throw Error('收到较旧的同步快照，已保留当前数据。');const poolChanged=poolKey(bundle)!==poolKey(next);bundle=next;showStatus();if(poolChanged)status.textContent+='；标的池已更新，请刷新网页';}
-  catch(error){status.textContent='同步失败 · 保留截至 '+bundle.feed.receivedAt+' 的行情，暂停新判断';throw Error(error.message||'同步失败，当前保留上次行情并暂停判断。');}
+  try{
+   const candidate=await fetchSnapshot('latest.enc',keyBytes);
+   const next=validateNewerBundle(bundle,candidate),poolChanged=poolKey(bundle)!==poolKey(next);
+   bundle=next;showStatus();if(poolChanged)status.textContent+='；标的池已更新，请刷新网页';
+  }catch(error){
+   showStatus(error.message==='收到较旧的同步快照，已保留当前行情。'?'收到较旧缓存，本轮暂停新判断':'同步失败，保留上次行情并暂停新判断');
+   throw Error(error.message||'同步失败，当前保留上次行情并暂停判断。');
+  }
  };
  const api=createPagesApi({getBundle:()=>bundle,refreshBundle,fetchJournal:day=>fetchSnapshot('journals/'+day+'.enc',keyBytes),store,publicAccess});
  const paths=new Set(['/api/pool','/api/quotes','/api/state','/api/journal','/api/history']);
@@ -303,7 +324,7 @@ export async function installPagesAdapter({win=window,document=win.document,nati
   return api(url.pathname+url.search,{method,body});
  };
  exportButton.addEventListener('click',async()=>{
-  try{const records=await store.all(),blob=new Blob([JSON.stringify({schema:1,exportedAt:new Date().toISOString(),source:'本设备生成的监控记录',records},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='多空雷达-本设备记录-'+new Date().toISOString().slice(0,10)+'.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch{status.textContent='导出失败，请检查本浏览器的网站存储权限。';}
+  try{const records=await store.all(),blob=new Blob([JSON.stringify({schema:1,exportedAt:new Date().toISOString(),source:'本设备生成的监控记录',records},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='多空雷达-本设备记录-'+new Date().toISOString().slice(0,10)+'.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);feedback.hidden=true;}catch{feedback.textContent='导出失败，请检查本浏览器的网站存储权限。';feedback.hidden=false;}
  });
  changeButton.addEventListener('click',()=>{try{win.localStorage.removeItem(keyStorage);}catch{}win.location.hash='';win.location.reload();});
  return {api,store,getBundle:()=>bundle,refreshBundle};
