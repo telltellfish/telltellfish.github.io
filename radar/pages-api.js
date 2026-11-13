@@ -1,7 +1,7 @@
 // GitHub Pages serves public or encrypted snapshots. No write credential or
 // iFinD credential is ever sent to this module or stored in the public config.
-import {eventDay} from './journal.js?v=d65e5bf71993';
-import {tradingWindow} from './engine.js?v=d65e5bf71993';
+import {eventDay} from './journal.js?v=6a2970c00337';
+import {tradingWindow} from './engine.js?v=6a2970c00337';
 
 const clone=value=>structuredClone(value);
 const dayPattern=/^\d{4}-\d{2}-\d{2}$/;
@@ -307,7 +307,7 @@ export async function installPagesAdapter({win=window,document=win.document,nati
   const time=new Date(bundle.feed.receivedAt),now=new Date(),delayed=tradingWindow(now)&&now-time>180000;
   status.textContent='行情截至 '+marketTime.format(time)+(message?' · '+message:delayed?' · 同步延迟，暂停新判断':'');
  };showStatus();
- const poolKey=value=>JSON.stringify(value.pool.holdings.map(h=>[h.code,h.poolType,h.monitorMode]));
+ const poolKey=value=>JSON.stringify(value.pool.holdings.map(h=>[h.code,h.poolType,h.monitorMode,h.publicShortSignals===true]));
  const refreshBundle=async()=>{
   try{
    const candidate=await fetchSnapshot('latest.enc',keyBytes);
