@@ -1,7 +1,7 @@
 // GitHub Pages serves public or encrypted snapshots. No write credential or
 // iFinD credential is ever sent to this module or stored in the public config.
-import {eventDay} from './journal.js?v=a9eeebaa61d7';
-import {tradingWindow} from './engine.js?v=a9eeebaa61d7';
+import {eventDay} from './journal.js?v=d65e5bf71993';
+import {tradingWindow} from './engine.js?v=d65e5bf71993';
 
 const clone=value=>structuredClone(value);
 const dayPattern=/^\d{4}-\d{2}-\d{2}$/;
@@ -88,7 +88,7 @@ export function mergeSignalDetails(old={},fresh={},version='classic'){
  for(const [code,value] of Object.entries(fresh.coverage||{}))if(!coverage[code]||value.lastMinute>=coverage[code].lastMinute){
   const previous=coverage[code];
   if(previous?.longVersion!=='no-profit'||value.longVersion==='no-profit')coverage[code]=clone(value);
-  summaries[code]=clone(fresh.summaries?.[code]||[]);
+  if(Object.hasOwn(fresh.summaries||{},code)||!Object.hasOwn(summaries,code))summaries[code]=clone(fresh.summaries?.[code]||[]);
  }
  const details={coverage,summaries};
  if(old.closing||fresh.closing){
@@ -97,7 +97,10 @@ export function mergeSignalDetails(old={},fresh={},version='classic'){
    if(!value||typeof value!=='object'||(value.shortVersion||'classic')!==version)continue;
    const previous=closing[code],time=Date.parse(value.time)||-Infinity,previousTime=Date.parse(previous?.time)||-Infinity;
    if(previous&&(time<previousTime||previous.complete===true&&value.complete!==true))continue;
-   closing[code]=clone(previous?.longVersion==='no-profit'&&value.longVersion!=='no-profit'?{...value,long:previous.long,longVersion:previous.longVersion}:value);
+   const next=previous?.longVersion==='no-profit'&&value.longVersion!=='no-profit'?{...value,long:previous.long,longVersion:previous.longVersion}:{...value};
+   if(previous?.shortClose&&!next.shortClose)next.shortClose=previous.shortClose;
+   if(previous?.short&&!next.short)next.short=previous.short;
+   closing[code]=clone(next);
   }
   details.closing=closing;
  }

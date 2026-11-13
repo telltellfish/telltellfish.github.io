@@ -1,4 +1,4 @@
-import {cnDate,fresh,tradingWindow,evaluate,prepareExact,normalizeShortVersion,eventShortVersion,eventLongVersion,selectedLongVersion,usesIndependentLong} from './engine.js?v=a9eeebaa61d7';
+import {cnDate,fresh,tradingWindow,evaluate,prepareExact,normalizeShortVersion,eventShortVersion,eventLongVersion,selectedLongVersion,usesIndependentLong} from './engine.js?v=d65e5bf71993';
 const positive=x=>Number.isFinite(x)&&x>0;
 export function directionValue(check,type){
  if(!check?.isFresh||check.priceOnly)return null;
