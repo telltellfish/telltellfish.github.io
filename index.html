@@ -3322,7 +3322,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/stock_daily_web.js?v=20261116093029`;
+          script.src = `data/stock_daily_web.js?v=20261116171458`;
           script.onload = () => resolve(window.STOCK_DAILY_REPORTS || {});
           script.onerror = () => reject(new Error("个股日报加载失败"));
           document.head.appendChild(script);
@@ -3348,7 +3348,7 @@
         if (!window.STOCK_DAILY_CONTEXTS) {
           if (!manifestPromise) manifestPromise = new Promise((resolve, reject) => {
             const script = document.createElement("script");
-            script.src = `data/stock_daily_contexts_web.js?v=20261116093029`;
+            script.src = `data/stock_daily_contexts_web.js?v=20261116171458`;
             script.onload = () => resolve(window.STOCK_DAILY_CONTEXTS || {});
             script.onerror = () => {
               script.remove();
@@ -3940,8 +3940,8 @@
       };
     })();
   </script>
-  <script src="data/trend.js?v=20261113"></script>
-  <script src="data/latest_web.js?v=20261113-33d872254b" onerror="document.querySelector('[data-loading-text]').textContent='最新数据加载失败，请刷新后重试。'"></script>
+  <script src="data/trend.js?v=20261116"></script>
+  <script src="data/latest_web.js?v=20261116-3aab3fbefe" onerror="document.querySelector('[data-loading-text]').textContent='最新数据加载失败，请刷新后重试。'"></script>
   <script>
     window.ensureRotationConstituents = (() => {
       let loadingPromise = null;
@@ -3950,7 +3950,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/rotation_constituents.js?v=20261116093029`;
+          script.src = `data/rotation_constituents.js?v=20261116171458`;
           script.onload = () => resolve(window.ROTATION_CONSTITUENTS || {});
           script.onerror = () => reject(new Error("板块个股明细加载失败"));
           document.head.appendChild(script);
@@ -3966,7 +3966,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/rotation_datasets.js?v=20261116093029`;
+          script.src = `data/rotation_datasets.js?v=20261116171458`;
           script.onload = () => resolve(window.ROTATION_DATASETS || {});
           script.onerror = () => reject(new Error("板块轮动榜单加载失败"));
           document.head.appendChild(script);
@@ -4915,8 +4915,8 @@
       if (loadingScreen) loadingScreen.hidden = true;
     })();
   </script>
-  <script src="data/history.js?v=20261113-5fb2846081"></script>
-  <script src="data/bond_equity_value.js?v=20261113"></script>
+  <script src="data/history.js?v=20261116-e9b0619ee8"></script>
+  <script src="data/bond_equity_value.js?v=20261116"></script>
   <script>
     (function setupHistoryTrendPanel() {
       const latestData = window.MARKET_SENTIMENT_DATA || {};
