@@ -1,7 +1,7 @@
 // GitHub Pages serves public or encrypted snapshots. No write credential or
 // iFinD credential is ever sent to this module or stored in the public config.
-import {eventDay} from './journal.js?v=6a2970c00337';
-import {tradingWindow} from './engine.js?v=6a2970c00337';
+import {eventDay} from './journal.js?v=4ec3dda272c3';
+import {tradingWindow} from './engine.js?v=4ec3dda272c3';
 
 const clone=value=>structuredClone(value);
 const dayPattern=/^\d{4}-\d{2}-\d{2}$/;
