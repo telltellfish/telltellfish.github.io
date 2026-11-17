@@ -1,4 +1,4 @@
-import {eventLongVersion,usesIndependentLong} from './engine.js?v=5986d91929f8';
+import {eventLongVersion,usesIndependentLong} from './engine.js?v=e57e7ea01a1d';
 
 export const eventDay=e=>e.tradeDate||e.time?.slice(0,10)||'';
 // Older records without a strategy tag belong to the original short rules.

@@ -1,2 +1,2 @@
-import './pages-api.js?v=5986d91929f8';
-await import('./app.js?v=5986d91929f8');
+import './pages-api.js?v=e57e7ea01a1d';
+await import('./app.js?v=e57e7ea01a1d');
