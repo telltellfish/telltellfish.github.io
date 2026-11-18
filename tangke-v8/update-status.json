@@ -1,9 +1,9 @@
 {
-  "status": "updated",
-  "checkedAt": "2026-11-17T16:30:18+08:00",
+  "status": "waiting_for_close",
+  "checkedAt": "2026-11-18T09:18:37+08:00",
   "dataAsOf": "2026-11-17",
-  "requestedDate": "2026-11-17",
-  "message": "数据和计算已验证",
+  "requestedDate": "2026-11-18",
+  "message": "尚未收盘，保留上次有效结果",
   "defaultStrategy": "v8_cash_pilot30",
   "defaultRange": "3",
   "pilotWeight": 0.3,
