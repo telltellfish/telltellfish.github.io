@@ -1,5 +1,5 @@
 window.BOND_EQUITY_VALUE_DATA = {
-  "generatedAt": "2026-11-18T17:06:05+08:00",
+  "generatedAt": "2026-11-19T17:05:21+08:00",
   "source": "local-ifind-validated",
   "status": "ready",
   "basis": {
@@ -9,16 +9,16 @@ window.BOND_EQUITY_VALUE_DATA = {
     "score": "过去十年风险溢价分位，分位越高越偏牛"
   },
   "current": {
-    "tradeDate": "2026-11-18",
-    "allAPe": 21.0752,
-    "earningsYield": "4.74%",
-    "bondYield": "1.60%",
-    "fedPremium": "3.15%",
+    "tradeDate": "2026-11-19",
+    "allAPe": 20.9344,
+    "earningsYield": "4.78%",
+    "bondYield": "1.59%",
+    "fedPremium": "3.19%",
     "fedAverage": "2.69%",
-    "percentile": 68.77,
-    "rangeText": "2018-05-17~2026-11-18",
+    "percentile": 70.67,
+    "rangeText": "2018-05-17~2026-11-19",
     "desc": "同花顺全A风险溢价 = 1 / 同花顺全A市盈率 - 中国十年期国债收益率",
-    "tip": "同花顺全A PE 为 21.08，十年期国债收益率为 1.60%，风险溢价 3.15%，处于过去十年 68.77% 分位。分位越高，越偏牛。"
+    "tip": "同花顺全A PE 为 20.93，十年期国债收益率为 1.59%，风险溢价 3.19%，处于过去十年 70.67% 分位。分位越高，越偏牛。"
   },
   "rows": [
     {
@@ -14475,6 +14475,13 @@ window.BOND_EQUITY_VALUE_DATA = {
       "earningsYield": 4.744909850508768,
       "bondYield": 1.5976,
       "fedPremium": 3.147309850508768
+    },
+    {
+      "tradeDate": "2026-11-19",
+      "pe": 20.934402,
+      "earningsYield": 4.776826202152801,
+      "bondYield": 1.5865,
+      "fedPremium": 3.190326202152801
     }
   ],
   "validationFailures": []
