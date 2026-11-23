@@ -1,23 +1,23 @@
 {
   "status": "updated",
-  "checkedAt": "2026-11-20T16:37:45+08:00",
-  "dataAsOf": "2026-11-20",
-  "requestedDate": "2026-11-20",
+  "checkedAt": "2026-11-23T16:36:52+08:00",
+  "dataAsOf": "2026-11-23",
+  "requestedDate": "2026-11-23",
   "message": "数据和计算已验证",
   "defaultStrategy": "v8_cash_pilot30",
   "defaultRange": "3",
   "pilotWeight": 0.3,
   "maxWeight": 1,
   "allowBorrowing": false,
-  "latestTarget": 1.0,
+  "latestTarget": 0.5,
   "actualExposure": 1.0,
-  "pendingOrder": false,
-  "pendingExecutionDate": null,
-  "buildId": "2814b9af3b7ecaf15acf",
-  "htmlSHA256": "f56738e9f6b3ab3e6fe50c31ac6cbc7cd58f994bd1b94edc1d41ac373fb4d86c",
+  "pendingOrder": true,
+  "pendingExecutionDate": "2026-11-24",
+  "buildId": "a96df34f8e7a076d88c9",
+  "htmlSHA256": "93c966bf561dd9e8cdc137b80d1219d9d95a02147c54f50fbbc00adfc0569dea",
   "sources": {
     "market": {
-      "lastDate": "2026-11-20",
+      "lastDate": "2026-11-23",
       "sourceUrl": "https://quantapi.51ifind.com/api/v1/history_data"
     },
     "fx": {
@@ -25,11 +25,11 @@
       "sourceUrl": "https://www.federalreserve.gov/releases/h10/hist/dat00_ch.htm"
     },
     "vix": {
-      "lastDate": "2026-11-19",
+      "lastDate": "2026-11-20",
       "sourceUrl": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv"
     },
     "dr007": {
-      "lastDate": "2026-11-19",
+      "lastDate": "2026-11-20",
       "sourceUrl": "https://quantapi.51ifind.com/api/v1/edb_service"
     }
   }
