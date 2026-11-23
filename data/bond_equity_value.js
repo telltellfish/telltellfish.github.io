@@ -1,5 +1,5 @@
 window.BOND_EQUITY_VALUE_DATA = {
-  "generatedAt": "2026-11-20T17:13:07+08:00",
+  "generatedAt": "2026-11-23T17:09:30+08:00",
   "source": "local-ifind-validated",
   "status": "ready",
   "basis": {
@@ -9,16 +9,16 @@ window.BOND_EQUITY_VALUE_DATA = {
     "score": "过去十年风险溢价分位，分位越高越偏牛"
   },
   "current": {
-    "tradeDate": "2026-11-20",
-    "allAPe": 20.5588,
-    "earningsYield": "4.86%",
-    "bondYield": "1.58%",
-    "fedPremium": "3.28%",
+    "tradeDate": "2026-11-23",
+    "allAPe": 20.7061,
+    "earningsYield": "4.83%",
+    "bondYield": "1.59%",
+    "fedPremium": "3.24%",
     "fedAverage": "2.69%",
-    "percentile": 74.55,
-    "rangeText": "2018-05-17~2026-11-20",
+    "percentile": 73.26,
+    "rangeText": "2018-05-17~2026-11-23",
     "desc": "同花顺全A风险溢价 = 1 / 同花顺全A市盈率 - 中国十年期国债收益率",
-    "tip": "同花顺全A PE 为 20.56，十年期国债收益率为 1.58%，风险溢价 3.28%，处于过去十年 74.55% 分位。分位越高，越偏牛。"
+    "tip": "同花顺全A PE 为 20.71，十年期国债收益率为 1.59%，风险溢价 3.24%，处于过去十年 73.26% 分位。分位越高，越偏牛。"
   },
   "rows": [
     {
@@ -14471,24 +14471,31 @@ window.BOND_EQUITY_VALUE_DATA = {
     },
     {
       "tradeDate": "2026-11-18",
-      "pe": 21.075216,
-      "earningsYield": 4.744909850508768,
+      "pe": 21.075313,
+      "earningsYield": 4.744888011864877,
       "bondYield": 1.5976,
-      "fedPremium": 3.147309850508768
+      "fedPremium": 3.1472880118648767
     },
     {
       "tradeDate": "2026-11-19",
-      "pe": 20.934402,
-      "earningsYield": 4.776826202152801,
+      "pe": 20.934491,
+      "earningsYield": 4.776805894158114,
       "bondYield": 1.5865,
-      "fedPremium": 3.190326202152801
+      "fedPremium": 3.190305894158114
     },
     {
       "tradeDate": "2026-11-20",
-      "pe": 20.558847,
-      "earningsYield": 4.864086006379638,
+      "pe": 20.558822,
+      "earningsYield": 4.86409192122,
       "bondYield": 1.5823,
-      "fedPremium": 3.2817860063796376
+      "fedPremium": 3.28179192122
+    },
+    {
+      "tradeDate": "2026-11-23",
+      "pe": 20.706079,
+      "earningsYield": 4.829499588019538,
+      "bondYield": 1.589,
+      "fedPremium": 3.240499588019538
     }
   ],
   "validationFailures": []
