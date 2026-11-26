@@ -95,6 +95,8 @@
       box-shadow: 0 8px 22px rgba(38, 49, 69, .08);
     }
 
+    .home-shortcuts { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .capital-entry { display: inline-flex; align-items: center; text-decoration: none; }
     .history-button:hover {
       border-color: #ff8ca0;
       color: var(--red);
@@ -2818,7 +2820,10 @@
       </div>
       <div class="top-actions">
         <div class="badge">5月28日收盘版 / 真实数据</div>
-        <button class="history-button" type="button" data-history-open>查看历史</button>
+        <div class="home-shortcuts">
+          <a class="history-button capital-entry" href="capital-flow/index.html">资金面跟踪</a>
+          <button class="history-button" type="button" data-history-open>查看历史</button>
+        </div>
       </div>
     </header>
 
