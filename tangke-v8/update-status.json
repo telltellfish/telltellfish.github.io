@@ -1,9 +1,9 @@
 {
-  "status": "checked",
-  "checkedAt": "2026-11-24T18:33:27+08:00",
+  "status": "pending",
+  "checkedAt": "2026-11-26T09:06:02+08:00",
   "dataAsOf": "2026-11-24",
-  "requestedDate": "2026-11-24",
-  "message": "数据和计算已验证",
+  "requestedDate": "2026-11-25",
+  "message": "更新待补，保留上次有效结果：ReadTimeout：数据更新或校验未完成",
   "defaultStrategy": "v8_cash_pilot30",
   "defaultRange": "3",
   "pilotWeight": 0.3,
