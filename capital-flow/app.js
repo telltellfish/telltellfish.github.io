@@ -122,6 +122,10 @@ function cross(){
  signal(d+' · '+words+' 收盘温度：'+(m&&ok(m[0])?fmt(m[0],0)+' 分':'当日未入库')+'；上涨家数占比：'+(m&&ok(m[2])?fmt(m[2],1)+'%':'当日未入库')+'。');
  chart1('两类资金 · 同日对照','亿元',sel,[bar('ETF 净申赎',sel.map(total),colors[1]),bar('融资净买入',sel.map(t=>mg.get(t)??null),colors[2])],'亿元','两类统计口径不同，不相加。申赎由份额变动估算，融资净买入为融资买入减偿还。');
  chart1('收盘温度与赚钱效应','分 / %',sel,[line('收盘温度（分）',sel.map(t=>D.market[t]?.[0]??null),colors[1]),line('上涨家数占比（%）',sel.map(t=>D.market[t]?.[2]??null),colors[0])],'分 / %','各取对应日期的入库记录；缺数据时断线。温度不是上涨概率。');
+ const regimes=[['ETF净申购 · 融资净买入',1,1],['ETF净申购 · 融资净偿还',1,-1],['ETF净赎回 · 融资净买入',-1,1],['ETF净赎回 · 融资净偿还',-1,-1]];
+ const med=a=>{const n=a.length;if(!n)return null;const v=a.slice().sort((x,y)=>x-y);return n%2?v[n>>1]:(v[n/2-1]+v[n/2])/2};
+ table('区间内的四种资金组合',['同日组合','交易日数','有宽度记录天数','上涨占比中位数（%）','个股涨跌中位数的区间中位值（%）'],regimes.map(([label,a,b])=>{const obs=sel.filter(t=>ok(total(t))&&ok(mg.get(t))&&Math.sign(total(t))===a&&Math.sign(mg.get(t))===b),width=obs.map(t=>D.market[t]?.[2]).filter(ok);return [label,obs.length,width.length,med(width),med(obs.map(t=>D.market[t]?.[3]).filter(ok))]}),['','int','int','','sign']);
+ signal('组合统计只描述选定区间的同日现象，不是次日胜率；字段缺失或任一净额为零的日期不进入四组。');
  const tr=D.turnover[d],row=net.get(d);table('篮子申赎与成交 · '+d,['跟踪指数','净申赎（亿）','二级成交额（亿）','净申赎 / 成交额（%）'],D.categories.map((g,j)=>[g,row?.[1+j]??null,tr?.[j]??null,row&&tr?.[j]>0?100*row[1+j]/tr[j]:null]).sort((a,b)=>(b[2]??0)-(a[2]??0)),['','sign','','sign']);
  table('逐日核对',['交易日','ETF 净申赎（亿）','融资净买入（亿）','温度（分）','上涨占比（%）','个股中位涨跌（%）'],sel.slice().reverse().map(t=>[t,total(t),mg.get(t)??null,D.market[t]?.[0]??null,D.market[t]?.[2]??null,D.market[t]?.[3]??null]),['','sign','sign','int','','sign']);
 }
