@@ -3322,7 +3322,7 @@
         if (loadingPromise) return loadingPromise;
         loadingPromise = new Promise((resolve, reject) => {
           const script = document.createElement("script");
-          script.src = `data/stock_daily_web.js?v=20261124170708`;
+          script.src = `data/stock_daily_web.js?v=8b0a6838ea87`;
           script.onload = () => resolve(window.STOCK_DAILY_REPORTS || {});
           script.onerror = () => reject(new Error("个股日报加载失败"));
           document.head.appendChild(script);
@@ -3348,7 +3348,7 @@
         if (!window.STOCK_DAILY_CONTEXTS) {
           if (!manifestPromise) manifestPromise = new Promise((resolve, reject) => {
             const script = document.createElement("script");
-            script.src = `data/stock_daily_contexts_web.js?v=20261124170708`;
+            script.src = `data/stock_daily_contexts_web.js?v=11a00fef44d8`;
             script.onload = () => resolve(window.STOCK_DAILY_CONTEXTS || {});
             script.onerror = () => {
               script.remove();
