@@ -1,6 +1,6 @@
 {
-  "status": "updated",
-  "checkedAt": "2026-11-26T16:37:02+08:00",
+  "status": "checked",
+  "checkedAt": "2026-11-27T13:00:12+08:00",
   "dataAsOf": "2026-11-26",
   "requestedDate": "2026-11-26",
   "message": "数据和计算已验证",
@@ -13,12 +13,12 @@
   "actualExposure": 0.48826962159564075,
   "pendingOrder": false,
   "pendingExecutionDate": null,
-  "buildId": "d259902a484198e070d2",
-  "htmlSHA256": "d6feded614d98fbe0ce0c7192639fe9ef6cc188150fc6750cdf9e0afc0966bdb",
+  "buildId": "ca9db7790a28759883ab",
+  "htmlSHA256": "42286c7d5de9d6f4a1cc50013ab6c06579c2bff7e7f8b8d200e766961fff3c2a",
   "sources": {
     "market": {
       "lastDate": "2026-11-26",
-      "sourceUrl": "https://quantapi.51ifind.com/api/v1/history_data"
+      "sourceUrl": "https://www.csindex.com.cn/csindex-home/perf/index-perf?indexCode=000985&startDate=20261112&endDate=20261126"
     },
     "fx": {
       "lastDate": "2026-11-20",
@@ -29,7 +29,7 @@
       "sourceUrl": "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv"
     },
     "dr007": {
-      "lastDate": "2026-11-25",
+      "lastDate": "2026-11-26",
       "sourceUrl": "https://quantapi.51ifind.com/api/v1/edb_service"
     }
   }
