@@ -6,7 +6,7 @@
     ['fundMargin','ETF 两融','重点 ETF'],['theme','主题分时','重点 ETF'],['margin','总量与结构','两融'],
     ['pledge','质押公告','股权质押'],['private','备案与业绩','私募基金']
   ];
-  const format=(v,d=2)=>Number.isFinite(v)?v.toLocaleString('zh-CN',{maximumFractionDigits:d}):'未披露';
+  const format=(v,d=2)=>Number.isFinite(v)?v.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2}):'未披露';
   const prefix=a=>{let t=0;return a.map(v=>Number.isFinite(v)&&t!==null?(t+=v):(t=null));};
   const ma=(a,n)=>a.map((_,i)=>i+1<n?null:a.slice(i+1-n,i+1).reduce((t,v)=>t+v,0)/n);
   function mount(root,data,opt={}) {
@@ -39,7 +39,7 @@
       const c=lib.init(node);charts.push(c);
       const palette=['#1666ae','#ba502a','#188475','#916196','#89782c'];
       c.setOption({animation:false,color:palette,grid:{left:12,right:14,top:78,bottom:27,containLabel:true},
-        legend:{type:'scroll',top:4,textStyle:{fontSize:11}},tooltip:{trigger:'axis',renderMode:'richText',confine:true},
+        legend:{type:'scroll',top:4,textStyle:{fontSize:11}},tooltip:{trigger:'axis',renderMode:'richText',confine:true,valueFormatter:v=>format(v)},
         xAxis:{type:'category',data:x,axisLabel:{hideOverlap:true,fontSize:10}},
         yAxis:units.map((u,i)=>({type:'value',name:u,scale:!spec.some(s=>s[2]==='bar'&&(s[3]||0)===i),splitLine:{show:i===0,lineStyle:{color:'#e1e8ef'}},axisLabel:{fontSize:10}})),
         series:spec.map(([name,data,type,yAxisIndex])=>({name,data,type:type||'line',yAxisIndex:yAxisIndex||0,showSymbol:x.length<9,barMaxWidth:30,connectNulls:false}))});
@@ -71,10 +71,10 @@
       const fixed='十类固定篮子',scope=select('pan','样本',[fixed,'扩展股票型样本'],fixed);
       if(scope===fixed){
         const cat=select('category','指数',['十类合计',...data.categories],'十类合计');
-        const win=select('window','区间',['近20交易日','全部已核验'],'近20交易日');
-        const rows=win==='近20交易日'?data.fixed.slice(-20):data.fixed, idx=data.categories.indexOf(cat);
+        const win=select('window','区间',['近一周 · 5交易日','近一月 · 20交易日','近一年 · 250交易日','全部已核验'],'近一月 · 20交易日');
+        const rows=win==='全部已核验'?data.fixed:data.fixed.slice(-Number(win.match(/\d+/)[0])), idx=data.categories.indexOf(cat);
         const amounts=rows.map(r=>idx<0?r.slice(1).reduce((a,v)=>a+v,0):r[idx+1]);
-        chart(cat+' · 申赎估算',rows.map(r=>r[0]),[['单日',amounts,'bar'],['选区累计',prefix(amounts),'line',1]],['亿元','亿元']);
+        note('所选窗口内实际有 '+rows.length+' 个交易日；未满窗口时，曲线只累计已收录部分。');chart(cat+' · 申赎估算',rows.map(r=>r[0]),[['单日',amounts,'bar'],['选区累计',prefix(amounts),'line',1]],['亿元','亿元']);
         table('最近一个月 · 十类分布（亿元）',['日期',...data.categories],rows.slice(-20).reverse());
         note('固定 '+data.fixedN+' 只；不包含未纳入的宽基，不等于全市场。');
       }else{

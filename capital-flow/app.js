@@ -8,7 +8,7 @@ const icons={boards:'layout-dashboard',etf:'layers',minute:'activity',cross:'cha
 const icon=k=>'<span class="nav-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-'+(icons[k]||'layout-dashboard')+'"></use></svg></span>';
 const colors=['#227d72','#657fc3','#d77e4b','#996dad','#439cae','#b79949'],red='#c4524f',green='#28866e';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const ok=x=>typeof x==='number'&&Number.isFinite(x),fmt=(v,k=2)=>ok(v)?v.toLocaleString('zh-CN',{minimumFractionDigits:k,maximumFractionDigits:k}):'暂无',sg=(v,k=2)=>ok(v)?(v>=0.5*10**(-k)?'+':'')+fmt(Math.abs(v)<0.5*10**(-k)?0:v,k):'暂无';
+const ok=x=>typeof x==='number'&&Number.isFinite(x),fmt=(v,k=2)=>ok(v)?v.toLocaleString('zh-CN',{minimumFractionDigits:k===0?0:2,maximumFractionDigits:k===0?0:2}):'暂无',sg=(v,k=2)=>ok(v)?(v>=(k===0?.5:.005)?'+':'')+fmt(Math.abs(v)<(k===0?.5:.005)?0:v,k):'暂无';
 const sum=a=>a.reduce((s,x)=>s+x,0),last=a=>a[a.length-1],keys=Object.keys,sorted=o=>keys(o).sort(),ls=a=>a.map(v=>typeof v==='string'?[v,v]:v);
 const state={},charts=[],refs={};let serial=0,tab='';
 const ico='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m-4-4 4 4 4-4M4 16v5h16v-5"/></svg>';
@@ -19,7 +19,7 @@ function signal(txt){root.insertAdjacentHTML('beforeend','<p class="signal">'+es
 function section(title,tag=''){const el=document.createElement('section');el.className='plot';el.innerHTML='<div class="plothead"><h3>'+esc(title)+'</h3><span class="pill">'+esc(tag)+'</span></div>';root.append(el);return el}
 function plot(title,tag,opt,note='',height=0){const el=section(title,tag),ch=document.createElement('div');ch.className='chart';if(height)ch.style.height=height+'px';ch.setAttribute('role','img');ch.setAttribute('aria-label',title+'。'+tag);el.append(ch);
 const chart=echarts.init(ch,null,{renderer:'canvas'});if(note){const p=document.createElement('p');p.className='note';p.textContent=note;el.append(p)}
-const base={animation:false,color:colors,textStyle:{fontFamily:'"Microsoft YaHei",sans-serif',color:'#32484e',fontSize:11},tooltip:{trigger:'axis',confine:true,renderMode:'richText',axisPointer:{type:'cross'}},legend:{type:'scroll',top:0,left:0,itemWidth:14,textStyle:{fontSize:11}},grid:{left:12,right:18,top:60,bottom:26,containLabel:true},aria:{enabled:true}};
+const base={animation:false,color:colors,textStyle:{fontFamily:'"Microsoft YaHei",sans-serif',color:'#32484e',fontSize:11},tooltip:{trigger:'axis',confine:true,renderMode:'richText',valueFormatter:v=>ok(v)?fmt(v):'暂无',axisPointer:{type:'cross'}},legend:{type:'scroll',top:0,left:0,itemWidth:14,textStyle:{fontSize:11}},grid:{left:12,right:18,top:60,bottom:26,containLabel:true},aria:{enabled:true}};
 chart.setOption(Object.assign(base,opt));charts.push(chart);return chart}
 const dateAxis=(x)=>({type:'category',data:x,axisLabel:{hideOverlap:true,formatter:v=>/^\d{4}-/.test(v)?v.slice(5):v},axisLine:{lineStyle:{color:'#becbc9'}},axisTick:{show:false}});
 const axis=(name,scale=false)=>({type:'value',scale,name,nameTextStyle:{fontSize:10},axisLabel:{color:'#577071',hideOverlap:true},splitLine:{lineStyle:{color:'#e5eceb'}}});
@@ -34,12 +34,12 @@ function table(title,headers,rows,formats=[]){
  ctrl.querySelector('button').onclick=()=>{const safe=x=>typeof x==='string'&&/^\s*[=+@\-]/.test(x)?"'"+x:String(x??'');const csv=[headers,...view].map(r=>r.map(x=>'"'+safe(x).replaceAll('"','""')+'"').join(',')).join('\r\n');let a=document.createElement('a'),u=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));a.href=u;a.download='复盘啦-'+title+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)};
  return el
 }
-const rangeOptions=[['20','近20日'],['60','近60日'],['120','近120日'],['all','全部']];
-function trail(a,k){return state[k]==='all'?a:a.slice(-Number(state[k]))}
+const rangeOptions=[['5','近一周 · 5交易日'],['20','近一月 · 20交易日'],['250','近一年 · 250交易日'],['all','全部已收录']];
+function trail(a,k){if(state[k]==='all'||!a.length)return a;const n=Number(state[k]);if(k==='ir')return a.slice(-n);const date=r=>Array.isArray(r)?r[0]:r,end=date(last(a)),d=R.calendar.filter(x=>x<=end).slice(-n)[0];return d?a.filter(r=>date(r)>=d):[]}
 function spark(a,col){const min=Math.min(...a),m=Math.max(...a)-min||1;return '<svg aria-hidden="true" viewBox="0 0 64 25"><polyline fill="none" stroke="'+col+'" stroke-width="1.7" points="'+a.map((x,i)=>(i*63/Math.max(1,a.length-1)).toFixed(1)+','+(23-21*(x-min)/m).toFixed(1)).join(' ')+'"/></svg>'}
 function kpis(){const arr=D.net.map(r=>sum(r.slice(1))),m=D.margin['沪深京'],basis=D.basis['000852.SH'],intra=D.intraday[sorted(D.intraday).at(-1)],intraD=sorted(D.intraday).at(-1),amounts=intra.amount.filter(ok);
  const fields=[['宽基 ETF 净申赎',last(arr),'亿元',last(D.net)[0],arr.slice(-18),true],['沪深京融资净买入',last(m)[2],'亿元',last(m)[0],m.slice(-18).map(x=>x[2]),true],['中证1000近月基差',last(basis)[2],'点',last(basis)[0],basis.slice(-18).map(x=>x[2]),true],['活跃 ETF 分钟成交合计',amounts.length===intra.times.length?sum(amounts):null,'亿元',intraD,amounts.slice(-18),false]];
- $('#kpis').innerHTML=fields.map(([n,v,u,d,a,s],i)=>'<a class="kpi" href="#'+['etf','margin','basis','minute'][i]+'"><header>'+n+'<span aria-hidden="true"> ↗</span></header><div class="value"><div><strong class="'+(s?(v<0?'down':'up'):'neutral')+'">'+(s?sg(v):fmt(v))+'</strong><em>'+u+'</em></div>'+spark(a,s?(v<0?green:red):colors[1])+'</div><small>'+d+' · '+(n.includes('分钟')?'20只样本':'收盘口径')+'</small></a>').join('')
+ $('#kpis').innerHTML=fields.map(([n,v,u,d,a,s],i)=>'<a class="kpi" href="#'+['etf','marginHistory','basis','minute'][i]+'"><header>'+n+'<span aria-hidden="true"> ↗</span></header><div class="value"><div><strong class="'+(s?(v<0?'down':'up'):'neutral')+'">'+(s?sg(v):fmt(v))+'</strong><em>'+u+'</em></div>'+spark(a,s?(v<0?green:red):colors[1])+'</div><small>'+d+' · '+(n.includes('分钟')?'20只样本':'收盘口径')+'</small></a>').join('')
 }
 function overview(){
  const market=D.margin['沪深京'],fin=new Map(market.map(r=>[r[0],r[2]]));
@@ -63,12 +63,12 @@ function etf(){
  const ctrl=select('ed','观察日',days.slice().reverse(),last(days))+select('eg','指数篮子',gr,gr[0])+select('er','区间',rangeOptions,'20');
  head('宽基 ETF 申赎','固定十类样本 · '+D.n+' 只 · 以可比份额差乘当日单位净值估算',ctrl);
  const series=D.net.filter(r=>r[0]<=state.ed),i=D.categories.indexOf(state.eg),val=r=>i<0?sum(r.slice(1)):r[i+1],plotRows=trail(series,'er'),vs=plotRows.map(val);let total=0;
- const cur=last(series);const ix=D.categories.map((g,j)=>[g,cur[j+1],sum(series.slice(-5).map(r=>r[j+1])),sum(series.slice(-20).map(r=>r[j+1])),sum(series.map(r=>r[j+1]))]).sort((a,b)=>b[1]-a[1]);
+ const cur=last(series);const periodTotal=(n,j)=>{const ds=R.calendar.filter(d=>d<=cur[0]).slice(-n),matched=series.filter(r=>r[0]>=ds[0]);return ds.length===n&&matched.length===n&&matched.every((r,i)=>r[0]===ds[i]&&ok(r[j+1]))?sum(matched.map(r=>r[j+1])):null};const ix=D.categories.map((g,j)=>[g,cur[j+1],periodTotal(5,j),periodTotal(20,j),periodTotal(250,j),sum(series.map(r=>r[j+1]))]).sort((a,b)=>b[1]-a[1]);
  if(series.length<20)ix.forEach(r=>{r[3]=null;if(series.length<5)r[2]=null});
  const base=series.slice(-61,-1).map(val),rank=base.length===60?100*(base.filter(x=>x<val(cur)).length+0.5*base.filter(x=>x===val(cur)).length)/60:null;
  signal(state.ed+'，十类净申购估算 '+sg(sum(cur.slice(1)))+' 亿元；'+ix.filter(r=>r[1]>0).length+' 类净申购。最大净流入方向：'+(ix[0][1]>0?ix[0][0]+' '+sg(ix[0][1])+' 亿元':'无')+'。'+(ok(rank)?state.eg+'当日净额处在此前60日的 '+fmt(rank,1)+'% 分位。':'此前不足60日，不给历史分位。'));
- plot(state.eg+' · 资金轨迹','亿元',{xAxis:dateAxis(plotRows.map(r=>r[0])),yAxis:[axis('单日'),{...axis('累计'),splitLine:{show:false}}],series:[bar('单日净申赎',vs),line('区间累计',vs.map(v=>total+=v),colors[1],{yAxisIndex:1})]},'红柱净申购、绿柱净赎回；累计从展示区间首日开始。净申购不能据此识别具体买方。');
- table('十类宽基对照',['跟踪指数','当日（亿）','近5日（亿）','近20日（亿）','7月1日起（亿）'],ix,['','sign','sign','sign','sign']);
+ plot(state.eg+' · 资金轨迹','亿元',{xAxis:dateAxis(plotRows.map(r=>r[0])),yAxis:[axis('单日'),{...axis('累计'),splitLine:{show:false}}],series:[bar('单日净申赎',vs),line('区间累计',vs.map(v=>total+=v),colors[1],{yAxisIndex:1})]},'实际覆盖 '+plotRows.length+' 个观测日；不足所选窗口时只画现有数据，整期累计留空。');
+ table('十类宽基对照',['跟踪指数','当日（亿）','近一周（亿）','近一月（亿）','近一年（亿）','已收录累计（亿）'],ix,['','sign','sign','sign','sign']);
 const heat=series.slice(-20),cells=[];
  for(let j=0;j<D.categories.length;j++){
    const mx=Math.max(...heat.map(r=>Math.abs(r[j+1])),0.01);
@@ -97,23 +97,32 @@ function minute(){const days=sorted(D.intraday),klist=keys(D.names).map(k=>[k,D.
  if(local)table('活跃 ETF 明细',['代码','基金','跟踪指数','日成交（亿）','涨跌（%）','前1日（亿）','前2日（亿）','前20日均（亿）'],D.detail[d],['','','','','sign']);
  signal('篮子分时仅展示当日至少3只入选的方向；各日重新选样，组内基金不一定相同。没有进入当日样本的范围不作跨日比较。');
 }
-function margin(){const scopes=keys(D.margin);let ctrl=select('ms','融资范围',scopes,'沪深京')+select('mr','区间',rangeOptions,'60');const dd=sorted(D.industry);ctrl+=select('sd','行业对照日',dd.slice(1).reverse(),last(dd));head('融资余额与净买入','存量与流量分轴显示；各指数使用供应商对应指数的日度汇总。',ctrl);
+function margin(){root.insertAdjacentHTML('beforeend','<p class="signal"><a href="#marginHistory">查看 2010 年起的市场与行业融资，以及近周、近月、近年净买入 →</a></p>');const scopes=keys(D.margin);let ctrl=select('ms','融资范围',scopes,'沪深京')+select('mr','区间',rangeOptions,'20');const dd=sorted(D.industry);ctrl+=select('sd','行业对照日',dd.slice(1).reverse(),last(dd));head('融资余额与净买入','存量与流量分轴显示；各指数使用供应商对应指数的日度汇总。',ctrl);
  const rows=trail(D.margin[state.ms],'mr');plot(state.ms+' · 杠杆资金',last(rows)[0],{xAxis:dateAxis(rows.map(r=>r[0])),yAxis:[axis('净买入 / 亿'),{...axis('余额 / 亿',true),splitLine:{show:false}}],series:[bar('融资净买入',rows.map(r=>r[2])),line('融资余额',rows.map(r=>r[1]),colors[1],{yAxisIndex:1})]},'净买入＝融资买入－融资偿还；余额为期末存量。沪深京汇总与下方沪深行业表范围不同。');
  const s=state.sd,p=dd[dd.indexOf(s)-1],ix=Object.entries(D.industry[s]).map(([k,r])=>[k,r[0],D.industry[p]?.[k]?.[0]??null,r[1],r[2]]).sort((a,b)=>b[1]-a[1]);
  chart1('行业净买入对照',s+' / '+p,ix.slice(0,6).concat(ix.slice(-6)).map(r=>r[0]),[bar(s,ix.slice(0,6).concat(ix.slice(-6)).map(r=>r[1]),colors[0]),bar(p,ix.slice(0,6).concat(ix.slice(-6)).map(r=>r[2]),'#c69c6a')],'亿元','当期前六与后六行业；全31行业见下表。行业分类为采集时申万一级快照。');
  table('沪深 A 股行业融资',['申万一级',s+' 净买入',p+' 净买入','融资余额（亿）','有效股票数'],ix,['','sign','sign','','int'])
 }
-function basis(){const opts=keys(D.basis).map(k=>[k,D.names[k]]);head('股指期货基差','中金所日行情 · 近月实际合约 · 同日现货收盘',select('bk','品种',opts,'000852.SH')+select('br','窗口',[['120','120自然日'],['240','240自然日'],['360','360自然日'],['jan','2024年1月']],'120'));
- let rows=D.basis[state.bk],end=last(rows)[0],cut=new Date(end+'T12:00:00Z');cut.setUTCDate(cut.getUTCDate()-Number(state.br||120)+1);
- rows=state.br==='jan'?rows.filter(r=>r[0].startsWith('2024-01')):rows.filter(r=>r[0]>=cut.toISOString().slice(0,10));if(!rows.length){signal('该时间段无同日合约及现货配对。');return}
- const r=last(rows);signal(r[0]+' · '+r[1]+' · '+(r[2]<0?'贴水 ':'升水 ')+fmt(Math.abs(r[2]))+' 点，占现货 '+sg(r[3])+'%。');
- const rolls=rows.filter((r,j)=>j&&r[1]!==rows[j-1][1]);let series=bar('基差（点）',rows.map(r=>r[2]));series.markLine={silent:true,symbol:'none',lineStyle:{type:'dashed',color:'#8b8580'},label:{formatter:'换月',fontSize:9},data:rolls.map(r=>({xAxis:r[0]}))};
- chart1(D.names[state.bk]+' · 近月升贴水','点',rows.map(r=>r[0]),[series],'点','基差＝期货收盘价－现货收盘价。虚线为近月合约切换后的首个观测日，不是交割日；不混用主连和结算价。');
- table('同日合约期限结构 · '+r[0],['挂牌合约','期货减现货（点）','相对现货（%）'],D.curve[state.bk][r[0]],['','sign','sign']);
- if(local){const spot=D.candles[state.bk].find(x=>x[0]===r[0])?.[4];if(ok(spot))table('本机报价核对',['挂牌合约','同日现货收盘','期货收盘','期货减现货'],D.curve[state.bk][r[0]].map(v=>[v[0],spot,spot+v[1],v[1]]),['','','','sign'])}
- table('近月逐日对照',['交易日','实际合约','基差（点）','相对现货（%）'],rows.slice().reverse(),['','','sign','sign'])
+function contractTerm(sym,d,pct){
+ const y=2000+Number(sym.slice(2,4)),m=Number(sym.slice(4,6)),dt=new Date(Date.UTC(y,m-1,1));dt.setUTCDate(15+(5-dt.getUTCDay()+7)%7);
+ const nominal=dt.toISOString().slice(0,10),past=nominal<=R.asof,expiry=past?R.calendar.find(x=>x>=nominal):nominal;
+ const days=expiry?Math.round((Date.parse(expiry)-Date.parse(d))/86400000):null,carry=-pct/(1+pct/100);
+ return [expiry?(expiry+(past?'':'（预计）')):null,days,carry,days>0?carry*365/days:null]
 }
-function band(){const idxMenu=select('ik','指数',keys(D.names).map(k=>[k,D.names[k]]),'000852.SH');head('重点指数波动带','自有口径 · 同周期20根收盘与两倍总体标准差',idxMenu+select('period','周期',['日',...keys(D.periodBands[state.ik])],'日')+select('ir','区间',rangeOptions.map(([v,t])=>[v,t.replace('日','根')]),'60'));
+function basis(){
+ const opts=keys(D.basis).map(k=>[k,D.names[k]]);let ctrl=select('bk','品种',opts,'000852.SH');const curve=D.curve[state.bk],ds=sorted(curve).reverse();
+ ctrl+=select('bd','观察日',ds,ds[0]);let d=state.bd,cs=curve[d],contracts=cs.map(r=>r[0]);
+ ctrl+=select('bc','跟踪合约',contracts,contracts[0])+select('br','窗口',rangeOptions,'20');
+ head('股指期货 · 基差与贴水收益','中金所挂牌合约 · 同日收盘 · 基差＝期货价−现货价',ctrl);
+ const out=cs.map(([n,v,p])=>[n,v,p,...contractTerm(n,d,p)]);const row=out.find(r=>r[0]===state.bc);
+ statline([['所选合约',row[0],d],['基差',sg(row[1])+' 点',row[1]<0?'贴水：期货低于现货':row[1]>0?'升水：期货高于现货':'期现平价'],['持有至交割 · 理论价差',sg(row[5])+'%',row[4]+' 个自然日'],['折算简单年化',ok(row[6])?sg(row[6])+'%':'不适用','未扣成本，不按保证金放大']]);
+ table('同日各挂牌合约',['合约','基差（点）','相对现货（%）','交割日','剩余天数','价差收益率（%）','简单年化（%）'],out,['','sign','sign','','int','sign','sign']);
+ const hist=trail(ds.filter(t=>t<=d).reverse(),'br').map(t=>[t,curve[t].find(r=>r[0]===state.bc)]).filter(r=>r[1]);chart1(row[0]+' · 自身历史基差',hist.length+' 个观测日',hist.map(r=>r[0]),[bar('基差',hist.map(r=>r[1][1]))],'点','仅看所选真实合约，上市前不补值，不拼接主连。');
+ const front=trail(D.basis[state.bk].filter(r=>r[0]<=d),'br');chart1(D.names[state.bk]+' · 近月换月序列','点',front.map(r=>r[0]),[bar('近月基差',front.map(r=>r[2]))],'点','2024年1月和近期数据分段收录；每个柱子仅对应一个实际观测日。');
+ if(local){const spot=D.candles[state.bk].find(x=>x[0]===d)?.[4];if(ok(spot))table('本机报价核对',['合约','现货收盘','期货收盘'],cs.map(r=>[r[0],spot,spot+r[1]]))}
+ signal('价差收益率＝（现货−期货）÷期货；简单年化＝价差收益率×365÷剩余自然日。假设买入期货并持有至交割、现货指数不动、基差归零。实际交割按交割结算价，现货下跌仍可能亏损；对冲组合还涉及分红、融券、资金、手续费与滑点。交割当日不报年化。日期按合约月第三个周五、休市顺延；超出已核对日历的仅为预估。');
+}
+function band(){const idxMenu=select('ik','指数',keys(D.names).map(k=>[k,D.names[k]]),'000852.SH');head('重点指数波动带','自有口径 · 同周期20根收盘与两倍总体标准差',idxMenu+select('period','周期',['日',...keys(D.periodBands[state.ik])],'日')+select('ir','区间',[['20','近20根'],['60','近60根'],['120','近120根'],['all','全部K线']],'60'));
  const k=state.ik,a=trail(state.period==='日'?D.bands[k]:D.periodBands[k][state.period],'ir'),r=last(a);
  signal(r[0]+' · '+D.names[k]+' · '+state.period+'线较20根均线 '+sg(r[1])+'%，上、下轨距中线各 '+fmt(r[2])+'%。'+(Math.abs(r[1])>r[2]?'收盘已越过统计带。':'收盘仍在统计带内。'));
  chart1('收盘相对同周期20根均线','%',a.map(r=>r[0]),[line('收盘偏离',a.map(r=>r[1]),colors[1]),line('上轨',a.map(r=>r[2]),colors[2],{lineStyle:{type:'dashed',width:1}}),line('下轨',a.map(r=>-r[2]),colors[0],{lineStyle:{type:'dashed',width:1}})],'%','各周期分别计算；分钟按早、午交易时段右端收盘分桶，不跨午休。周、月只使用已过去的完整周期，不含当前周期。');
@@ -150,7 +159,7 @@ function cross(){
  table('逐日核对',['交易日','ETF 净申赎（亿）','融资净买入（亿）','温度（分）','上涨占比（%）','个股中位涨跌（%）'],sel.slice().reverse().map(t=>[t,total(t),mg.get(t)??null,D.market[t]?.[0]??null,D.market[t]?.[2]??null,D.market[t]?.[3]??null]),['','sign','sign','int','','sign']);
 }
 function rates(){
- const days=D.rates.map(r=>r[0]);head('交易所短期资金价格','上交所通用质押式回购 · 1天 / 7天',select('rd','观察日',days.slice().reverse(),last(days))+select('rr','区间',rangeOptions,'60'));
+ const days=D.rates.map(r=>r[0]);head('交易所短期资金价格','上交所通用质押式回购 · 1天 / 7天',select('rd','观察日',days.slice().reverse(),last(days))+select('rr','区间',rangeOptions,'20'));
  const rows=trail(D.rates.filter(r=>r[0]<=state.rd),'rr'),r=last(rows);
  signal(r[0]+' · 7天减1天利差 '+sg(r[1])+' 基点。'+(ok(r[4])?'隔夜收盘利率处在此前60个观测日的 '+fmt(r[4],1)+'% 分位。':'此前不足60个观测日，不给分位。'));
  chart1('7天减1天 · 期限利差','基点',rows.map(x=>x[0]),[bar('7天减1天',rows.map(x=>x[1]),colors[1])],'BP','1个基点＝0.01个百分点。正值代表7天价格高于1天；不能据此推断股票净流入。');
@@ -158,11 +167,83 @@ function rates(){
  if(local)chart1('回购收盘年利率','%',rows.map(x=>x[0]),[line('GC001',rows.map(x=>D.repoLevels[x[0]][0]),colors[1]),line('GC007',rows.map(x=>D.repoLevels[x[0]][1]),colors[0])],'%','本机原始两期限行情，非全天成交加权利率。',true);
  table('逐日资金价格',['交易日','7天减1天（BP）','1天日变（BP）','7天日变（BP）','1天分位（%）','7天分位（%）'],rows.slice().reverse(),['','sign','sign','sign']);
 }
-const views={overview,boards:()=>window.ETFBoards.mount(root,window.ETF_BOARDS_DATA,{view:boardId(),onViewChange:id=>history.replaceState(null,'','#boards/'+id)}),etf,cross,minute,margin,rates,basis,band,risk:()=>window.renderDCN(root,local?D.dcnPrivate:D.dcn),riskHistory:risk,week};
+const R=window.ETF_BOARDS_DATA.research;
+const periods=[['5','近一周 · 5交易日'],['20','近一月 · 20交易日'],['250','近一年 · 250交易日']];
+const periodName=k=>periods.find(x=>x[0]===String(k))[1].split(' · ')[0];
+Object.assign(tabs,{marginHistory:'融资长历史',capitalActions:'股东减持与公司回购',ownership:'中金与汇金持仓'});
+navSections.splice(2,0,['公司与杠杆资金',['marginHistory','capitalActions','ownership']]);
+Object.assign(icons,{capitalActions:'coins',marginHistory:'chart-column-increasing',ownership:'landmark'});
+function statline(fields){const el=document.createElement('dl');el.className='fund-readouts';for(const [k,v,n] of fields){const cell=document.createElement('div');cell.innerHTML='<dt>'+esc(k)+'</dt><dd>'+esc(v)+'</dd><small>'+esc(n)+'</small>';el.append(cell)}root.append(el)}
+function browse(title,headers,rows,formats,search=true){
+ const controls=document.createElement('div');controls.className='fund-search';root.append(controls);
+ const input=document.createElement('input');input.type='search';input.placeholder='公司名称、代码或关键词';input.setAttribute('aria-label',title+'筛选');if(search)controls.append(input);
+ const prev=document.createElement('button'),next=document.createElement('button'),pos=document.createElement('span');prev.textContent='上一页';next.textContent='下一页';controls.append(prev,pos,next);
+ let page=0,el;const draw=()=>{const q=input.value.trim().toLowerCase(),matches=q?rows.filter(r=>r.some(v=>String(v??'').toLowerCase().includes(q))):rows,n=Math.max(1,Math.ceil(matches.length/40));page=Math.max(0,Math.min(page,n-1));pos.textContent=(page+1)+' / '+n+' 页 · '+matches.length+' 行';prev.disabled=page===0;next.disabled=page>=n-1;if(el)el.remove();el=table(title,headers,matches.slice(page*40,(page+1)*40),formats);controls.after(el);el.querySelector('.icon').title='导出当前页 CSV';};
+ prev.onclick=()=>{page--;draw()};next.onclick=()=>{page++;draw()};input.oninput=()=>{page=0;draw()};draw()
+}
+const histCache={},pendingHistory=new Set();window.financeSeries=([stamp,k,rows])=>{if(stamp===R.asof)histCache[k]=rows;pendingHistory.delete(k);if(tab==='marginHistory'&&state.hs===k)render()};
+function marginHistory(){
+ const opts=Object.entries(R.scopes).map(([k,v])=>[k,v.name]).sort((a,b)=>a[1].localeCompare(b[1],'zh'));const key='all';
+ const ctl=select('hs','融资范围',[[key,'市场合计'],...opts.filter(r=>r[0]!==key)],key)+select('hw','观察窗口',rangeOptions,'20')+select('hf','展示频率',['自动','日度','月度'],'自动');
+ const s=R.scopes[state.hs],w=state.hw;head('融资长历史',s.name+' · '+s.start+' 至 '+s.end+' · 东财披露回溯 · 买入额减偿还额',ctl);
+ statline(periods.map(([k])=>[periodName(k)+'净买入',sg(s.period[k][0])+' 亿',s.period[k][1]+' / '+k+' 个有效交易日']));
+ let daily=state.hf==='日度'||(state.hf==='自动'&&w!=='all');
+ const fullLocal=local&&daily&&w==='all';if(fullLocal&&!histCache[state.hs]&&!pendingHistory.has(state.hs)){let id=state.hs,script=document.createElement('script');pendingHistory.add(id);script.src='finance-history/'+encodeURIComponent(id)+'.js';script.onload=()=>script.remove();script.onerror=()=>{script.remove();if(tab==='marginHistory'&&state.hs===id)signal('未能打开本机逐日文件。')};document.head.append(script)}
+ const data=fullLocal?histCache[state.hs]||[]:s.recent,days=R.scopes.all.recent;
+ const first=w==='all'?s.start:days.at(-Math.min(+w,days.length))[0];
+ if(daily){
+ const a=data.filter(r=>r[0]>=first);if(a.length)plot(s.name+' · 日度融资','亿元',{xAxis:dateAxis(a.map(r=>r[0])),yAxis:[axis('净买入'),{...axis('余额',true),splitLine:{show:false}}],series:[bar('净买入',a.map(r=>r[1])),line('期末余额',a.map(r=>r[2]),colors[1],{yAxisIndex:1})]},'每日净买入是流量；余额是每个交易日结束时的存量。');
+ if(w==='all'&&!local)signal('官网逐日提供最近250个交易日。全部历史按月汇总；本机可查全部逐日明细。');
+ if(a.length)browse('日度记录',['交易日','融资净买入（亿）','期末融资余额（亿）'],a.slice().reverse(),['','sign'],false);
+ }else{
+ const a=s.monthly.filter(r=>r[0]>=first.slice(0,7));plot(s.name+' · 月度融资','亿元',{xAxis:{...dateAxis(a.map(r=>r[0])),axisLabel:{hideOverlap:true}},yAxis:[axis('月净买入'),{...axis('月末余额',true),splitLine:{show:false}}],series:[bar('自然月净买入',a.map(r=>r[1])),line('最后交易日余额',a.map(r=>r[3]),colors[1],{yAxisIndex:1})]},'按自然月归集；本月截至 '+R.asof+'。边界月份展示整月已收录值，和上方滚动窗口不同。缺日或缺偿还额时月净额留空。');
+ browse('月度记录',['月份','净买入（亿）','有效天数','期末余额（亿）'],a.slice().reverse(),['','sign','int'],false);
+ }
+ signal(s.name+'：'+s.start+' 至 '+s.end+'，收录 '+s.count+' 个交易日。行业按快照日东财目录回溯，不等于当年申万成分。各行业起点不同，不用今天的成分补造历史，也不强行拼接申万数据。');
+ const rows=Object.entries(R.scopes).filter(([k])=>k!=='all').map(([,v])=>[v.name,v.start,v.end,v.period[5][0],v.period[20][0],v.period[250][0],v.period[5][2]]).sort((a,b)=>(b[4]??-Infinity)-(a[4]??-Infinity));
+ browse('行业横向对照',['行业','首个记录','末个记录','近周净买入（亿）','近月净买入（亿）','近年净买入（亿）','期末余额（亿）'],rows,['','','','sign','sign','sign']);
+}
+function capitalActions(){
+ const c=select('aw','统计窗口',periods,'20')+select('atype','事项',['股东减持','公司回购'],'股东减持');
+ const a=R.events[state.aw];head('股东减持与公司回购','A股公开披露 · '+a.after+'（不含）至 '+R.asof+'（含） · 含非交易日公告',c);
+ const summary=periods.map(([w])=>{const a=R.events[w],cnt=sum(a.buy.map(r=>r[6]));return [periodName(w),a.start,a.sell.length,sum(a.sell.map(r=>r[2])),sum(a.buy.map(r=>r[3])),sum(a.buy.map(r=>r[4])),cnt?sum(a.buy.map(r=>r[5]??0)):null]});
+ if(state.atype==='股东减持'){
+ const rs=a.sell,rec=sum(rs.map(r=>r[3])),n=sum(rs.map(r=>r[5]));
+ statline([['披露公司',rs.length+' 家','按证券代码去重'],['减持股数',fmt(sum(rs.map(r=>r[2])))+' 万股','按公告日，不是当日卖盘'],['有均价部分估算',n?fmt(sum(rs.map(r=>r[4]??0)))+' 亿':'未知',n+' / '+rec+' 条披露有成交均价']]);
+ signal('只统计披露了减持股数的变动，不含尚未实施的减持计划。最新收录公告 '+R.sellThrough+'；未收录不能解释成没有减持。公告可能汇总多日交易。');
+ browse('哪些公司被减持',['代码','公司','减持万股','披露条数','有价部分估算（亿）','有均价条数','最近公告'],rs,['','','','int','','int']);
+ if(local)browse('本机减持披露明细',['代码','公司','公告日','股东','变动开始','变动结束','减持万股','披露均价（元）'],R.records[state.aw][0],[]);
+ }else{
+ const rs=a.buy,n=sum(rs.map(r=>r[4])),cnt=sum(rs.map(r=>r[6])),paid=sum(rs.map(r=>r[5]??0)),kinds=['全部用途',...new Set([...rs,...a.ongoing].map(r=>r[2]))];
+ statline([['新披露方案',sum(rs.map(r=>r[3]))+' 项','按首次董事会公告日'],['完成回购',n+' 项','按方案完成日'],['完成方案实付合计',cnt?fmt(paid)+' 亿':'未知',cnt+' / '+n+' 项有金额']]);
+ signal('完成额是这些方案整个执行期的累计实付，不是本窗口的逐日成交；不合计计划上限。同一方案只计一次。用途按披露意图归类，不等于已办理注销或已授予激励。');
+ const groups=kinds.slice(1).map(k=>{const g=rs.filter(r=>r[2]===k);return [k,sum(g.map(r=>r[3])),sum(g.map(r=>r[4])),g.some(r=>r[5]!=null)?sum(g.map(r=>r[5]??0)):null]});
+ table('用途拆分',['用途','新方案数','完成数','已披露实付（亿）'],groups,['','int','int']);
+ const area=document.createElement('div');area.className='ctrl';area.innerHTML=select('ap','披露用途',kinds,kinds.includes(state.ap)?state.ap:'全部用途');root.append(area);
+ const selected=rs.filter(r=>state.ap==='全部用途'||r[2]===state.ap);
+ browse('公司与方案用途',['代码','公司','用途','新方案数','完成数','有金额方案实付（亿）','有金额完成数'],selected,['','','','int','int','','int']);
+ browse('窗口内更新且仍实施中 · 最新进展',['代码','公司','用途','方案数','方案启动以来累计实付（亿）'],a.ongoing.filter(r=>state.ap==='全部用途'||r[2]===state.ap),['','','','int']);
+ signal('实施中只取每个方案的最新一条进展；金额是自启动至公告日的累计，不与上方完成额相加。');
+ if(local)browse('本机回购公告用途原文',['代码','公司','方案编号','首次公告','完成日','归类','进度代码','累计实付（亿）','披露用途'],R.records[state.aw][1].filter(r=>state.ap==='全部用途'||r[5]===state.ap),[]);
+ }
+ table('周、月、年窗口对照',['窗口','首个交易日','减持公司数','减持（万股）','新回购方案数','完成数','有金额完成方案实付（亿）'],summary,['','','int','','int','int']);
+}
+function ownership(){
+ const dates=[...new Set(R.holdings.map(r=>r[1]))].sort().reverse();
+ head('中金与汇金 · 定期报告持仓','A股前十大股东披露 · 仅精确匹配法人全称 · 非当前实时仓位',select('oq','报告期',dates,dates[0]));
+ const rows=R.holdings.filter(r=>r[1]===state.oq);statline(rows.map(r=>[r[0].replace('有限责任公司','').replace('股份有限公司',''),r[2]+' 家','报告期末 '+r[1]]));
+ table('披露范围 · 同期横向核对',['披露股东','报告期末','出现公司数','可拆分A股（万股）','有市值部分（亿）','有市值公司数','有A股股数公司数'],rows,['','','int','','','int']);
+ table('分季披露规模',['披露股东','报告期末','出现公司数','可拆分A股（万股）','有市值部分（亿）','有市值公司数','有A股股数公司数'],R.holdings.slice().sort((a,b)=>b[1].localeCompare(a[1])),['','','int','','','int']);
+ signal('中金指中金公司本体，不等于中证金；汇金投资与汇金资管分列。不含 ETF 穿透、资管计划、托管或其他关联主体；未进入十大、或某期未收录，均不能视作清仓。A/H合并或股份种类不清的计入公司数，不纳入A股股数和市值。股数不是跨公司持股比例，季度存量不能按周月年累加。');
+ if(local)browse('本机逐家公司披露',['股东全称','报告期','证券代码','公司','持股（万股）','占总股本（%）','参考市值（亿）','公告日期','披露股份种类'],R.positions.filter(r=>r[1]===state.oq),[]);
+}
+const views={marginHistory,capitalActions,ownership,overview,boards:()=>window.ETFBoards.mount(root,window.ETF_BOARDS_DATA,{view:boardId(),onViewChange:id=>history.replaceState(null,'','#boards/'+id)}),etf,cross,minute,margin,rates,basis,band,risk:()=>window.renderDCN(root,local?D.dcnPrivate:D.dcn),riskHistory:risk,week};
 function boardId(){const id=location.hash.split('/')[1];return window.ETFBoards.views.includes(id)?id:'daily'}
 function render(){root.__boards?.destroy();charts.splice(0).forEach(c=>c.dispose());const hash=location.hash.slice(1).split('/')[0];tab=Object.hasOwn(tabs,hash)?hash:'overview';root.replaceChildren();$('#tabs').querySelectorAll('button').forEach(b=>{if(b.dataset.tab===tab)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});views[tab]()}
 if(local)$('#close-link').href=$('#home').href='https://telltellfish.github.io/';
 const coverage=[
+ ['融资长历史',R.scopes.all.start,R.asof,'东财市场合计与行业分别回溯；按周、月、年累计净买入，不累加余额'],
+ ['公司资本行为',R.events[250].start,R.asof,'股东披露减持及回购方案，按不同事项日期归集'],
  ['交易所回购',D.rates[0][0],last(D.rates)[0],'GC001与GC007有效成交日配对；公开展示期限利差、变动和历史分位'],
  ['固定宽基申赎',D.net[0][0],last(D.net)[0],D.n+'只 / '+D.categories.length+'类，折算前后份额可比；不指认买方身份'],
  ['篮子成交',sorted(D.turnover)[0],last(sorted(D.turnover)),'仅在全部样本当日有成交额记录时汇总；成交不等于净流入'],

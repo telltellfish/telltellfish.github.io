@@ -2,7 +2,7 @@
 (() => {
   "use strict";
   const names = {"000905.SH":"中证500","000852.SH":"中证1000"};
-  const fmt = (x, digits=4) => x.toLocaleString("zh-CN", {maximumFractionDigits:digits});
+  const fmt = (x, digits=4) => x.toLocaleString("zh-CN", {minimumFractionDigits:2,maximumFractionDigits:2});
   const point = t => fmt(t / 10000);
   const money = y => fmt(y / 10000, 4);
   const pct = (t, a) => 100 * (t - a) / a;
@@ -117,6 +117,10 @@
     host.replaceChildren(pane);
     function draw() {
       pane.replaceChildren(node("style",css+chartCSS),node("h2","DCN 与雪球观察"),node("p",data.marketStatus));
+      const guide=node("div",undefined,"dcn-guide");pane.append(guide);
+      for(const [k,title,body] of [["ki","敲入：保护条件改变","在条款指定的观察时点触及下方障碍，产品进入已敲入状态。不是当场赎回，也不是立刻损失这笔本金；到期损益仍看后续行情与条款。"],["ko","敲出：触发提前结束","在约定敲出观察日，指数达到当期敲出水平，产品按条款提前结束。下跌本身不等于敲出；是否触发还取决于当日门槛与此前状态。"],["impact","对市场：本金不等于卖盘","触线附近交易商可能动态调整期货或现货对冲。方向和力度取决于产品结构、净头寸及流动性，不能把名义本金当成资金流出。"]]){
+        const b=node("div",undefined,k);b.append(node("h3",title),node("p",body));guide.append(b);
+      }
       const controls=node("div",undefined,"dcn-controls"); pane.append(controls);
       const modes=[["snow","标准雪球 · 每1亿元"],["dcn","无敲入 DCN · 每1亿元"]];
       if (snapshots.length) modes.push(["sample","本机已核验条款样本"]);
@@ -130,6 +134,7 @@
       if (!dates.includes(obs)) obs=sample?dates[0]:"T+05";
       select(controls,"收盘观察日",dates.map(d=>[d,d]),obs,v=>{obs=v;draw();});
       const f=days[obs], noKI=mode==="dcn" || (sample && book.rows.every(r=>r.kind==="无敲入DCN"));
+      pane.append(node("p","点位与金额展示至两位小数，边界按未四舍五入的条款点位判断。"));
       pane.append(node("p",base+" · "+names[code]+"收盘 "+point(anchor)+" 点（本机指数日K）。"));
       pane.append(node("p",sample?"仅代表该日期所收样本。快照日按当日期初状态复核；未来各日先假设此前收盘持平，已敲出或到期的不再参与。":
         "假设组合，非市场实数。以基准收盘为期初，4 笔各 2,500 万元，各行是独立情景；目标日前指数持平。"));
@@ -144,27 +149,27 @@
       const result=node("p",undefined,"dcn-result"); result.setAttribute("aria-live","polite");section.append(result);
       const chart=node("div");section.append(chart);
       const mark=steps(chart,f,anchor,noKI,t=>{
-        selectedPct=pct(t,anchor);move.value=selectedPct.toFixed(5);price.value=t/10000;show(t);
+        selectedPct=pct(t,anchor);move.value=selectedPct.toFixed(2);price.value=(t/10000).toFixed(2);show(t);
       });
       function show(t) {
         const [i,o,m]=at(f,t);
         mark(t);
-        result.textContent="新增敲入 "+(noKI?"不适用":money(i)+" 万元")+" ｜ 敲出赎回本金 "+money(o)+" 万元 ｜ 普通到期名义 "+money(m)+" 万元";
+        result.textContent=names[code]+" 在 "+obs+" 观察，假设收于 "+point(t)+" 点（相对基准 "+fmt(pct(t,anchor))+"%）：新增敲入 "+(noKI?"不适用":money(i)+" 万元")+" ｜ 敲出赎回本金 "+money(o)+" 万元 ｜ 普通到期名义 "+money(m)+" 万元";
       }
       function fromPct() {
         const x=move.valueAsNumber, t=Math.round(anchor*(100+x)/100);
         if (!Number.isFinite(x) || t<=0 || !Number.isSafeInteger(t)) {
           price.value=""; result.textContent="请输入对应正点位的涨跌幅。"; return;
         }
-        selectedPct=x; price.value=t/10000; show(t);
+        selectedPct=x; price.value=(t/10000).toFixed(2); show(t);
       }
-      move.value=selectedPct; fromPct();
+      move.value=selectedPct.toFixed(2); fromPct();
       price.oninput=()=>{
         const x=price.valueAsNumber,t=Math.round(x*10000);
         if (!Number.isFinite(x)||t<=0||!Number.isSafeInteger(t)||Math.abs(x*10000-t)>1e-5) {
           move.value=""; result.textContent="点位须为正数，最多四位小数。"; return;
         }
-        selectedPct=pct(t,anchor); move.value=selectedPct.toFixed(5); show(t);
+        selectedPct=pct(t,anchor); move.value=selectedPct.toFixed(2); show(t);
       };
       move.oninput=fromPct;
       const add=table(section,["涨跌幅","指数点位","新增敲入（万元）","敲出赎回本金（万元）","普通到期名义（万元）"]);
@@ -174,7 +179,7 @@
       }
       for (const x of [-30,-20,-15,-10,-5,0,3,5,8,10,15]) {
         const t=Math.floor((anchor*(100+x)+50)/100), [i,o,m]=at(f,t);
-        add([(x>0?"+":"")+x+"%",point(t),noKI?"不适用":bar(i,"ki"),bar(o,"ko"),money(m)]);
+        add([(x>0?"+":"")+fmt(x)+"%",point(t),noKI?"不适用":bar(i,"ki"),bar(o,"ko"),money(m)]);
       }
       section.append(node("small","敲入只改变条款状态，不返还本金；敲出须在约定日达标才触发赎回。单位为触发合约名义，不是损失、现金到账或对冲卖盘。敲入与到期可能同日，列间不可相加。"));
       if (sample) {
