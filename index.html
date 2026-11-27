@@ -95,8 +95,18 @@
       box-shadow: 0 8px 22px rgba(38, 49, 69, .08);
     }
 
-    .home-shortcuts { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .capital-entry { display: inline-flex; align-items: center; text-decoration: none; }
+    .page .topbar {margin-bottom:18px}
+    .desk-switch {display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 24px}
+    .desk-item {min-width:0;display:flex;align-items:center;gap:14px;min-height:78px;padding:12px 20px;border:1px solid #e0e5e9;border-radius:6px;text-decoration:none}
+    .desk-item b {display:block;font-size:22px;font-weight:850;line-height:1.3}
+    .desk-item small {display:block;margin-top:3px;font-size:13px;font-weight:600}
+    .desk-code {font:700 13px/32px Consolas,monospace;align-self:center;text-align:center;min-width:34px;border:1px solid currentColor;border-radius:3px}
+    .desk-close {color:#862a41;background:#fff3f5;border-left:5px solid #ee4768}
+    .desk-funds {color:white;background:#106154;border-color:#106154;border-left:5px solid #99d6b0}
+    .desk-funds small {color:#d1eae1}
+    .desk-funds::after {content:'→';font-size:28px;line-height:1;margin-left:auto}
+    .desk-funds:hover,.desk-funds:focus-visible {background:#0a4b40;outline:3px solid #7cc4ab;outline-offset:2px}
+    @media(max-width:680px){.desk-switch{gap:6px;margin-bottom:16px}.desk-item{min-height:70px;padding:9px 8px;gap:6px}.desk-item b{font-size:17px}.desk-item small{font-size:11px}.desk-code{display:none}.desk-funds::after{font-size:19px}.page .topbar{margin-bottom:13px}}
     .history-button:hover {
       border-color: #ff8ca0;
       color: var(--red);
@@ -2820,13 +2830,14 @@
       </div>
       <div class="top-actions">
         <div class="badge">5月28日收盘版 / 真实数据</div>
-        <div class="home-shortcuts">
-          <a class="history-button capital-entry" href="capital-flow/index.html">资金面跟踪</a>
-          <button class="history-button" type="button" data-history-open>查看历史</button>
-        </div>
+        <button class="history-button" type="button" data-history-open>查看历史</button>
       </div>
     </header>
 
+    <nav class="desk-switch" aria-label="复盘啦工作台">
+      <div class="desk-item desk-close" aria-current="page"><span class="desk-code" aria-hidden="true">01</span><div><b>收盘复盘</b><small>温度 · 板块 · 个股</small></div></div>
+      <a class="desk-item desk-funds" href="capital-flow/index.html"><span class="desk-code" aria-hidden="true">02</span><div><b>资金面跟踪</b><small>ETF · 融资 · 衍生品</small></div></a>
+    </nav>
     <div class="review-workbench" data-workbench></div>
     <details class="review-audit" data-review-audit></details>
 

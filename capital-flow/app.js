@@ -2,7 +2,10 @@
 (() => {
 const D=window.FLOW,$=q=>document.querySelector(q),root=$('#body'),local=!!D?.detail;
 if(!D||!window.echarts){root.textContent='资金数据或图表组件未加载，请重新打开完整页面。';return}
-const tabs={etf:'宽基申赎',cross:'资金与盘面',minute:'成交分时',margin:'融资看盘',rates:'资金价格',basis:'期指基差',band:'指数波动带',risk:'雪球情景',week:'周度视角'};
+const tabs={overview:'资金总览',boards:'ETF 专题看板',etf:'宽基申赎',cross:'资金与盘面',minute:'ETF 成交分时',margin:'融资看盘',rates:'资金价格',basis:'期指基差',band:'指数波动带',risk:'雪球与 DCN',riskHistory:'历史触线回放',week:'周度视角'};
+const navSections=[['研究台',['overview','boards']],['ETF 资金',['etf','minute']],['市场资金',['cross','margin','rates','week']],['衍生品与风险',['risk','riskHistory','basis','band']]];
+const icons={boards:'layout-dashboard',etf:'layers',minute:'activity',cross:'chart-column-increasing',margin:'landmark',rates:'coins',week:'calendar-days',basis:'chart-line',band:'chart-candlestick',risk:'gauge'};
+const icon=k=>'<span class="nav-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-'+(icons[k]||'layout-dashboard')+'"></use></svg></span>';
 const colors=['#227d72','#657fc3','#d77e4b','#996dad','#439cae','#b79949'],red='#c4524f',green='#28866e';
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const ok=x=>typeof x==='number'&&Number.isFinite(x),fmt=(v,k=2)=>ok(v)?v.toLocaleString('zh-CN',{minimumFractionDigits:k,maximumFractionDigits:k}):'暂无',sg=(v,k=2)=>ok(v)?(v>=0.5*10**(-k)?'+':'')+fmt(Math.abs(v)<0.5*10**(-k)?0:v,k):'暂无';
@@ -36,7 +39,24 @@ function trail(a,k){return state[k]==='all'?a:a.slice(-Number(state[k]))}
 function spark(a,col){const min=Math.min(...a),m=Math.max(...a)-min||1;return '<svg aria-hidden="true" viewBox="0 0 64 25"><polyline fill="none" stroke="'+col+'" stroke-width="1.7" points="'+a.map((x,i)=>(i*63/Math.max(1,a.length-1)).toFixed(1)+','+(23-21*(x-min)/m).toFixed(1)).join(' ')+'"/></svg>'}
 function kpis(){const arr=D.net.map(r=>sum(r.slice(1))),m=D.margin['沪深京'],basis=D.basis['000852.SH'],intra=D.intraday[sorted(D.intraday).at(-1)],intraD=sorted(D.intraday).at(-1),amounts=intra.amount.filter(ok);
  const fields=[['宽基 ETF 净申赎',last(arr),'亿元',last(D.net)[0],arr.slice(-18),true],['沪深京融资净买入',last(m)[2],'亿元',last(m)[0],m.slice(-18).map(x=>x[2]),true],['中证1000近月基差',last(basis)[2],'点',last(basis)[0],basis.slice(-18).map(x=>x[2]),true],['活跃 ETF 分钟成交合计',amounts.length===intra.times.length?sum(amounts):null,'亿元',intraD,amounts.slice(-18),false]];
- $('#kpis').innerHTML=fields.map(([n,v,u,d,a,s])=>'<div class="kpi"><header>'+n+'</header><div class="value"><div><strong class="'+(s?(v<0?'down':'up'):'neutral')+'">'+(s?sg(v):fmt(v))+'</strong><em>'+u+'</em></div>'+spark(a,s?(v<0?green:red):colors[1])+'</div><small>'+d+' · '+(n.includes('分钟')?'20只样本':'收盘口径')+'</small></div>').join('')
+ $('#kpis').innerHTML=fields.map(([n,v,u,d,a,s],i)=>'<a class="kpi" href="#'+['etf','margin','basis','minute'][i]+'"><header>'+n+'<span aria-hidden="true"> ↗</span></header><div class="value"><div><strong class="'+(s?(v<0?'down':'up'):'neutral')+'">'+(s?sg(v):fmt(v))+'</strong><em>'+u+'</em></div>'+spark(a,s?(v<0?green:red):colors[1])+'</div><small>'+d+' · '+(n.includes('分钟')?'20只样本':'收盘口径')+'</small></a>').join('')
+}
+function overview(){
+ const market=D.margin['沪深京'],fin=new Map(market.map(r=>[r[0],r[2]]));
+ const common=D.net.filter(r=>r.slice(1).every(ok)&&ok(fin.get(r[0]))),days=common.map(r=>r[0]);
+ if(!days.length){head('资金总览','ETF 申赎与融资尚无可同时核对的交易日。');return}
+ head('资金总览','宽基 ETF、融资与盘面，以两项资金都有数据的交易日为准。',select('od','对照日期',days.slice().reverse(),last(days)));
+ const row=common.find(r=>r[0]===state.od),net=sum(row.slice(1)),mg=fin.get(row[0]),ctx=D.market[row[0]];
+ const dirs=D.categories.map((g,i)=>[g,row[i+1]]).sort((a,b)=>b[1]-a[1]),incoming=dirs.filter(r=>r[1]>0),outgoing=dirs.filter(r=>r[1]<0);
+ const describe=([g,v])=>g+' '+sg(v)+' 亿元';
+ const verdict=net===0||mg===0?'至少一项资金净额持平':net>0?(mg>0?'宽基 ETF 与融资均为净买入方向':'宽基 ETF 净申购，融资净偿还'):(mg>0?'宽基 ETF 净赎回，融资净买入':'宽基 ETF 净赎回，融资净偿还');
+ const h=document.createElement('div');h.className='briefing';
+ h.innerHTML='<div class="brief-main"><div class="brief-label">'+esc(row[0])+' · 同日观察</div><h3>'+esc(verdict)+'</h3><p>十类宽基净申赎 <b>'+sg(net)+'</b> 亿元，沪深京融资净买入 <b>'+sg(mg)+'</b> 亿元。</p><a href="#cross">看同日盘面与温度 →</a></div>'+
+ '<dl class="brief-detail"><div><dt>净申购最多</dt><dd>'+esc(incoming.length?describe(incoming[0]):'无净申购篮子')+'</dd></div><div><dt>净赎回最多</dt><dd>'+esc(outgoing.length?describe(last(outgoing)):'无净赎回篮子')+'</dd></div><div><dt>上涨家数占比</dt><dd>'+(ok(ctx?.[2])?fmt(ctx[2],1)+'%':'暂无')+'</dd></div></dl>';root.append(h);
+ const ranks=dirs.slice().reverse();
+ plot('资金流向了哪些宽基','固定十类 · 亿元',{grid:{left:8,right:44,top:25,bottom:15,containLabel:true},xAxis:{...axis('亿元'),min:v=>Math.min(0,v.min)-Math.max(v.max-v.min,1)*.19,max:v=>Math.max(0,v.max)+Math.max(v.max-v.min,1)*.18},yAxis:{type:'category',data:ranks.map(r=>r[0]),axisLabel:{interval:0,color:'#364950'}},series:[{name:'净申赎',type:'bar',barMaxWidth:14,data:ranks.map(r=>({value:r[1],itemStyle:{color:r[1]<0?green:red},label:{show:true,position:r[1]<0?'left':'right',color:'#394b51',formatter:()=>sg(r[1],1)}}))}]},'净申赎按可比份额变化乘当日单位净值估算。',330);
+ const recent=common.filter(r=>r[0]<=row[0]).slice(-20);
+ chart1('宽基 ETF 与融资 · 最近20个共同观测日','亿元',recent.map(r=>r[0]),[bar('宽基 ETF 净申赎',recent.map(r=>sum(r.slice(1))),colors[0]),bar('融资净买入',recent.map(r=>fin.get(r[0])),colors[2])],'亿元','两条资金渠道分别统计，不合计为“市场净流入”。');
 }
 function etf(){
  const days=D.net.map(r=>r[0]),gr=['十类合计',...D.categories];
@@ -138,9 +158,10 @@ function rates(){
  if(local)chart1('回购收盘年利率','%',rows.map(x=>x[0]),[line('GC001',rows.map(x=>D.repoLevels[x[0]][0]),colors[1]),line('GC007',rows.map(x=>D.repoLevels[x[0]][1]),colors[0])],'%','本机原始两期限行情，非全天成交加权利率。',true);
  table('逐日资金价格',['交易日','7天减1天（BP）','1天日变（BP）','7天日变（BP）','1天分位（%）','7天分位（%）'],rows.slice().reverse(),['','sign','sign','sign']);
 }
-const views={etf,cross,minute,margin,rates,basis,band,risk,week};
-function render(){charts.splice(0).forEach(c=>c.dispose());tab=tabs[location.hash.slice(1)]?location.hash.slice(1):'etf';root.replaceChildren();$('#tabs').querySelectorAll('button').forEach(b=>{if(b.dataset.tab===tab)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});views[tab]()}
-if(local)$('#home').href='https://telltellfish.github.io/';
+const views={overview,boards:()=>window.ETFBoards.mount(root,window.ETF_BOARDS_DATA,{view:boardId(),onViewChange:id=>history.replaceState(null,'','#boards/'+id)}),etf,cross,minute,margin,rates,basis,band,risk:()=>window.renderDCN(root,local?D.dcnPrivate:D.dcn),riskHistory:risk,week};
+function boardId(){const id=location.hash.split('/')[1];return window.ETFBoards.views.includes(id)?id:'daily'}
+function render(){root.__boards?.destroy();charts.splice(0).forEach(c=>c.dispose());const hash=location.hash.slice(1).split('/')[0];tab=Object.hasOwn(tabs,hash)?hash:'overview';root.replaceChildren();$('#tabs').querySelectorAll('button').forEach(b=>{if(b.dataset.tab===tab)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});views[tab]()}
+if(local)$('#close-link').href=$('#home').href='https://telltellfish.github.io/';
 const coverage=[
  ['交易所回购',D.rates[0][0],last(D.rates)[0],'GC001与GC007有效成交日配对；公开展示期限利差、变动和历史分位'],
  ['固定宽基申赎',D.net[0][0],last(D.net)[0],D.n+'只 / '+D.categories.length+'类，折算前后份额可比；不指认买方身份'],
@@ -150,11 +171,11 @@ const coverage=[
  ['沪深行业融资',sorted(D.industry)[0],last(sorted(D.industry)),'31个申万一级行业；三项加总分别与沪深A股汇总核对'],
  ['股指期货',D.basis['000852.SH'][0][0],last(D.basis['000852.SH'])[0],'2024年1月专题与近一年分段覆盖；期货减现货，同日收盘'],
  ['指数与情景',D.bands['000852.SH'][0][0],last(D.bands['000852.SH'])[0],'指数波动带为自算；雪球仅为历史价格压力测试，不是存续规模'],
- ['复盘啦温度',sorted(D.market)[0],last(sorted(D.market)),'沿用当时模型版本；不会用资金指标回改已有分数']
+ ['复盘啦温度',sorted(D.market).find(d=>ok(D.market[d][0])),sorted(D.market).filter(d=>ok(D.market[d][0])).at(-1),'沿用当时模型版本；不会用资金指标回改已有分数']
 ];
 $('#coverage-text').innerHTML=coverage.map(([name,a,b,info])=>'<div><b>'+esc(name)+'</b><span>'+esc(a)+' 至 '+esc(b)+'</span><span>'+esc(info)+'</span></div>').join('');
-$('#mode').textContent=local?'本机完整版':'公开汇总版';$('#stamp').textContent='最新行情 '+D.asof+' · 收盘快照';kpis();$('#tabs').innerHTML=Object.entries(tabs).map(([k,t])=>'<button data-tab="'+k+'">'+t+'</button>').join('');
-$('#tabs').onclick=e=>{if(e.target.dataset.tab)location.hash=e.target.dataset.tab};root.onchange=e=>{if(e.target.dataset.key){state[e.target.dataset.key]=e.target.value;render()}};
+$('#mode').textContent=local?'本机完整版':'公开汇总版';$('#stamp').textContent='行情截至 '+D.asof;kpis();$('#tabs').innerHTML=navSections.map(([cap,ids])=>'<div class="nav-group"><div class="nav-caption">'+cap+'</div>'+ids.map(k=>'<button data-tab="'+k+'">'+icon(k)+esc(tabs[k])+'</button>').join('')+'</div>').join('');
+$('#tabs').onclick=e=>{const b=e.target.closest('button[data-tab]');if(b)location.hash=b.dataset.tab};root.onchange=e=>{if(e.target.dataset.key){state[e.target.dataset.key]=e.target.value;render()}};
 window.addEventListener('hashchange',render);let timer;window.addEventListener('resize',()=>{clearTimeout(timer);timer=setTimeout(()=>charts.forEach(c=>c.resize()),80)});render();
 })();
 
